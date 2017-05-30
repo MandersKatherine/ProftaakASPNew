@@ -29,6 +29,34 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return events;
         }
+
+        public Event GetById(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM EVENT WHERE ID = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Event eventdetails = CreateEventFromReader(reader);
+                            return eventdetails;
+                        }
+                    }
+                }
+
+            }
+            return null;
+        }
+
+
+     
+
         private Event CreateEventFromReader(SqlDataReader reader)
         {
             return new Event(

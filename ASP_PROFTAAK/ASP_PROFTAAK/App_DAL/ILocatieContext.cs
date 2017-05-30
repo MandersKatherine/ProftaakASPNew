@@ -11,6 +11,8 @@ namespace ASP_PROFTAAK
     {
         List<Locatie> GetAllLocations();
 
+        Locatie GetbyEvent(Event ev);
+
         Locatie InsertLocatie(Locatie locatie);
 
         bool DeleteLocatie(int id);
