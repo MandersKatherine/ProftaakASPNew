@@ -262,13 +262,17 @@
     <Content Include="Views\Bijdrage\Delete.cshtml" />
     <Content Include="Views\Bijdrage\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
+
+
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+
 
   </ItemGroup>
   <ItemGroup>

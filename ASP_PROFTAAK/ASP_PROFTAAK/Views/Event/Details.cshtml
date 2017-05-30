@@ -6,9 +6,7 @@
 }
 
 <h2>Details</h2>
-@using (Html.BeginForm("Details", "Event", FormMethod.Post))
-{
-    
+
 <div>
     <h4>Event</h4>
     <hr />
@@ -55,9 +53,7 @@
 
     </dl>
 </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-
-}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
