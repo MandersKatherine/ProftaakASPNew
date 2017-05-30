@@ -18,6 +18,12 @@ namespace ASP_PROFTAAK.Models
             this.Naam = naam;
         }
 
+        public ProductCategorie(int id, string naam)
+        {
+            this.Id = id;
+            this.Naam = naam;
+        }
+
         public int Id
         {
             get

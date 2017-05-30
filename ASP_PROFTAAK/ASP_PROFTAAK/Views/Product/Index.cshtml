@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ASP_PROFTAAK.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+                        
+<h2>Index</h2>
+
+@using (Html.BeginForm("Delete", "Product", FormMethod.Post))
+{
+
+    <p>
+        @Html.ActionLink("Nieuw product","NieuwProduct")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategorieId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Merk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Serie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Typenummer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prijs)
+            </th>
+            <th></th>
+        </tr>
+ 
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategorieId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Merk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Typenummer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prijs)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {id = item.ProductId}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.ProductId}) |
+                </td>
+                <td>
+                    <input type="checkbox" class="chkCheckBoxId" value="@item.ProductId" name="productId"/>
+                </td>
+               
+            </tr>
+        }
+        <tr>
+            <td>
+                <input type="submit" value="Delete" onclick="return confirm('Delete?')" class="btn btn-primary pull-right btn-block">
+            </td>
+        </tr>
+
+    </table>
+}
