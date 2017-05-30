@@ -13,6 +13,7 @@ namespace ASP_PROFTAAK.Models
         private string activatiehash;
         private string wachtwoord;
         private string voornaam;
+        private string tussenvoegsel;
         private string achternaam;
         private int telefoonnr;
         private int geactiveerd;
@@ -24,6 +25,7 @@ namespace ASP_PROFTAAK.Models
         public string Activatiehash { get { return activatiehash; } set { activatiehash = value; } }
         public string Wachtwoord { get { return wachtwoord; } set { wachtwoord = value; } }
         public string Voornaam { get { return voornaam; } set { voornaam = value; } }
+        public string Tussenvoegsel { get { return tussenvoegsel; }set { tussenvoegsel = value; } }
         public string Achternaam { get { return achternaam; } set { achternaam = value; } }
         public int Telefoonnr { get { return telefoonnr; } set { telefoonnr = value; } }
         public int Geactiveerd { get { return geactiveerd; } set { geactiveerd = value; } }
@@ -36,13 +38,14 @@ namespace ASP_PROFTAAK.Models
             this.activatiehash = activatiehash;
             this.wachtwoord = wachtwoord;
             this.voornaam = voornaam;
+            this.tussenvoegsel = tussenvoegsel;
             this.achternaam = achternaam;
             this.telefoonnr = telefoonnummer;
             this.geactiveerd = geactiveerd;
         }
 
-        public Account(string voornaam, string tussenvoegsel, string achternaam, int telefoonnummer, string gebruikersnaam, string wachtwoord, string email, string activatiehash, int geactiveerd)
-            : this(-1, voornaam, tussenvoegsel, achternaam, telefoonnummer, gebruikersnaam, wachtwoord, email, activatiehash, geactiveerd)
+        public Account(string voornaam, string tussenvoegsel, string achternaam, int telefoonnummer, string gebruikersnaam, string wachtwoord, string email)
+            : this(-1, voornaam, tussenvoegsel, achternaam, telefoonnummer, gebruikersnaam, wachtwoord, email, "", -1)
         {
 
         }

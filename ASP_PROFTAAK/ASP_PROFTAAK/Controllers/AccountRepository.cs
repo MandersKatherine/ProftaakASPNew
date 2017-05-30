@@ -26,14 +26,18 @@ namespace ASP_PROFTAAK.Controllers
             return context.InsertAccount(account);
         }
 
-        public bool UpdateAccount(Account account)
+        public bool UpdateAccount(int id, Account account)
         {
-            return context.UpdateAccount(account);
+            return context.UpdateAccount(id, account);
         }
 
         public bool DeleteAccount(int id)
         {
             return context.DeleteAccount(id);
+        }
+        public Account GetAccountById(int id)
+        {
+            return context.GetAccountById(id);
         }
         
     }

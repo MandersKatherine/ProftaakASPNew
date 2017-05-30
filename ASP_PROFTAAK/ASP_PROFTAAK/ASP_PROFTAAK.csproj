@@ -149,12 +149,15 @@
     <Compile Include="App_DAL\BijdrageSQLContext.cs" />
     <Compile Include="App_DAL\Database.cs" />
     <Compile Include="App_DAL\EventSQLContext.cs" />
+    <Compile Include="App_DAL\GroepslidSQLContext.cs" />
     <Compile Include="App_DAL\IAccountContext.cs" />
     <Compile Include="App_DAL\IBijdrageContext.cs" />
     <Compile Include="App_DAL\IEventContext.cs" />
+    <Compile Include="App_DAL\IGroepslidContext.cs" />
     <Compile Include="App_DAL\ILocatieContext.cs" />
     <Compile Include="App_DAL\IPersoonContext.cs" />
     <Compile Include="App_DAL\IPlekContext.cs" />
+    <Compile Include="App_DAL\IPolsbandjeContext.cs" />
     <Compile Include="App_DAL\IProductCategorieContext.cs" />
     <Compile Include="App_DAL\IProductContext.cs" />
     <Compile Include="App_DAL\IReserveringContext.cs" />
@@ -171,7 +174,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AccountRepository.cs" />
+    <Compile Include="Controllers\BijdrageController.cs" />
+    <Compile Include="Controllers\BijdrageRepository.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -182,7 +188,9 @@
     <Compile Include="Controllers\PlekRepository.cs" />
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
     <Compile Include="Controllers\ProductRepository.cs" />
+    <Compile Include="Controllers\ReserveringController.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
+    <Compile Include="Controllers\ReserveringViewModel.cs" />
     <Compile Include="Controllers\SpecificatieRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,10 +201,14 @@
     <Compile Include="Models\Bijdrage.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Groepslid.cs" />
+
     <Compile Include="Models\EventViewModel.cs" />
+
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\Persoon.cs" />
     <Compile Include="Models\Plek.cs" />
+    <Compile Include="Models\Polsbandje.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
@@ -243,10 +255,25 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+
+    <Content Include="Views\Reservering\Index.cshtml" />
+
+    <Content Include="Views\Bijdrage\Index.cshtml" />
+    <Content Include="Views\Bijdrage\Delete.cshtml" />
+    <Content Include="Views\Bijdrage\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
+
+
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
