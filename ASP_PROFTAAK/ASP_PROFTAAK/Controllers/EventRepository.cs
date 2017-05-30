@@ -25,5 +25,15 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetById(id);
         }
+
+        public Event InsertEvent(Event events)
+        {
+            return context.InsertEvent(events);
+        }
+
+        public bool UpdateEvent(Event events)
+        {
+            return context.UpdateEvent(events);
+        }
     }
 }

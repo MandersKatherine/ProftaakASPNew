@@ -11,5 +11,9 @@ namespace ASP_PROFTAAK.App_DAL
         List<Event> GetAllEvents();
 
         Event GetById(int id);
+
+        Event InsertEvent(Event events);
+
+        bool UpdateEvent(Event events);
     }
 }
