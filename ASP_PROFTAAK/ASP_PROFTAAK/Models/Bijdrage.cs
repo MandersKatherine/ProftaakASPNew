@@ -18,7 +18,11 @@ namespace ASP_PROFTAAK.Models
             this.accountId = accountId;
             this.datum = datum;
             this.soort = soort;
-        } 
+        }
+
+        public Bijdrage()
+        {
+        }
 
         public int Id
         {

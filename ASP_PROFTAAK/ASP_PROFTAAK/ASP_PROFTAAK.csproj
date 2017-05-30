@@ -170,6 +170,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountRepository.cs" />
+    <Compile Include="Controllers\BijdrageController.cs" />
+    <Compile Include="Controllers\BijdrageRepository.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -236,6 +238,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Bijdrage\Index.cshtml" />
+    <Content Include="Views\Bijdrage\Delete.cshtml" />
+    <Content Include="Views\Bijdrage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
