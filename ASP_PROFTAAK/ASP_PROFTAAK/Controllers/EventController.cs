@@ -11,12 +11,33 @@ namespace ASP_PROFTAAK.Controllers
     public class EventController : Controller
     {
         EventRepository eventrepo = new EventRepository(new EventSQLContext());
+        LocatieRepository locrepo = new LocatieRepository(new LocatieSQLContext());
+        PlekRepository plekrepo = new PlekRepository(new PlekSQLContext());
+        SpecificatieRepository specrepo = new SpecificatieRepository(new SpecificatieSQLContext());
         // GET: Event
         public ActionResult Index()
         {
             List<Event> events = eventrepo.GetAllEvents();
             return View(events);
         }
+
+        //GET: EventView
+       /* public ActionResult EventView()
+        {
+            List<Event> events = eventrepo.GetAllEvents();
+            List<Locatie> locaties = locrepo.GetAllLocations();
+            List<Plek> plekken = plekrepo.GetAll();
+            List<Specificatie> specs = specrepo.GetAll();
+
+            var viewModel = new EventViewModel
+            {
+                locatie = locaties,
+                event1 = events,
+                plek = plekken,
+                spec = specs
+            };
+            return View(viewModel);
+        }*/
 
         // GET: Event/Details/5
         public ActionResult Details(int id)
@@ -49,23 +70,26 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Event eventdetails = eventrepo.GetByID(id);
+            Locatie locatiedetails = locrepo.GetByEvent(eventdetails);
+            var viewModel = new EventViewModel
+            {
+                locatie = locatiedetails,
+                event1 = eventdetails,
+                //plek = plekken,
+                //spec = specs
+            };
+            return View(viewModel);
+            
         }
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //Event updateEvent = new Event(Convert.ToInt32(collection["locatieid"]),collection[""]);
+            return View();
+            
         }
 
         // GET: Event/Delete/5

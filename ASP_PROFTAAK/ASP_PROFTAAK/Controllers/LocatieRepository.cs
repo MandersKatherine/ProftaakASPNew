@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ASP_PROFTAAK.Models;
 
 namespace ASP_PROFTAAK
 {
@@ -13,6 +14,10 @@ namespace ASP_PROFTAAK
             this.context = context; 
         }
 
+        public Locatie GetByEvent(Event eEvent)
+        {
+            return context.GetbyEvent(eEvent);
+        }
 
         public List<Locatie> GetAllLocations()
         {
