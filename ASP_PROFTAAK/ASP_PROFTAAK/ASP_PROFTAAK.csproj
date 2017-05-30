@@ -158,6 +158,7 @@
     <Compile Include="App_DAL\IProductCategorieContext.cs" />
     <Compile Include="App_DAL\IProductContext.cs" />
     <Compile Include="App_DAL\IReserveringContext.cs" />
+    <Compile Include="App_DAL\ISpecificatieContext.cs" />
     <Compile Include="App_DAL\IVerhuurContext.cs" />
     <Compile Include="App_DAL\LocatieSQLContext.cs" />
     <Compile Include="App_DAL\PersoonSQLContext.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="App_DAL\ProductCategorieSQLContext.cs" />
     <Compile Include="App_DAL\ProductSQLContext.cs" />
     <Compile Include="App_DAL\ReserveringSQLContext.cs" />
+    <Compile Include="App_DAL\SpecificatieSQLContext.cs" />
     <Compile Include="App_DAL\VerhuurSqlContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -181,6 +183,7 @@
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
     <Compile Include="Controllers\ProductRepository.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
+    <Compile Include="Controllers\SpecificatieRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +193,7 @@
     <Compile Include="Models\Bijdrage.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\Persoon.cs" />
     <Compile Include="Models\Plek.cs" />
@@ -197,6 +201,7 @@
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
     <Compile Include="Models\Reservering.cs" />
+    <Compile Include="Models\Specificatie.cs" />
     <Compile Include="Models\Verhuurd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -238,6 +243,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,31 @@ namespace ASP_PROFTAAK
             return locaties;
         }
 
+        public Locatie GetbyEvent(Event ev)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM LOCATIE WHERE ID = (SELECT locatie_id FROM EVENT WHERE ID = @id)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@id", ev.Id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Locatie loc = CreateLocatieFromReader(reader);
+                            return loc;
+                        }
+                    }
+                }
+
+            }
+            return null;
+        }
+
+        
 
         public Locatie InsertLocatie(Locatie locatie)
         {
