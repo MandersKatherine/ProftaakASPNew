@@ -16,5 +16,7 @@ namespace ASP_PROFTAAK.App_DAL
         bool UpdatePersoon(Persoon persoon);
 
         bool DeletePersoon(int id);
+        Persoon getHoofdboekerByReserveringId(int id);
+
     }
 }

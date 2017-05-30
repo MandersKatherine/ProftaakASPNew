@@ -35,5 +35,10 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.DeletePersoon(id);
         }
+
+        public Persoon getHoofdboekerByReserveringId(int id)
+        {
+            return context.getHoofdboekerByReserveringId(id);
+        }
     }
 }

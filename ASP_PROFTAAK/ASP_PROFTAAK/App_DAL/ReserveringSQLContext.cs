@@ -32,6 +32,8 @@ namespace ASP_PROFTAAK.App_DAL
             return reserveringen;
         }
 
+
+
         public Reservering InsertReservering(Reservering reserveringen)
         {
             using (SqlConnection connection = Database.Connection)
@@ -56,6 +58,8 @@ namespace ASP_PROFTAAK.App_DAL
                 return reserveringen;
             }
         }
+
+        
 
         public void UpdateReservering(Reservering reserveringen)
         {

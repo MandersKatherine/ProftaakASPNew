@@ -31,6 +31,27 @@ namespace ASP_PROFTAAK.App_DAL
             return personen;
         }
 
+        public Persoon getHoofdboekerByReserveringId(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "select * from Persoon inner join reservering on persoon.id = reservering.persoon_id where reservering.id = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CustomerID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return CreatePersoonFromReader(reader);
+
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
         public Persoon InsertPersoon(Persoon persoon)
         {
             using (SqlConnection connection = Database.Connection)
