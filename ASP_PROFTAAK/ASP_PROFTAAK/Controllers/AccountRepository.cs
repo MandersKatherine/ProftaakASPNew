@@ -35,5 +35,6 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.DeleteAccount(id);
         }
+        
     }
 }

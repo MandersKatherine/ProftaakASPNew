@@ -1,6 +1,7 @@
 ﻿using ASP_PROFTAAK.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -31,6 +32,42 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return accounts;
         }
+        public Account Login(string email, string password)
+        {
+            SqlConnection connection = Database.Connection;
+            ConnectionState conState = connection.State;
+            if (conState == ConnectionState.Open)
+            {
+                string query = "SELECT * FROM [ACCOUNT] WHERE email=@email and wachtwoord=@pass";
+                using (connection)
+                {
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@pass", password);
+                    cmd.ExecuteScalar();
+                    
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Account account = CreateAccountFromReader(reader);
+                                return account;
+                            }
+                        }
+                        
+
+                    
+                }
+
+            }
+
+            return null;
+
+
+
+        }
+
+
 
 
         public Account InsertAccount(Account account)
@@ -129,13 +166,14 @@ namespace ASP_PROFTAAK.App_DAL
         {
             return new Account(
                  Convert.ToInt32(reader["ID"]),
+                 Convert.ToString(reader["Voornaam"]),
+                 Convert.ToString(reader["Tussenvoegsel"]),
+                 Convert.ToString(reader["Achternaam"]),
+                 Convert.ToInt32(reader["Telefoonnummer"]),
                  Convert.ToString(reader["Gebruikersnaam"]),
+                 Convert.ToString(reader["Wachtwoord"]),
                  Convert.ToString(reader["Email"]),
                  Convert.ToString(reader["Activatiehash"]),
-                 Convert.ToString(reader["Wachtwoord"]),
-                 Convert.ToString(reader["Voornaam"]),
-                 Convert.ToString(reader["Achternaam"]),
-                 Convert.ToInt32(reader["Telefoonnr"]),
                  Convert.ToInt32(reader["Geactiveerd"]));
         }
     }
