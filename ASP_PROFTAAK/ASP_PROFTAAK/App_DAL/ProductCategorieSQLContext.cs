@@ -89,6 +89,8 @@ namespace ASP_PROFTAAK.App_DAL
                 return new ProductCategorie((int)reader["id"], (string)reader["naam"]);
             }
             
+
+
         }
     }
 }
