@@ -9,8 +9,9 @@ namespace ASP_PROFTAAK.App_DAL
     public interface IBijdrageContext
     {
 
-        List<Bijdrage> GetAllBijdrage();
+        List<Bericht> GetAllBerichts();
 
+        Bijdrage GetByID(int ID);
         bool InsertBijdrage(Bijdrage bijdrage);
 
         bool DeleteBijdrage(int id);

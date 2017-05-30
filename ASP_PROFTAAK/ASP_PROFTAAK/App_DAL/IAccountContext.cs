@@ -17,6 +17,8 @@ namespace ASP_PROFTAAK.App_DAL
 
         bool DeleteAccount(int id);
 
-        bool UpdateAccount(Account account);
+        bool UpdateAccount(int id, Account account);
+        Account Login(string email, string password);
+        Account GetAccountById(int id);
     }
 }

@@ -9,5 +9,7 @@ namespace ASP_PROFTAAK.App_DAL
     public interface IEventContext
     {
         List<Event> GetAllEvents();
+
+        Event GetById(int id);
     }
 }

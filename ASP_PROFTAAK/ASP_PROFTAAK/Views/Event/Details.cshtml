@@ -1,0 +1,63 @@
+﻿@model ASP_PROFTAAK.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+@using (Html.BeginForm("Details", "Event", FormMethod.Post))
+{
+    
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Locatie_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locatie_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumEinde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumEinde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxBezoekers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxBezoekers)
+        </dd>
+
+    </dl>
+</div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+}
