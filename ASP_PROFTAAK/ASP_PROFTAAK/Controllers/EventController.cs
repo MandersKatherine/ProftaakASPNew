@@ -43,9 +43,15 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Details(int id)
         {
             Event events = eventrepo.GetByID(id);
+            Locatie locatie1 = locrepo.GetByEvent(events);
+            var Viewmodel = new EventViewModel()
+            {
+                event1 = events,
+                locatie = locatie1
+            };
             if (events != null)
             {
-                return View(events);
+                return View(Viewmodel);
             }
             else return HttpNotFound();
         }
