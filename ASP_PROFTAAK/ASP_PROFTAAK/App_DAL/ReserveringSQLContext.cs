@@ -10,6 +10,7 @@ namespace ASP_PROFTAAK.App_DAL
     public class ReserveringSQLContext : IReserveringContext
     {
         private List<Reservering> reserveringen = new List<Reservering>();
+        private Reservering reservering;
 
         public List<Reservering> GetAllReserveringen()
         {
@@ -31,6 +32,28 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return reserveringen;
         }
+        public Reservering GetReserveringById(decimal id)
+        {
+            
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM RESERVERING WHERE Id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            reservering = CreateReserveringFromReader(reader);
+                        }
+                    }
+                }
+            }
+            return reservering;
+        }
+
 
 
 
@@ -89,7 +112,8 @@ namespace ASP_PROFTAAK.App_DAL
         private Reservering CreateReserveringFromReader(SqlDataReader reader)
         {
             return new Reservering(
-                Convert.ToInt32(reader["ID"]),
+                Convert.ToDecimal(reader["ID"]),
+                Convert.ToDecimal(reader["persoon_id"]),
                 Convert.ToDateTime(reader["DatumStart"]),
                 Convert.ToDateTime(reader["DatumEinde"]),
                 Convert.ToBoolean(reader["Betaald"]));

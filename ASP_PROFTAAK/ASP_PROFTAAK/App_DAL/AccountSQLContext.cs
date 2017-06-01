@@ -155,6 +155,7 @@ namespace ASP_PROFTAAK.App_DAL
             using (SqlConnection connection = Database.Connection)
             {
 
+
                 string query = "UPDATE ACCOUNT SET Gebruikersnaam = @gebruikersnaam, Email = @email, Wachtwoord = @wachtwoord, Voornaam = @voornaam, Tussenvoegsel = @tussenvoegsel, Achternaam = @achternaam, Telefoonnummer = @telefoonnummer WHERE Id = @id";
 
                 using (SqlCommand command = new SqlCommand(query, connection))

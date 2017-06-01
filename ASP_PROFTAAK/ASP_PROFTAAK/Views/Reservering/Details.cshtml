@@ -1,0 +1,113 @@
+﻿@model Tuple<ASP_PROFTAAK.Models.Reservering, ASP_PROFTAAK.Models.Persoon>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservering</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.PersonId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.PersonId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.DatumStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.DatumStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.DatumEinde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.DatumEinde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.Betaald)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item1.Betaald)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <h4>Persoon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Voornaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Voornaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Tussenvoegsel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Tussenvoegsel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Achternaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Achternaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Straat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Straat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Huisnr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Huisnr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Woonplaats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Woonplaats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item2.Banknr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item2.Banknr)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
