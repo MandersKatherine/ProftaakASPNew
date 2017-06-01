@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASP_PROFTAAK.App_DAL;
+using ASP_PROFTAAK.Models;
 
 namespace ASP_PROFTAAK.Controllers
 {
     public class ProductExemplaarController : Controller
     {
-
-        productex
+        ProductExemplaarRepository per = new ProductExemplaarRepository(new ProductExemplaarSQLContext());
+       
         // GET: ProductExemplaar
         public ActionResult Index()
         {
-            return View();
+            List<ProductExemplaar> productexemplaren = per.GetAllProductExemplaar();
+            return View(productexemplaren);
         }
 
         // GET: ProductExemplaar/Details/5

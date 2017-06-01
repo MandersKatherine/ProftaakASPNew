@@ -5,31 +5,34 @@ using System.Web;
 
 namespace ASP_PROFTAAK.Models
 {
-    public class ProductExemplaar : Product
+    public class ProductExemplaar
     {
         private decimal id;
+        private decimal productId;
         private decimal volgnummer;
         private string barcode;
         private bool verhuurd;
 
-
-        public ProductExemplaar(decimal productId, decimal categorieId, string merk, string serie, string typenummer, decimal prijs, int id, int volgnummer, string barcode, bool verhuurd) : base(productId, categorieId, merk, serie, typenummer, prijs)
-        {
-            this.Id = id;
-            this.Volgnummer = volgnummer;
-            this.Barcode = barcode;
-            this.Verhuurd = verhuurd;
-        }
 
         public ProductExemplaar()
         {
             
         }
 
+        public ProductExemplaar(decimal id, decimal productId, decimal volgnummer, string barcode, bool verhuurd)
+        {
+            this.Id = id;
+            this.ProductId = productId;
+            this.Volgnummer = volgnummer;
+            this.Barcode = barcode;
+            this.Verhuurd = verhuurd;
+        }
+
         public decimal Id
         {
             get
             {
+      
                 return id;
             }
 
@@ -37,6 +40,12 @@ namespace ASP_PROFTAAK.Models
             {
                 id = value;
             }
+        }
+
+        public decimal ProductId
+        {
+            get { return productId; }
+            set { productId = value; }
         }
 
         public decimal Volgnummer

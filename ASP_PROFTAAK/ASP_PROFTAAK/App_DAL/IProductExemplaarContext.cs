@@ -7,10 +7,10 @@ using ASP_PROFTAAK.Models;
 
 namespace ASP_PROFTAAK.App_DAL
 {
-    interface IProductExemplaarContext
+    public interface IProductExemplaarContext
     {
-        List<ProductExemplaar> GetAllProducts();
-        void Insert(ProductExemplaar productExemplaar);
+        List<ProductExemplaar> GetAllProductExemplaar();
+        void Insert(ProductExemplaar productExemplaar, Product product);
         void Update(ProductExemplaar productExemplaar);
         void Delete(ProductExemplaar productExemplaar);
     }
