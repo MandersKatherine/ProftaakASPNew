@@ -17,7 +17,7 @@ namespace ASP_PROFTAAK.Models
         private string achternaam;
         private int telefoonnr;
         private int geactiveerd;
-
+        //Account
 
         public int Id { get { return id; } set { id = value; } }
         public string Gebruikersnaam { get { return gebruikersnaam; } set { gebruikersnaam = value; } }
