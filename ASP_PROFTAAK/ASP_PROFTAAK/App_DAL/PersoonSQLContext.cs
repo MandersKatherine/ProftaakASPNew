@@ -31,14 +31,14 @@ namespace ASP_PROFTAAK.App_DAL
             return personen;
         }
 
-        public Persoon getHoofdboekerByReserveringId(int id)
+        public Persoon getHoofdboekerByReserveringId(decimal id)
         {
             using (SqlConnection connection = Database.Connection)
             {
                 string query = "select * from Persoon inner join reservering on persoon.id = reservering.persoon_id where reservering.id = @id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@CustomerID", id);
+                    command.Parameters.AddWithValue("@id", id);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -115,7 +115,7 @@ namespace ASP_PROFTAAK.App_DAL
             return false;
         }
 
-        public bool DeletePersoon(int id)
+        public bool DeletePersoon(decimal id)
         {
             using (SqlConnection connection = Database.Connection)
             {

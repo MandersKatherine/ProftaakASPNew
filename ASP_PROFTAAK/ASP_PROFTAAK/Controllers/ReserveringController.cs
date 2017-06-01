@@ -10,18 +10,33 @@ namespace ASP_PROFTAAK.Controllers
 {
     public class ReserveringController : Controller
     {
-        ReserveringRepository rr = new ReserveringRepository(new ReserveringSQLContext());
-        // GET: Reservering
+        ReserveringRepository reserveringrepo = new ReserveringRepository(new ReserveringSQLContext());
+        PlekRepository plekrepo = new PlekRepository(new PlekSQLContext());
+        LocatieRepository locatierepo = new LocatieRepository(new LocatieSQLContext());
+        EventRepository eventrepo = new EventRepository(new EventSQLContext());
+        PersoonRepository persoonrepo = new PersoonRepository(new PersoonSQLContext());
+
+        private Reservering newReservering;
+        private Plek newPlek;
+        private Locatie newLocatie;
+        private Event newEvent;
+        private Persoon newPersoon;
+        // GET: Reservering                                               
         public ActionResult Index()
         {
-            List<Reservering> reserveringen = rr.GetAllReserveringen();
+            List<Reservering> reserveringen = reserveringrepo.GetAllReserveringen();
             return View(reserveringen);
         }
-
-        // GET: Reservering/Details/5
-        public ActionResult Details(int id)
+        public Tuple<Reservering, Persoon> GetMultipleValues(Reservering reservering, Persoon persoon)
         {
-            return View();
+            return Tuple.Create(reservering, persoon);
+        }
+        // GET: Reservering/Details/5
+        public ActionResult Details(decimal id)
+        {
+            newReservering = reserveringrepo.GetReserveringById(id);
+            newPersoon = persoonrepo.getHoofdboekerByReserveringId((decimal)newReservering.PersonId);
+            return View(GetMultipleValues(newReservering, newPersoon));
         }
 
         // GET: Reservering/Create
@@ -47,14 +62,14 @@ namespace ASP_PROFTAAK.Controllers
         }
 
         // GET: Reservering/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(decimal id)
         {
             return View();
         }
 
         // POST: Reservering/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(decimal id, FormCollection collection)
         {
             try
             {
@@ -69,14 +84,14 @@ namespace ASP_PROFTAAK.Controllers
         }
 
         // GET: Reservering/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(decimal id)
         {
             return View();
         }
 
         // POST: Reservering/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(decimal id, FormCollection collection)
         {
             try
             {
