@@ -191,6 +191,7 @@
     <Compile Include="Controllers\PersoonRepository.cs" />
     <Compile Include="Controllers\PlekController.cs" />
     <Compile Include="Controllers\PlekRepository.cs" />
+    <Compile Include="Controllers\ProductCategorieController.cs" />
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductExemplaarController.cs" />
@@ -283,7 +284,13 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Reservering\Details.cshtml" />
+
+    <Content Include="Views\Persoon\Details.cshtml" />
+    <Content Include="Views\ProductCategorie\Index.cshtml" />
+    <Content Include="Views\ProductCategorie\Details.cshtml" />
+
     <Content Include="Views\Event\Delete.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

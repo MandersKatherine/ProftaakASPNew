@@ -56,7 +56,6 @@ namespace ASP_PROFTAAK.Controllers
             return View(v);
         }
 
-
         [HttpPost]
         public ActionResult NieuwProduct(Product product, ProductCategorie pc)
         {
@@ -108,5 +107,6 @@ namespace ASP_PROFTAAK.Controllers
             // met een foreach alle geselecteerde producten verwijderen
             return RedirectToAction("Index");
         }
+
     }
 }
