@@ -84,13 +84,13 @@ namespace ASP_PROFTAAK.App_DAL
         private Verhuurd CreateProductFromReader(SqlDataReader reader)
         {
             return new Verhuurd(
-                Convert.ToInt32(reader["id"]),
-                Convert.ToInt32(reader["productexemplaar_id"]),
-                Convert.ToInt32(reader["res_pb_id"]),
-                Convert.ToDateTime(reader["datumIn"]),
-                Convert.ToDateTime(reader["DatumUit"]),
-                Convert.ToDouble(reader["prijs"]),
-                Convert.ToBoolean(reader["betaald"]));
+               (decimal)(reader["id"]),
+                (decimal)(reader["productexemplaar_id"]),
+              (decimal)(reader["res_pb_id"]),
+                (DateTime)(reader["datumIn"]),
+               (DateTime)(reader["DatumUit"]),
+               (decimal)(reader["prijs"]),
+               (decimal)(reader["betaald"]));
         }
     }
 }
