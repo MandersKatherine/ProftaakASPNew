@@ -14,12 +14,12 @@ namespace ASP_PROFTAAK.Models
         private bool betaald;
 
         public decimal Id { get { return id; } set { id = value; } }
-        public decimal PersonId { get { return personId; }set { personId = value; } }
+        public decimal PersonId { get { return personId; } set { personId = value; } }
         public DateTime DatumStart { get { return datumstart; } set { datumstart = value; } }
         public DateTime DatumEinde { get { return datumeinde; } set { datumeinde = value; } }
         public bool Betaald { get { return betaald; } set { betaald = value; } }
 
-        public Reservering (decimal id, decimal personId, DateTime datumstart, DateTime datumeinde, bool betaald)
+        public Reservering(decimal id, decimal personId, DateTime datumstart, DateTime datumeinde, bool betaald)
         {
             this.id = id;
             this.personId = personId;

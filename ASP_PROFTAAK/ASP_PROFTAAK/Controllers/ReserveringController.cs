@@ -43,7 +43,7 @@ namespace ASP_PROFTAAK.Controllers
             newLocatie = locatierepo.GetLocatieById(plek.LocatieId);
             newEvent = eventrepo.GetEventById(newLocatie.Id);
 
-            var 
+             
 
 
 

@@ -198,7 +198,6 @@
     <Compile Include="Controllers\ProductRepository.cs" />
     <Compile Include="Controllers\ReserveringController.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
-
     <Compile Include="Controllers\VerhuurController.cs" />
     <Compile Include="Controllers\VerhuurRepository.cs" />
     <Compile Include="Controllers\ViewModelCreateProduct.cs" />
@@ -222,6 +221,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
+    <Compile Include="Models\Reservering.cs" />
     <Compile Include="Models\Specificatie.cs" />
     <Compile Include="Models\Verhuurd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -282,7 +282,6 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Reservering\Details.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
