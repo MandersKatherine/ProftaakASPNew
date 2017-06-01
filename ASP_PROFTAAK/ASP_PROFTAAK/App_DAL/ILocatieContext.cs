@@ -18,6 +18,7 @@ namespace ASP_PROFTAAK
         bool DeleteLocatie(int id);
 
         bool UpdateLocatie(Locatie locatie);
+        Locatie GetLocatieById(int id);
 
     }
 }

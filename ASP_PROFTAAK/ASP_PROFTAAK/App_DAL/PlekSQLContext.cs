@@ -47,11 +47,63 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return Plekken;
         }
+        public List<Decimal> GetPlekId(decimal id)
+        {
+            List<Decimal> Plekken = new List<Decimal>();
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT plek_id FROM RESERVERING INNER JOIN PLEK_RESERVERING ON RESERVERING.ID = PLEK_RESERVERING.reservering_id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Plekken.Add(reader.GetDecimal(0));
+                        }
+                    }
+                }
+            }
+            return Plekken;
+        }
+        public List<Plek> GetPlekById(List<decimal> id)
+        {
+            List<Plek> Plekken = new List<Plek>();
+            
+            foreach (decimal newId in id)
+            {
+                
+                using (SqlConnection connection = Database.Connection)
+                {
+                    string query = "SELECT * FROM PLEK WHERE ID = @id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("id", newId);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+
+                                Plekken.Add(CreatePlekFromReader(reader));
+                                
+                            }
+
+                        }
+                    }
+                }
+            }
+            return Plekken;
+        }
 
         private Plek CreatePlekFromReader(SqlDataReader reader)
         {
             return new Plek(
                  Convert.ToInt32(reader["ID"]),
+                 Convert.ToInt32(reader["locatie_id"]),
                  Convert.ToString(reader["Nummer"]),
                  Convert.ToInt32(reader["Capaciteit"]));
         }

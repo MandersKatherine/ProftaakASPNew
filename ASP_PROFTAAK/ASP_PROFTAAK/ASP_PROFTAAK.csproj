@@ -183,11 +183,13 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocatieController.cs" />
     <Compile Include="Controllers\LocatieRepository.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginRepository.cs" />
     <Compile Include="Controllers\PersoonController.cs" />
     <Compile Include="Controllers\PersoonRepository.cs" />
+    <Compile Include="Controllers\PlekController.cs" />
     <Compile Include="Controllers\PlekRepository.cs" />
     <Compile Include="Controllers\ProductCategorieController.cs" />
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
@@ -221,6 +223,7 @@
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
     <Compile Include="Models\Reservering.cs" />
+    <Compile Include="Models\ReserveringViewModelELPRP.cs" />
     <Compile Include="Models\Specificatie.cs" />
     <Compile Include="Models\Verhuurd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -281,9 +284,13 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Reservering\Details.cshtml" />
+
     <Content Include="Views\Persoon\Details.cshtml" />
     <Content Include="Views\ProductCategorie\Index.cshtml" />
     <Content Include="Views\ProductCategorie\Details.cshtml" />
+
+    <Content Include="Views\Event\Delete.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

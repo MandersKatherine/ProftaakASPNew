@@ -15,6 +15,8 @@ namespace ASP_PROFTAAK.App_DAL
         bool DeletePlek(int id);
 
         bool UpdatePlek(Plek plek);
+        List<Decimal> GetPlekId(decimal id);
+        List<Plek> GetPlekById(List<decimal> id);
 
     }
 }
