@@ -31,13 +31,18 @@ namespace ASP_PROFTAAK.Controllers
             return context.InsertEvent(events);
         }
 
-        public bool UpdateEvent(Event events)
+        public bool UpdateEvent(int id, Event events)
         {
-            return context.UpdateEvent(events);
+            return context.UpdateEvent(id, events);
         }
         public Event GetEventById(int id)
         {
             return context.GetEventById(id);
+        }
+
+        public bool DeleteEvent(int id)
+        {
+            return context.DeleteEvent(id);
         }
     }
 }
