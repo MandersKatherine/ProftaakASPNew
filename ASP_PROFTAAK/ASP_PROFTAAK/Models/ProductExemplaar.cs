@@ -7,13 +7,13 @@ namespace ASP_PROFTAAK.Models
 {
     public class ProductExemplaar : Product
     {
-        private int id;
-        private int volgnummer;
+        private decimal id;
+        private decimal volgnummer;
         private string barcode;
         private bool verhuurd;
 
 
-        public ProductExemplaar(int productId, int categorieId, string merk, string serie, string typenummer, double prijs, int id, int volgnummer, string barcode, bool verhuurd) : base(productId, categorieId, merk, serie, typenummer, prijs)
+        public ProductExemplaar(decimal productId, decimal categorieId, string merk, string serie, string typenummer, decimal prijs, int id, int volgnummer, string barcode, bool verhuurd) : base(productId, categorieId, merk, serie, typenummer, prijs)
         {
             this.Id = id;
             this.Volgnummer = volgnummer;
@@ -21,7 +21,12 @@ namespace ASP_PROFTAAK.Models
             this.Verhuurd = verhuurd;
         }
 
-        public int Id
+        public ProductExemplaar()
+        {
+            
+        }
+
+        public decimal Id
         {
             get
             {
@@ -34,7 +39,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public int Volgnummer
+        public decimal Volgnummer
         {
             get
             {

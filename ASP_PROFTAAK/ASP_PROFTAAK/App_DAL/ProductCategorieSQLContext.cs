@@ -77,16 +77,17 @@ namespace ASP_PROFTAAK.App_DAL
 
         private ProductCategorie CreateProductCategorieFromReader(SqlDataReader reader)
         {
+            
             if (reader["productcat_id"] != DBNull.Value)
             {
                 return new ProductCategorie(
-                    (int)(reader["id"]),
-                    (int)(reader["productcat_id"]),
+                    (decimal)(reader["id"]),
+                    (decimal)(reader["productcat_id"]),
                     (string)(reader["naam"]));
             }
             else
             {
-                return new ProductCategorie((int)reader["id"], (string)reader["naam"]);
+                return new ProductCategorie((decimal)reader["id"], (string)reader["naam"]);
             }
             
 

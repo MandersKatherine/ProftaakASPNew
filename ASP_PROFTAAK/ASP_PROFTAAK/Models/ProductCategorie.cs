@@ -7,24 +7,29 @@ namespace ASP_PROFTAAK.Models
 {
     public class ProductCategorie
     {
-        private int id;
-        private int productCatId;
+        private decimal id;
+        private decimal productCatId;
         private string naam;
 
-        public ProductCategorie(int id, int productCatId, string naam)
+        public ProductCategorie(decimal id, decimal productCatId, string naam)
         {
             this.Id = id;
             this.ProductCatId = productCatId;
             this.Naam = naam;
         }
 
-        public ProductCategorie(int id, string naam)
+        public ProductCategorie(decimal id, string naam)
         {
             this.Id = id;
             this.Naam = naam;
         }
 
-        public int Id
+        public ProductCategorie()
+        {
+            
+        }
+
+        public decimal Id
         {
             get
             {
@@ -37,7 +42,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public int ProductCatId
+        public decimal ProductCatId
         {
             get
             {

@@ -9,6 +9,8 @@ namespace ASP_PROFTAAK.App_DAL
 {
     public class ProductSQLContext : IProductContext
     {
+        private decimal typenummer = 1003;
+
         // alle generieke producten
         public List<Product> GetAllProducts()
         {
@@ -34,6 +36,7 @@ namespace ASP_PROFTAAK.App_DAL
 
         public void Insert(Product product, ProductCategorie productCategorie)
         {
+            typenummer++;
             using (SqlConnection connection = Database.Connection)
             {
                 string query = "INSERT INTO Product (productcat_id, merk, serie, typenummer, prijs)" +
@@ -43,10 +46,10 @@ namespace ASP_PROFTAAK.App_DAL
                     command.Parameters.AddWithValue("@productcatid", productCategorie.Id);
                     command.Parameters.AddWithValue("@merk", product.Merk);
                     command.Parameters.AddWithValue("@serie", product.Serie);
-                    command.Parameters.AddWithValue("@typenummer", product.Typenummer);
+                    command.Parameters.AddWithValue("@typenummer", product.Typenummer = Convert.ToString(typenummer));
                     command.Parameters.AddWithValue("@prijs", product.Prijs);
                     command.ExecuteNonQuery();
-                    
+
                 }
             }
         }
@@ -88,12 +91,13 @@ namespace ASP_PROFTAAK.App_DAL
         private Product CreateProductFromReader(SqlDataReader reader)
         {
             return new Product(
-                Convert.ToInt32(reader["id"]),
-                Convert.ToInt32(reader["productcat_id"]),
-                Convert.ToString(reader["merk"]),
-                Convert.ToString(reader["serie"]),
-                Convert.ToString(reader["typenummer"]),
-                Convert.ToDouble(reader["prijs"]));
+                (decimal) (reader["id"]),
+                (decimal) (reader["productcat_id"]),
+                (string) (reader["merk"]),
+                (string) (reader["serie"]),
+                (string) (reader["typenummer"]),
+                (decimal) (reader["prijs"]));
         }
+
     }
 }

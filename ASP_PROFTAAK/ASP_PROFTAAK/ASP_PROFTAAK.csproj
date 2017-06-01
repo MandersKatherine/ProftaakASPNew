@@ -157,12 +157,14 @@
     <Compile Include="App_DAL\IPlekContext.cs" />
     <Compile Include="App_DAL\IProductCategorieContext.cs" />
     <Compile Include="App_DAL\IProductContext.cs" />
+    <Compile Include="App_DAL\IProductExemplaarContext.cs" />
     <Compile Include="App_DAL\IReserveringContext.cs" />
     <Compile Include="App_DAL\IVerhuurContext.cs" />
     <Compile Include="App_DAL\LocatieSQLContext.cs" />
     <Compile Include="App_DAL\PersoonSQLContext.cs" />
     <Compile Include="App_DAL\PlekSQLContext.cs" />
     <Compile Include="App_DAL\ProductCategorieSQLContext.cs" />
+    <Compile Include="App_DAL\ProductExemplaarSQLContext.cs" />
     <Compile Include="App_DAL\ProductSQLContext.cs" />
     <Compile Include="App_DAL\ReserveringSQLContext.cs" />
     <Compile Include="App_DAL\VerhuurSqlContext.cs" />
@@ -178,6 +180,8 @@
     <Compile Include="Controllers\PlekRepository.cs" />
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductExemplaarController.cs" />
+    <Compile Include="Controllers\ProductExemplaarRepository.cs" />
     <Compile Include="Controllers\ProductRepository.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
     <Compile Include="Controllers\VerhuurController.cs" />
@@ -246,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProductExemplaar\" />
     <Folder Include="Views\Verhuur\" />
   </ItemGroup>
   <ItemGroup>

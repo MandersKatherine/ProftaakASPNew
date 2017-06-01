@@ -33,28 +33,41 @@ namespace ASP_PROFTAAK.Controllers
         }
 
         // POST: Product/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         //[HttpPost]
+        //public ActionResult Create(FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+        
         public ActionResult NieuwProduct()
         {
             ViewModelCreateProduct v = new ViewModelCreateProduct() { categorien = pcr.GetAllCategories() };
 
             return View(v);
         }
+
+
+        [HttpPost]
+        public ActionResult NieuwProduct(Product product, ProductCategorie pc)
+        {
+            if (ModelState.IsValid)
+            {
+                PR.Insert(product, pc);
+            }
+          
+            return RedirectToAction("Index");
+        }
+
 
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
