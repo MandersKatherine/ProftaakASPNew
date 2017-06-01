@@ -31,9 +31,14 @@ namespace ASP_PROFTAAK.Controllers
             return context.UpdatePersoon(persoon);
         }
 
-        public bool DeletePersoon(int id)
+        public bool DeletePersoon(decimal id)
         {
             return context.DeletePersoon(id);
+        }
+
+        public Persoon getHoofdboekerByReserveringId(decimal id)
+        {
+            return context.getHoofdboekerByReserveringId(id);
         }
     }
 }
