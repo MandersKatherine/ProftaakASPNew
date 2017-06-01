@@ -6,14 +6,14 @@ namespace ASP_PROFTAAK.Models
 {
     public class Product
     {
-        private int productId;
-        private int categorieId;
+        private decimal productId;
+        private decimal categorieId;
         private string merk;
         private string serie;
         private string typenummer;
-        private double prijs;
+        private decimal prijs;
 
-        public Product(int productId, int categorieId, string merk, string serie, string typenummer, double prijs)
+        public Product(decimal productId, decimal categorieId, string merk, string serie, string typenummer, decimal prijs)
         {
             this.ProductId = productId;
             this.CategorieId = categorieId;
@@ -23,7 +23,12 @@ namespace ASP_PROFTAAK.Models
             this.Prijs = prijs;
         }
 
-        public int ProductId
+        public Product()
+        {
+            
+        }
+
+        public decimal ProductId
         {
             get
             {
@@ -36,7 +41,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public int CategorieId
+        public decimal CategorieId
         {
             get
             {
@@ -88,7 +93,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public double Prijs
+        public decimal Prijs
         {
             get
             {
