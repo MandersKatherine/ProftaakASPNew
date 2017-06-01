@@ -10,8 +10,6 @@ namespace ASP_PROFTAAK.Controllers
     {
         public List<ProductCategorie> categorien = new List<ProductCategorie>();
 
-        public Product product;
-
-
+        public Product product { get; set; }
     }
 }

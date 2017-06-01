@@ -189,6 +189,7 @@
     <Compile Include="Controllers\PersoonController.cs" />
     <Compile Include="Controllers\PersoonRepository.cs" />
     <Compile Include="Controllers\PlekRepository.cs" />
+    <Compile Include="Controllers\ProductCategorieController.cs" />
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductExemplaarController.cs" />
@@ -196,7 +197,6 @@
     <Compile Include="Controllers\ProductRepository.cs" />
     <Compile Include="Controllers\ReserveringController.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
-
     <Compile Include="Controllers\VerhuurController.cs" />
     <Compile Include="Controllers\VerhuurRepository.cs" />
     <Compile Include="Controllers\ViewModelCreateProduct.cs" />
@@ -282,7 +282,8 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Reservering\Details.cshtml" />
     <Content Include="Views\Persoon\Details.cshtml" />
-
+    <Content Include="Views\ProductCategorie\Index.cshtml" />
+    <Content Include="Views\ProductCategorie\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
