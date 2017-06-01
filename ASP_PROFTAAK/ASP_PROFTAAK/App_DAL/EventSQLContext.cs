@@ -53,6 +53,29 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return null;
         }
+        public Event GetEventById(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM EVENT WHERE locatie_id = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Event eventdetails = CreateEventFromReader(reader);
+                            return eventdetails;
+                        }
+                    }
+                }
+
+            }
+            return null;
+        }
 
         public Event InsertEvent(Event events)
         {

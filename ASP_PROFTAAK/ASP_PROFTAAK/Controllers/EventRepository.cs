@@ -35,5 +35,9 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.UpdateEvent(events);
         }
+        public Event GetEventById(int id)
+        {
+            return context.GetEventById(id);
+        }
     }
 }

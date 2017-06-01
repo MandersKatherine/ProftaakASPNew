@@ -54,8 +54,32 @@ namespace ASP_PROFTAAK
             }
             return null;
         }
+        public Locatie GetLocatieById(int id)
+        {
+            Locatie locatie;
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM LOCATIE WHERE ID = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
-        
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            locatie = CreateLocatieFromReader(reader);
+                            return locatie;
+                        }
+                    }
+                }
+
+            }
+            return null;
+        }
+
+
 
         public Locatie InsertLocatie(Locatie locatie)
         {

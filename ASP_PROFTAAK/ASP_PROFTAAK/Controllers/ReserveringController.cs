@@ -17,26 +17,39 @@ namespace ASP_PROFTAAK.Controllers
         PersoonRepository persoonrepo = new PersoonRepository(new PersoonSQLContext());
 
         private Reservering newReservering;
-        private Plek newPlek;
+        private List<Plek> newPlek = new List<Plek>();
         private Locatie newLocatie;
         private Event newEvent;
         private Persoon newPersoon;
+        private List<Decimal> plekken = new List<Decimal>();
         // GET: Reservering                                               
         public ActionResult Index()
         {
             List<Reservering> reserveringen = reserveringrepo.GetAllReserveringen();
             return View(reserveringen);
         }
-        public Tuple<Reservering, Persoon> GetMultipleValues(Reservering reservering, Persoon persoon)
+        public Tuple<Reservering, Persoon, IEnumerable<Plek>, Locatie> GetMultipleValues(Reservering reservering, Persoon persoon, IEnumerable<Plek> plek, Locatie locatie)
         {
-            return Tuple.Create(reservering, persoon);
+            return Tuple.Create(reservering, persoon, plek, locatie);
         }
         // GET: Reservering/Details/5
         public ActionResult Details(decimal id)
         {
             newReservering = reserveringrepo.GetReserveringById(id);
             newPersoon = persoonrepo.getHoofdboekerByReserveringId((decimal)newReservering.PersonId);
-            return View(GetMultipleValues(newReservering, newPersoon));
+            plekken = plekrepo.GetPlekId(id);     
+            newPlek = plekrepo.GetPlekById(plekken);
+            Plek plek = newPlek.First();
+            newLocatie = locatierepo.GetLocatieById(plek.LocatieId);
+            newEvent = eventrepo.GetEventById(newLocatie.Id);
+
+            var 
+
+
+
+
+
+            return View(GetMultipleValues(newReservering, newPersoon, newPlek, newLocatie));
         }
 
         // GET: Reservering/Create

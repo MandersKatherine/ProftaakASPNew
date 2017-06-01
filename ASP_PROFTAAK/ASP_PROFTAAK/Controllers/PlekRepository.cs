@@ -35,5 +35,13 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.UpdatePlek(plek);
         }
+        public List<Decimal> GetPlekId(decimal id)
+        {
+            return context.GetPlekId(id);
+        }
+        public List<Plek> GetPlekById(List<decimal> id)
+        {
+            return context.GetPlekById(id);
+        }
     }
 }

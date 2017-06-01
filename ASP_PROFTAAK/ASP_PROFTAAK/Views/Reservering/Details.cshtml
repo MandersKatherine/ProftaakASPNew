@@ -1,12 +1,13 @@
-﻿@model Tuple<ASP_PROFTAAK.Models.Reservering, ASP_PROFTAAK.Models.Persoon>
+﻿@model Tuple<ASP_PROFTAAK.Models.Reservering, ASP_PROFTAAK.Models.Persoon, IEnumerable<ASP_PROFTAAK.Models.Plek>, ASP_PROFTAAK.Models.Locatie>
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Details";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h2>Details</h2>
 
+<h2>Details</h2>
 <div>
     <h4>Reservering</h4>
     <hr />
@@ -107,7 +108,82 @@
 
     </dl>
 </div>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Nummer")
+            </th>
+            <th>
+                @Html.DisplayName("Capaciteit")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Item3)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nummer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capaciteit)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    <h4>Locatie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item4.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item4.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item4.Straat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item4.Straat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item4.Nummer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item4.Nummer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item4.Postcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item4.Postcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item4.Plaats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item4.Plaats)
+        </dd>
+
+    </dl>
+</div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
