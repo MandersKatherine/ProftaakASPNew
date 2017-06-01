@@ -14,6 +14,7 @@ namespace ASP_PROFTAAK
         private string nummer;
         private string postcode;
         private string plaats;
+        public string NullString = "Geen Invoer";
 
         public int Id
         {
@@ -112,6 +113,8 @@ namespace ASP_PROFTAAK
             this.Postcode = postcode;
             this.Plaats = plaats;
         }
+
+
 
         private void addPlek()
         {
