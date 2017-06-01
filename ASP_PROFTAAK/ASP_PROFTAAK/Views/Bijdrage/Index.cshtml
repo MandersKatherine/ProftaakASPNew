@@ -1,58 +1,176 @@
-﻿@model IEnumerable<ASP_PROFTAAK.Models.Bericht>
-
+﻿@using ASP_PROFTAAK.Models
+@model IEnumerable<ASP_PROFTAAK.Models.Bijdrage>
+<link rel="stylesheet" type="text/css" href="~/Content/comment.css">
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AccountId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Datum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Soort)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Titel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Inhoud)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Datum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Soort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Inhoud)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+
+@foreach (var item in Model)
+{
+
+
+    if (item is Categorie)
+    {
+
+        Categorie b = (Categorie)item;
+
+        <div class="col-md-8 col-md-offset-4">
+            <div class="panel panel-default panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>Robert McIntosh</h3>
+                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>@b.Naam</p>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="[ btn btn-default ]">+1</button>
+                    <button type="button" class="[ btn btn-default ]">
+                        <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                    </button>
+                    <div class="input-placeholder">Add a comment...</div>
+                </div>
+                <div class="panel-google-plus-comment">
+                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                    <div class="panel-google-plus-textarea">
+                        <textarea rows="4"></textarea>
+                        <button type="submit" class="btn btn-success disabled">Post comment</button>
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+    if (item is Bestand)
+    {
+        Bestand b = (Bestand)item;
+        <div class="col-md-8 col-md-offset-4">
+            <div class="panel panel-default panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-google-plus-tags">
+                    <ul>
+                        <li>#Millennials</li>
+                        <li>#Generation</li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>Robert McIntosh</h3>
+                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>@b.Bestandlocatie</p>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-default">+1</button>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-share-alt"></span>
+                    </button>
+                    <div class="input-placeholder">Add a comment...</div>
+                </div>
+                <div class="panel-google-plus-comment">
+                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                    <div class="panel-google-plus-textarea">
+                        <textarea rows="4"></textarea>
+                        <button type="submit" class="btn btn-success disabled">Post comment</button>
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    }
+
+    if (item is Bericht)
+    {
+        Bericht b = (Bericht)item;
+        <div class="col-md-8 col-md-offset-4">
+            <div class="panel panel-default panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-google-plus-tags">
+                    <ul>
+                        <li>#Millennials</li>
+                        <li>#Generation</li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>Robert McIntosh</h3>
+                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>@b.Inhoud</p>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-default">+1</button>
+                            <button type="button" class="btn btn-default">
+                                <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                            </button>
+                            <div class="input-placeholder">Add a comment...</div>
+                        </div>
+                        <div class="panel-google-plus-comment">
+                            <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                            <div class="panel-google-plus-textarea">
+                                <textarea rows="4"></textarea>
+                                <button type="submit" class="btn btn-success disabled">Post comment</button>
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+    }
+
+
 }
 
-</table>
+
+
+
+
+
+

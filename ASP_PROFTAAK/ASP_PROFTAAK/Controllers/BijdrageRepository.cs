@@ -45,5 +45,12 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.UpdateBijdrageBestand(bestand);
         }
+
+        public List<Bijdrage> GetAllBijdrages()
+        {
+            return context.GetAllBijdrages();
+        }
+
+        
     }
 }

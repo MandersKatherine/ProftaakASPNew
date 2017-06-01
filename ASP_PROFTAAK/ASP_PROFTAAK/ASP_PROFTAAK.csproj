@@ -148,11 +148,13 @@
     <Compile Include="ActivatieHash\MD5.cs" />
     <Compile Include="App_DAL\AccountSQLContext.cs" />
     <Compile Include="App_DAL\BijdrageSQLContext.cs" />
+    <Compile Include="App_DAL\ContentSQLContext.cs" />
     <Compile Include="App_DAL\Database.cs" />
     <Compile Include="App_DAL\EventSQLContext.cs" />
     <Compile Include="App_DAL\GroepslidSQLContext.cs" />
     <Compile Include="App_DAL\IAccountContext.cs" />
     <Compile Include="App_DAL\IBijdrageContext.cs" />
+    <Compile Include="App_DAL\IContentContext.cs" />
     <Compile Include="App_DAL\IEventContext.cs" />
     <Compile Include="App_DAL\IGroepslidContext.cs" />
     <Compile Include="App_DAL\ILocatieContext.cs" />
@@ -181,6 +183,8 @@
     <Compile Include="Controllers\AccountRepository.cs" />
     <Compile Include="Controllers\BijdrageController.cs" />
     <Compile Include="Controllers\BijdrageRepository.cs" />
+    <Compile Include="Controllers\ContentRepository.cs" />
+    <Compile Include="Controllers\ContentViewModel.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -212,6 +216,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountBijdrage.cs" />
     <Compile Include="Models\Bericht.cs" />
     <Compile Include="Models\Bestand.cs" />
     <Compile Include="Models\Bijdrage.cs" />
@@ -221,12 +226,14 @@
     <Compile Include="Models\Groepslid.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\Locatie.cs" />
+    <Compile Include="Models\Mening.cs" />
     <Compile Include="Models\Persoon.cs" />
     <Compile Include="Models\Plek.cs" />
     <Compile Include="Models\Polsbandje.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
+    <Compile Include="Models\Reactie.cs" />
     <Compile Include="Models\Reservering.cs" />
     <Compile Include="Models\ReserveringViewModelELPRP.cs" />
     <Compile Include="Models\Specificatie.cs" />
@@ -241,6 +248,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\comment.css" />
     <Content Include="Email\emailtemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -308,7 +316,6 @@
     <Content Include="Views\ProductCategorie\Details.cshtml" />
 
     <Content Include="Views\Event\Delete.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
