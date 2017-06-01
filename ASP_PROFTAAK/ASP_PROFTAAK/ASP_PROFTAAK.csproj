@@ -222,6 +222,7 @@
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
     <Compile Include="Models\Reservering.cs" />
+    <Compile Include="Models\ReserveringViewModelELPRP.cs" />
     <Compile Include="Models\Specificatie.cs" />
     <Compile Include="Models\Verhuurd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
