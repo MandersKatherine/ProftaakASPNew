@@ -18,7 +18,6 @@ namespace ASP_PROFTAAK.Models
         private int telefoonnr;
         private decimal geactiveerd;
 
-
         public decimal Id { get { return id; } set { id = value; } }
         public string Gebruikersnaam { get { return gebruikersnaam; } set { gebruikersnaam = value; } }
         public string Email { get { return email; } set { email = value; } }

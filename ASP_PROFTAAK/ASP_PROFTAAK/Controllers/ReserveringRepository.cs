@@ -35,5 +35,9 @@ namespace ASP_PROFTAAK.Controllers
         {
             context.DeleteReservering(reserveringen);
         }
+        public Reservering GetReserveringById(decimal id)
+        {
+            return context.GetReserveringById(id);
+        }
     }
 }

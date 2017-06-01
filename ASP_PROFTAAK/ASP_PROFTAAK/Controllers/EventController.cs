@@ -43,9 +43,15 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Details(int id)
         {
             Event events = eventrepo.GetByID(id);
+            Locatie locatie1 = locrepo.GetByEvent(events);
+            var Viewmodel = new EventViewModel()
+            {
+                event1 = events,
+                locatie = locatie1
+            };
             if (events != null)
             {
-                return View(events);
+                return View(Viewmodel);
             }
             else return HttpNotFound();
         }
@@ -86,14 +92,14 @@ namespace ASP_PROFTAAK.Controllers
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(FormCollection collection)
+        public ActionResult Edit(int id,FormCollection collection)
         {
             Event events = new Event(Convert.ToInt32(collection["locatie_id"]), collection["Naam"], Convert.ToDateTime(collection["datumStart"]), Convert.ToDateTime(collection["datumEinde"]), Convert.ToInt32(collection["maxBezoekers"]));
             try
             {
                 // TODO: Add update logic here
 
-                eventrepo.UpdateEvent(events);
+                eventrepo.UpdateEvent(id, events);
                 return RedirectToAction("Index");
             }
             catch
@@ -105,7 +111,8 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Event events = eventrepo.GetByID((id));
+            return View(events);
         }
 
         // POST: Event/Delete/5
@@ -115,7 +122,7 @@ namespace ASP_PROFTAAK.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                eventrepo.DeleteEvent((id));
                 return RedirectToAction("Index");
             }
             catch

@@ -16,6 +16,7 @@ namespace ASP_PROFTAAK.App_DAL
         void UpdateReservering(Reservering reserveringen);
 
         void DeleteReservering(Reservering reserveringen);
+        Reservering GetReserveringById(decimal id);
 
     }
 }
