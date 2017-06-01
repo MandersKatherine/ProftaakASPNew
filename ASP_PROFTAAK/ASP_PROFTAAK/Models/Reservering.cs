@@ -7,25 +7,28 @@ namespace ASP_PROFTAAK.Models
 {
     public class Reservering
     {
-        private int id;
+        private decimal id;
+        private decimal personId;
         private DateTime datumstart;
         private DateTime datumeinde;
         private bool betaald;
 
-        public int Id { get { return id; } set { id = value; } }
+        public decimal Id { get { return id; } set { id = value; } }
+        public decimal PersonId { get { return personId; } set { personId = value; } }
         public DateTime DatumStart { get { return datumstart; } set { datumstart = value; } }
         public DateTime DatumEinde { get { return datumeinde; } set { datumeinde = value; } }
         public bool Betaald { get { return betaald; } set { betaald = value; } }
 
-        public Reservering (int id, DateTime datumstart, DateTime datumeinde, bool betaald)
+        public Reservering(decimal id, decimal personId, DateTime datumstart, DateTime datumeinde, bool betaald)
         {
             this.id = id;
+            this.personId = personId;
             this.datumstart = datumstart;
             this.datumeinde = datumeinde;
             this.betaald = betaald;
         }
 
-        public Reservering(DateTime datumstart, DateTime datumeinde, bool betaald) : this(-1, datumstart, datumeinde, betaald)
+        public Reservering(decimal personId, DateTime datumstart, DateTime datumeinde, bool betaald) : this(-1, personId, datumstart, datumeinde, betaald)
         {
 
         }

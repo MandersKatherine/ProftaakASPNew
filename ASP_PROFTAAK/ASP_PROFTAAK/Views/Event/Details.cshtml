@@ -1,63 +1,136 @@
-﻿@model ASP_PROFTAAK.Models.Event
+﻿@model ASP_PROFTAAK.Models.EventViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-@using (Html.BeginForm("Details", "Event", FormMethod.Post))
-{
-    
+<h2>Details Event</h2>
+
 <div>
     <h4>Event</h4>
     <hr />
     <dl class="dl-horizontal">
+        
         <dt>
-            @Html.DisplayNameFor(model => model.Locatie_id)
+            @Html.DisplayNameFor(model => model.event1.Naam)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Locatie_id)
+            @Html.DisplayFor(model => model.event1.Naam)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Naam)
+            @Html.DisplayNameFor(model => model.event1.DatumStart)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Naam)
+            @Html.DisplayFor(model => model.event1.DatumStart)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DatumStart)
+            @Html.DisplayNameFor(model => model.event1.DatumEinde)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DatumStart)
+            @Html.DisplayFor(model => model.event1.DatumEinde)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DatumEinde)
+            @Html.DisplayNameFor(model => model.event1.MaxBezoekers)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DatumEinde)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxBezoekers)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaxBezoekers)
+            @Html.DisplayFor(model => model.event1.MaxBezoekers)
         </dd>
 
     </dl>
-</div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 
-}
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.event1.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div>
+    <h4>Locatie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.locatie.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.locatie.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.locatie.Nummer)
+        </dt>
+
+        <dd>
+            @if(Model.locatie.Nummer != null)
+            {
+                   @Html.DisplayFor(model => model.locatie.Nummer)
+            }
+            @if (Model.locatie.Nummer == "")
+            {
+                @Html.DisplayFor(model => model.locatie.NullString)
+            }
+        </dd>
+
+        <dt>
+            
+            @Html.DisplayNameFor(model => model.locatie.Plaats)
+        </dt>
+
+        <dd>
+            @if(Model.locatie.Plaats != null)
+            {
+                @Html.DisplayFor(model => model.locatie.Plaats)
+            }
+            @if (Model.locatie.Plaats == "")
+            {
+                @Html.DisplayFor(model => model.locatie.NullString)
+            }
+            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.locatie.Postcode)
+        </dt>
+
+        <dd>
+            @if (Model.locatie.Postcode != null)
+            {
+                @Html.DisplayFor(model => model.locatie.Postcode)
+            }
+            @if (Model.locatie.Postcode == "")
+            {
+                @Html.DisplayFor(model => model.locatie.NullString)
+            }
+            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.locatie.Straat)
+        </dt>
+
+        <dd>
+            @if (Model.locatie.Straat != null)
+            {
+                @Html.DisplayFor(model => model.locatie.Straat)
+            }
+            @if (Model.locatie.Straat == "")
+            {
+                @Html.DisplayFor(model => model.locatie.NullString)
+            }
+            
+        </dd>
+
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Edit Locatie", "Edit", new { id = Model.locatie.Id })
+</p>
+

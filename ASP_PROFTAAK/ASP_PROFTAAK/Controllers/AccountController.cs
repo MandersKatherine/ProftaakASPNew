@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASP_PROFTAAK.ActivatieHash;
+using ASP_PROFTAAK.Email;
 
 namespace ASP_PROFTAAK.Controllers
 {
@@ -37,15 +39,21 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            Account account = new Account(collection["Voornaam"], collection["Tussenvoegsel"], collection["Achternaam"], Convert.ToInt32(collection["Telefoonnummer"]), collection["Gebruikersnaam"], collection["Wachtwoord"], collection["Email"], MD5.CreateMD5(collection["Email"]), 0);
             try
             {
                 // TODO: Add insert logic here
+                accountrepo.InsertAccount(account);
+                Models.Email mail = new Models.Email("Activeer uw account", "inhoud", "dhrlaaboudi@gmail.com");
+                //EmailLogic.SendEmail(mail);
+                EmailLogic.SendEmailNew(mail, account.Activatiehash, account.Voornaam);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Account");
             }
             catch
             {
-                return View();
+                throw;
+                //return View();
             }
         }
 

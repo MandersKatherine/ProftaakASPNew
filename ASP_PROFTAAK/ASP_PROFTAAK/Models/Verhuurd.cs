@@ -7,16 +7,16 @@ namespace ASP_PROFTAAK.Models
 {
     public class Verhuurd
     {
-        private int id;
-        private int productExemplaarId;
-        private int groepsLidId;
+        private decimal id;
+        private decimal productExemplaarId;
+        private decimal groepsLidId;
         private DateTime datumIn;
         private DateTime datumUit;
-        private double prijs;
-        private bool betaald;
+        private decimal prijs;
+        private decimal betaald;
 
-        public Verhuurd(int id, int productExemplaarId, int groepsLidId, DateTime datumIn, DateTime datumUit,
-            double prijs, bool betaald)
+        public Verhuurd(decimal id, decimal productExemplaarId, decimal groepsLidId, DateTime datumIn, DateTime datumUit,
+            decimal prijs, decimal betaald)
         {
             this.Id = id;
             this.ProductExemplaarId = productExemplaarId;
@@ -26,7 +26,12 @@ namespace ASP_PROFTAAK.Models
             this.Prijs = prijs;
             this.Betaald = betaald;
         }
-        public int Id
+
+        public Verhuurd()
+        {
+            
+        }
+        public decimal Id
         {
             get
             {
@@ -39,7 +44,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public int ProductExemplaarId
+        public decimal ProductExemplaarId
         {
             get
             {
@@ -52,7 +57,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public int GroepsLidId
+        public decimal GroepsLidId
         {
             get
             {
@@ -91,7 +96,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public double Prijs
+        public decimal Prijs
         {
             get
             {
@@ -104,7 +109,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public bool Betaald
+        public decimal Betaald
         {
             get
             {

@@ -7,7 +7,7 @@ namespace ASP_PROFTAAK.Models
 {
     public class Persoon
     {
-        private int id;
+        private decimal id;
         private string voornaam;
         private string tussenvoegsel;
         private string achternaam;
@@ -16,7 +16,7 @@ namespace ASP_PROFTAAK.Models
         private string woonplaats;
         private string banknr;
 
-        public int Id { get { return id; } set { id = value; } }
+        public decimal Id { get { return id; } set { id = value; } }
         public string Voornaam { get { return voornaam; } set { voornaam = value; } }
         public string Tussenvoegsel { get { return tussenvoegsel; } set { tussenvoegsel = value; } }
         public string Achternaam { get { return achternaam; } set { achternaam = value; } }
@@ -25,7 +25,7 @@ namespace ASP_PROFTAAK.Models
         public string Woonplaats { get { return woonplaats; } set { woonplaats = value; } }
         public string Banknr { get { return banknr; } set { banknr = value; } }
 
-        public Persoon (int id, string voornaam, string tussenvoegsel, string achternaam, string straat, string huisnr, string woonplaats, string banknr)
+        public Persoon (decimal id, string voornaam, string tussenvoegsel, string achternaam, string straat, string huisnr, string woonplaats, string banknr)
         {
             this.id = id;
             this.voornaam = voornaam;

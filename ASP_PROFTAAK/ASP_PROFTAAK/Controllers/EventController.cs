@@ -42,7 +42,18 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Event/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Event events = eventrepo.GetByID(id);
+            Locatie locatie1 = locrepo.GetByEvent(events);
+            var Viewmodel = new EventViewModel()
+            {
+                event1 = events,
+                locatie = locatie1
+            };
+            if (events != null)
+            {
+                return View(Viewmodel);
+            }
+            else return HttpNotFound();
         }
 
         // GET: Event/Create
@@ -70,32 +81,38 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
-            Event eventdetails = eventrepo.GetByID(id);
-            Locatie locatiedetails = locrepo.GetByEvent(eventdetails);
-            var viewModel = new EventViewModel
+            Event events = eventrepo.GetByID(id);
+            if (events != null)
             {
-                locatie = locatiedetails,
-                event1 = eventdetails,
-                //plek = plekken,
-                //spec = specs
-            };
-            return View(viewModel);
-            
+                return View(events);
+            }
+            else return HttpNotFound();
+
         }
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(FormCollection collection)
+        public ActionResult Edit(int id,FormCollection collection)
         {
-            //Event updateEvent = new Event(Convert.ToInt32(collection["locatieid"]),collection[""]);
-            return View();
-            
+            Event events = new Event(Convert.ToInt32(collection["locatie_id"]), collection["Naam"], Convert.ToDateTime(collection["datumStart"]), Convert.ToDateTime(collection["datumEinde"]), Convert.ToInt32(collection["maxBezoekers"]));
+            try
+            {
+                // TODO: Add update logic here
+
+                eventrepo.UpdateEvent(id, events);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Event events = eventrepo.GetByID((id));
+            return View(events);
         }
 
         // POST: Event/Delete/5
@@ -105,7 +122,7 @@ namespace ASP_PROFTAAK.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                eventrepo.DeleteEvent((id));
                 return RedirectToAction("Index");
             }
             catch

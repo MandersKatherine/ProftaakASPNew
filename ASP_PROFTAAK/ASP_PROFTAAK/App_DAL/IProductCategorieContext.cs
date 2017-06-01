@@ -9,6 +9,7 @@ namespace ASP_PROFTAAK.App_DAL
     public interface IProductCategorieContext
     {
         List<ProductCategorie>GetAllCategories();
+        ProductCategorie GetProductCategorieById(int id);
         void Insert(ProductCategorie productCategorie);
         void Update(ProductCategorie productCategorie);
         void Delete(ProductCategorie productCategorie);

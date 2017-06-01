@@ -53,9 +53,113 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return null;
         }
+        public Event GetEventById(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM EVENT WHERE locatie_id = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
+                    command.Parameters.AddWithValue("@id", id);
 
-     
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Event eventdetails = CreateEventFromReader(reader);
+                            return eventdetails;
+                        }
+                    }
+                }
+
+            }
+            return null;
+        }
+
+        public Event InsertEvent(Event events)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "INSERT INTO Event (Locatie_id, naam, datumStart, datumEinde, maxBezoekers)" +
+                    " VALUES (@locatie_id, @naam, @datumstart, @datumeinde, @maxbezoekers)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@locatie_id", events.Locatie_id);
+                    command.Parameters.AddWithValue("@naam", events.Naam);
+                    command.Parameters.AddWithValue("@datumstart", events.DatumStart);
+                    command.Parameters.AddWithValue("@datumeinde", events.DatumEinde);
+                    command.Parameters.AddWithValue("@maxbezoekers", events.MaxBezoekers);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        // Unexpected error: rethrow to let the caller handle it
+                        return null;
+                    }
+                }
+                return events;
+            }
+        }
+
+        public bool UpdateEvent(int id, Event events)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "UPDATE Event" +
+                    " SET Naam=@naam, datumStart=@datumstart, datumEinde=@datumeinde, maxBezoekers=@maxbezoekers" +
+                    " WHERE ID=@id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    command.Parameters.AddWithValue("naam", events.Naam);
+                    command.Parameters.AddWithValue("datumstart", events.DatumStart);
+                    command.Parameters.AddWithValue("datumeinde", events.DatumEinde);
+                    command.Parameters.AddWithValue("maxbezoekers", events.MaxBezoekers);
+                    try
+                    {
+                        if (Convert.ToInt32(command.ExecuteNonQuery()) > 0)
+                        {
+                            return true;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+
+                    }
+
+                }
+            }
+
+            return false;
+        }
+        public bool DeleteEvent(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "DELETE FROM Event" +
+                               " WHERE ID=@id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+
+                    }
+
+                }
+            }
+
+            return false;
+        }
 
         private Event CreateEventFromReader(SqlDataReader reader)
         {

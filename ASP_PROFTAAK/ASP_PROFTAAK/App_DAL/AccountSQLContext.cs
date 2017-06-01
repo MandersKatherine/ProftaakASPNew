@@ -100,13 +100,14 @@ namespace ASP_PROFTAAK.App_DAL
             using (SqlConnection connection = Database.Connection)
             {
 
-                string query = "INSERT INTO Account (Gebruikersnaam, Email, Activatiehash, Wachtwoord, Voornaam, Achternaam, Telefoonnr, Geactiveerd)" +
+                string query = "INSERT INTO Account (gebruikersnaam, email, activatiehash, wachtwoord, voornaam, tussenvoegsel, achternaam, telefoonnummer, geactiveerd)" +
                
-                        "VALUES (@gebruikersnaam, @email, @activatiehash, @wachtwoord, @voornaam, @achternaam, @telefoonnr, @geactiveerd)";
+                        "VALUES (@gebruikersnaam, @email, @activatiehash, @wachtwoord, @voornaam, @tussenvoegsel, @achternaam, @telefoonnr, @geactiveerd)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
 
                     command.Parameters.AddWithValue("@gebruikersnaam", account.Gebruikersnaam);
+                    command.Parameters.AddWithValue("@tussenvoegsel", account.Tussenvoegsel);
                     command.Parameters.AddWithValue("@email", account.Email);
                     command.Parameters.AddWithValue("@activatiehash", account.Activatiehash);
                     command.Parameters.AddWithValue("@wachtwoord", account.Wachtwoord);
@@ -121,7 +122,7 @@ namespace ASP_PROFTAAK.App_DAL
                     }
                     catch (SqlException e)
                     {
-
+                        throw;
                     }
                     return account;
 
@@ -154,6 +155,7 @@ namespace ASP_PROFTAAK.App_DAL
         {
             using (SqlConnection connection = Database.Connection)
             {
+
 
                 string query = "UPDATE ACCOUNT SET Gebruikersnaam = @gebruikersnaam, Email = @email, Wachtwoord = @wachtwoord, Voornaam = @voornaam, Tussenvoegsel = @tussenvoegsel, Achternaam = @achternaam, Telefoonnummer = @telefoonnummer WHERE Id = @id";
 

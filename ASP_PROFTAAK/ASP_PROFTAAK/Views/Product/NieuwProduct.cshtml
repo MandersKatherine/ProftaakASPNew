@@ -1,0 +1,85 @@
+﻿@using ASP_PROFTAAK.Models
+@model ASP_PROFTAAK.Controllers.ViewModelCreateProduct
+
+@{
+    ViewBag.Title = "NieuwProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NieuwProduct</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ViewModelCreateProduct</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+    </div>
+
+
+
+    foreach (var pc in @Model.categorien)
+    { 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => pc.Naam)
+            </td>
+            <td>
+                <input type="checkbox" class="chkCheckBoxId" value="@pc.Id" name="Checkbox" />
+            </td>
+        </tr>
+    }
+
+    <br/>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.product.Merk, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product.Merk, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product.Merk, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.product.Serie, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product.Serie, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product.Serie, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.product.Typenummer, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product.Typenummer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product.Typenummer, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.product.Prijs, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product.Prijs, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product.Prijs, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

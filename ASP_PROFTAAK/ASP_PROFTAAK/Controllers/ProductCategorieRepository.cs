@@ -35,5 +35,10 @@ namespace ASP_PROFTAAK.Controllers
         {
             context.Delete(productCategorie);
         }
+
+        public ProductCategorie GetProductCategorieById(int id)
+        {
+           return context.GetProductCategorieById(id);
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace ASP_PROFTAAK.App_DAL
 {
     public class ProductCategorieSQLContext : IProductCategorieContext
     {
+        private ProductCategorie productcategorie;
+
         public List<ProductCategorie> GetAllCategories()
         {
             List<ProductCategorie> categories = new List<ProductCategorie>();
@@ -28,6 +30,31 @@ namespace ASP_PROFTAAK.App_DAL
                 }
             }
             return categories;
+        }
+
+        public ProductCategorie GetProductCategorieById(int id)
+        {
+
+            using (SqlConnection connection = Database.Connection)
+            {
+
+                string query = "SELECT * FROM ProductCategorie WHERE ID = @id";
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            productcategorie = CreateProductCategorieFromReader(reader);
+                            return productcategorie;
+                        }
+                    }
+                }
+            }
+            return productcategorie;
         }
 
         public void Insert(ProductCategorie productCategorie)
@@ -77,11 +104,21 @@ namespace ASP_PROFTAAK.App_DAL
 
         private ProductCategorie CreateProductCategorieFromReader(SqlDataReader reader)
         {
-            return new ProductCategorie(
-                Convert.ToInt32(reader["id"]),
-                Convert.ToInt32(reader["productcat_id"]),
-                Convert.ToString(reader["naam"])
-            );
+            
+            if (reader["productcat_id"] != DBNull.Value)
+            {
+                return new ProductCategorie(
+                    (decimal)(reader["id"]),
+                    (decimal)(reader["productcat_id"]),
+                    (string)(reader["naam"]));
+            }
+            else
+            {
+                return new ProductCategorie((decimal)reader["id"], (string)reader["naam"]);
+            }
+            
+
+
         }
     }
 }
