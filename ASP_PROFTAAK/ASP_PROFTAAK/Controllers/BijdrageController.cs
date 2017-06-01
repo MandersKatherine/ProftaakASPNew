@@ -15,12 +15,12 @@ namespace ASP_PROFTAAK.Controllers
         
         public ActionResult Index()
         {
-            List<Bericht> berichtencollectie = new List<Bericht>();
-             berichtencollectie = bijdragerepo.GetAllBerichts();
-            return View(berichtencollectie);
+            List<Bijdrage> bijdrages = bijdragerepo.GetAllBijdrages();
+            return View(bijdrages);
         }
 
-        // GET: Bijdrage/Details/5
+  
+        // GET: Bijdrage/Details
         public ActionResult Details(int id)
         {
             return View();
