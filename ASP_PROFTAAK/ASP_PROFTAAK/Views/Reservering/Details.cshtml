@@ -1,4 +1,4 @@
-﻿@model Tuple<ASP_PROFTAAK.Models.Reservering, ASP_PROFTAAK.Models.Persoon, IEnumerable<ASP_PROFTAAK.Models.Plek>, ASP_PROFTAAK.Models.Locatie>
+﻿@model ASP_PROFTAAK.Models.ReserveringViewModelELPRP
 
 @{
         ViewBag.Title = "Details";
@@ -13,35 +13,35 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Item1.PersonId)
+            @Html.DisplayNameFor(model => model.reservering.PersonId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item1.PersonId)
+            @Html.DisplayFor(model => model.reservering.PersonId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item1.DatumStart)
+            @Html.DisplayNameFor(model => model.reservering.DatumStart)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item1.DatumStart)
+            @Html.DisplayFor(model => model.reservering.DatumStart)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item1.DatumEinde)
+            @Html.DisplayNameFor(model => model.reservering.DatumEinde)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item1.DatumEinde)
+            @Html.DisplayFor(model => model.reservering.DatumEinde)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item1.Betaald)
+            @Html.DisplayNameFor(model => model.reservering.Betaald)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item1.Betaald)
+            @Html.DisplayFor(model => model.reservering.Betaald)
         </dd>
 
     </dl>
@@ -51,65 +51,107 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Voornaam)
+            @Html.DisplayNameFor(model => model.persoon.Voornaam)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Voornaam)
+            @Html.DisplayFor(model => model.persoon.Voornaam)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Tussenvoegsel)
+            @Html.DisplayNameFor(model => model.persoon.Tussenvoegsel)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Tussenvoegsel)
+            @Html.DisplayFor(model => model.persoon.Tussenvoegsel)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Achternaam)
+            @Html.DisplayNameFor(model => model.persoon.Achternaam)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Achternaam)
+            @Html.DisplayFor(model => model.persoon.Achternaam)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Straat)
+            @Html.DisplayNameFor(model => model.persoon.Straat)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Straat)
+            @Html.DisplayFor(model => model.persoon.Straat)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Huisnr)
+            @Html.DisplayNameFor(model => model.persoon.Huisnr)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Huisnr)
+            @Html.DisplayFor(model => model.persoon.Huisnr)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Woonplaats)
+            @Html.DisplayNameFor(model => model.persoon.Woonplaats)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Woonplaats)
+            @Html.DisplayFor(model => model.persoon.Woonplaats)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item2.Banknr)
+            @Html.DisplayNameFor(model => model.persoon.Banknr)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item2.Banknr)
+            @Html.DisplayFor(model => model.persoon.Banknr)
         </dd>
 
     </dl>
 </div>
 
 <div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.events.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.events.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.events.DatumStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.events.DatumStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.events.DatumEinde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.events.DatumEinde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.events.MaxBezoekers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.events.MaxBezoekers)
+        </dd>
+
+    </dl>
+
+</div>
+
+<div>
+    <h4>Plekken</h4>
     <table class="table">
         <tr>
             <th>
@@ -121,7 +163,7 @@
             <th></th>
         </tr>
 
-        @foreach (var item in Model.Item3)
+        @foreach (var item in Model.plekken)
         {
             <tr>
                 <td>
@@ -140,50 +182,50 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Item4.Naam)
+            @Html.DisplayNameFor(model => model.locatie.Naam)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item4.Naam)
+            @Html.DisplayFor(model => model.locatie.Naam)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item4.Straat)
+            @Html.DisplayNameFor(model => model.locatie.Straat)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item4.Straat)
+            @Html.DisplayFor(model => model.locatie.Straat)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item4.Nummer)
+            @Html.DisplayNameFor(model => model.locatie.Nummer)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item4.Nummer)
+            @Html.DisplayFor(model => model.locatie.Nummer)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item4.Postcode)
+            @Html.DisplayNameFor(model => model.locatie.Postcode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item4.Postcode)
+            @Html.DisplayFor(model => model.locatie.Postcode)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Item4.Plaats)
+            @Html.DisplayNameFor(model => model.locatie.Plaats)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Item4.Plaats)
+            @Html.DisplayFor(model => model.locatie.Plaats)
         </dd>
 
     </dl>
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.reservering.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
 

@@ -43,13 +43,16 @@ namespace ASP_PROFTAAK.Controllers
             newLocatie = locatierepo.GetLocatieById(plek.LocatieId);
             newEvent = eventrepo.GetEventById(newLocatie.Id);
 
-             
+            var viewmodel = new ReserveringViewModelELPRP()
+            {
+                events = newEvent,
+                locatie = newLocatie,
+                plekken = newPlek,
+                reservering = newReservering,
+                persoon = newPersoon
 
-
-
-
-
-            return View(GetMultipleValues(newReservering, newPersoon, newPlek, newLocatie));
+            };
+                return View(viewmodel);
         }
 
         // GET: Reservering/Create
