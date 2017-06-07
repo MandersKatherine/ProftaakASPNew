@@ -222,6 +222,7 @@
     <Compile Include="Models\ProductCategorie.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
     <Compile Include="Models\Reservering.cs" />
+    <Compile Include="Models\ReserveringMakenViewModel.cs" />
     <Compile Include="Models\ReserveringViewModelELPRP.cs" />
     <Compile Include="Models\Specificatie.cs" />
     <Compile Include="Models\Verhuurd.cs" />
@@ -283,6 +284,7 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Reservering\Details.cshtml" />
+    <Content Include="Views\Reservering\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
