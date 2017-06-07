@@ -82,7 +82,48 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
+        public void CreateReservering(DateTime datumStart, DateTime datumEinde, int betaald, int accountId, int aanwezig, string plekId, string voornaam, string tussenvoegsel, string achternaam, string straat, string huisnummer, string woonplaats, string banknummer)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+
+                using (SqlCommand command = new SqlCommand("ReserveringMaken", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@datumStart", datumStart);
+                    command.Parameters.AddWithValue("@datumEinde", datumEinde);
+                    command.Parameters.AddWithValue("@betaald", betaald);
+                    command.Parameters.AddWithValue("@accountId", accountId);
+                    command.Parameters.AddWithValue("@aanwezig", aanwezig);
+                    command.Parameters.AddWithValue("@plekId", plekId);
+                    command.Parameters.AddWithValue("@voornaam", voornaam);
+                    command.Parameters.AddWithValue("@tussenvoegsel", tussenvoegsel);
+                    command.Parameters.AddWithValue("@achternaam", achternaam);
+                    command.Parameters.AddWithValue("@straat", straat);
+                    command.Parameters.AddWithValue("@huisnummer", huisnummer);
+                    command.Parameters.AddWithValue("@woonplaats", woonplaats);
+                    command.Parameters.AddWithValue("@banknummer", banknummer);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         
+
+        //@datumStart date,
+        //    @datumEinde date,
+        //@betaald numeric(1,0),
+        //@accountId numeric(10,0),
+        //@aanwezig numeric(1,0),
+        //@plekId numeric(10,0),
+        //@voornaam nvarchar(255),
+        //@tussenvoegsel nvarchar(255),
+        //@achternaam nvarchar(255),
+        //@straat nvarchar(255),
+        //@huisnummer nvarchar(255),
+        //@woonplaats nvarchar(255),
+        //@banknummer nvarchar(255)
+
 
         public void UpdateReservering(Reservering reserveringen)
         {

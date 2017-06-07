@@ -32,6 +32,21 @@ namespace ASP_PROFTAAK.App_DAL
             return groepsleden;
         }
 
+        public void GeefGroepslidBandjeEnKoppelAanLaatstGeinserteReservering(int accountId)//checken of niet aanwezig goed is en of er genoeg bandjes zijn
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+
+                using (SqlCommand command = new SqlCommand("Polsbandjetoewijzen", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@accountId", accountId);
+                    command.Parameters.AddWithValue("@aanwezig", 0);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         private Groepslid createGroepslidFromReader(SqlDataReader reader)
         {

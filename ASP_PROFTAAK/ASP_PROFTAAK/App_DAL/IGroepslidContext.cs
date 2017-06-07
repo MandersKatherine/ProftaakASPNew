@@ -9,6 +9,7 @@ namespace ASP_PROFTAAK.App_DAL
     public interface IGroepslidContext
     {
        List<Groepslid> getGroepsledenByReserveringId(int id);
+       void GeefGroepslidBandjeEnKoppelAanLaatstGeinserteReservering(int accountId);
 
 
     }

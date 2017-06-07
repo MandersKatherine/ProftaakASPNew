@@ -43,5 +43,10 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetPlekById(id);
         }
+
+        public List<Plek> GetPlekByEventId(int eventId)
+        {
+            return context.GetPlekByEventId(eventId);
+        }
     }
 }
