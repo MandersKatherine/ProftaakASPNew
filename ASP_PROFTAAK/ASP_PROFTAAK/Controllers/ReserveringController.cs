@@ -28,10 +28,7 @@ namespace ASP_PROFTAAK.Controllers
             List<Reservering> reserveringen = reserveringrepo.GetAllReserveringen();
             return View(reserveringen);
         }
-        public Tuple<Reservering, Persoon, IEnumerable<Plek>, Locatie> GetMultipleValues(Reservering reservering, Persoon persoon, IEnumerable<Plek> plek, Locatie locatie)
-        {
-            return Tuple.Create(reservering, persoon, plek, locatie);
-        }
+        
         // GET: Reservering/Details/5
         public ActionResult Details(decimal id)
         {
