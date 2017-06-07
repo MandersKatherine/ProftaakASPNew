@@ -1,38 +1,38 @@
-﻿using System;
+﻿using ASP_PROFTAAK.App_DAL;
+using ASP_PROFTAAK.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ASP_PROFTAAK.App_DAL;
-using ASP_PROFTAAK.Models;
 
 namespace ASP_PROFTAAK.Controllers
 {
-    public class BijdrageController : Controller
+    public class ProductCategorieController : Controller
     {
-        BijdrageRepository bijdragerepo = new BijdrageRepository(new BijdrageSQLContext());
-        // GET: Bijdrage
-        
+        ProductCategorieRepository pcr = new ProductCategorieRepository(new ProductCategorieSQLContext());
+        // GET: ProductCategorie
         public ActionResult Index()
         {
-            List<Bijdrage> bijdrages = bijdragerepo.GetAllBijdrages();
-            return View(bijdrages);
+            List<ProductCategorie> productcategorie = new List<ProductCategorie>();
+            productcategorie = pcr.GetAllCategories();
+            return View(productcategorie);
         }
 
-  
-        // GET: Bijdrage/Details
+        // GET: ProductCategorie/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ProductCategorie productcategorie = pcr.GetProductCategorieById(id);
+            return View(productcategorie);
         }
 
-        // GET: Bijdrage/Create
+        // GET: ProductCategorie/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Bijdrage/Create
+        // POST: ProductCategorie/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -48,13 +48,13 @@ namespace ASP_PROFTAAK.Controllers
             }
         }
 
-        // GET: Bijdrage/Edit/5
+        // GET: ProductCategorie/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Bijdrage/Edit/5
+        // POST: ProductCategorie/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -70,20 +70,19 @@ namespace ASP_PROFTAAK.Controllers
             }
         }
 
-        // GET: Bijdrage/Delete/5
+        // GET: ProductCategorie/Delete/5
         public ActionResult Delete(int id)
         {
-            Bijdrage bijdrage = bijdragerepo.GetByID(id);
-            return View(bijdrage);
+            return View();
         }
 
-        // POST: Bijdrage/Delete/5
+        // POST: ProductCategorie/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                bijdragerepo.DeleteBijdrage(id);
+                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }

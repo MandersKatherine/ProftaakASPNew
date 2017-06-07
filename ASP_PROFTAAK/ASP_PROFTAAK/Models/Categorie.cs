@@ -10,36 +10,30 @@ namespace ASP_PROFTAAK.Models
         private int categorieId;
         private string naam;
 
-        public Categorie(int categorieId, string naam, int id, int accountId, string datum, string soort) : base(id, accountId, datum, soort)
+        public int CategorieId
+        {
+            get { return categorieId; }
+            set { categorieId = value; }
+        }
+
+        public string Naam
+        {
+            get { return naam; }
+            set { naam = value; }
+        }
+
+        public Categorie(int id, int accountId, DateTime datum, string soort, int categorieId, string naam) : base(id, accountId, datum, soort)
         {
             this.categorieId = categorieId;
             this.naam = naam;
         }
 
-        public int CategorieId
+        public Categorie(int accountId, DateTime datum, string soort, int categorieId, string naam) : base(accountId, datum, soort)
         {
-            get
-            {
-                return categorieId;
-            }
-
-            set
-            {
-                categorieId = value;
-            }
+            this.categorieId = categorieId;
+            this.naam = naam;
         }
 
-        public string Naam
-        {
-            get
-            {
-                return naam;
-            }
 
-            set
-            {
-                naam = value;
-            }
-        }
     }
 }

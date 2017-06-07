@@ -9,6 +9,8 @@ namespace ASP_PROFTAAK.App_DAL
 {
     public class ProductCategorieSQLContext : IProductCategorieContext
     {
+        private ProductCategorie productcategorie;
+
         public List<ProductCategorie> GetAllCategories()
         {
             List<ProductCategorie> categories = new List<ProductCategorie>();
@@ -28,6 +30,31 @@ namespace ASP_PROFTAAK.App_DAL
                 }
             }
             return categories;
+        }
+
+        public ProductCategorie GetProductCategorieById(int id)
+        {
+
+            using (SqlConnection connection = Database.Connection)
+            {
+
+                string query = "SELECT * FROM ProductCategorie WHERE ID = @id";
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            productcategorie = CreateProductCategorieFromReader(reader);
+                            return productcategorie;
+                        }
+                    }
+                }
+            }
+            return productcategorie;
         }
 
         public void Insert(ProductCategorie productCategorie)
