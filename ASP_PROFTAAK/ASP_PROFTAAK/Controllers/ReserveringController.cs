@@ -15,6 +15,8 @@ namespace ASP_PROFTAAK.Controllers
         LocatieRepository locatierepo = new LocatieRepository(new LocatieSQLContext());
         EventRepository eventrepo = new EventRepository(new EventSQLContext());
         PersoonRepository persoonrepo = new PersoonRepository(new PersoonSQLContext());
+        AccountRepository accountrepo = new AccountRepository(new AccountSQLContext());
+        GroepslidRepository groepslidrepo = new GroepslidRepository(new GroepslidSQLContext());
 
         private Reservering newReservering;
         private List<Plek> newPlek = new List<Plek>();
@@ -53,25 +55,48 @@ namespace ASP_PROFTAAK.Controllers
         }
 
         // GET: Reservering/Create
-        public ActionResult Create()
+        public ActionResult Create(int id, ReserveringMakenViewModel rmvm)
         {
-            return View();
+            Event events = eventrepo.GetEventById(id);
+            List<Plek> plekken = plekrepo.GetPlekByEventId(id);
+
+            var viewmodel = new ReserveringMakenViewModel()
+            {
+                events = events,
+                plekken = plekken
+
+            };  
+            
+           
+            return View(viewmodel);
         }
 
         // POST: Reservering/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
+            //variabelen om input te testen, kan weg nu
+
+            //DateTime datumStart = Convert.ToDateTime(collection["events.DatumStart"]);
+            //DateTime datumEinde = Convert.ToDateTime(collection["events.DatumEinde"]);
+            //int accountId = Convert.ToInt32(Session["UserId"]);
+            //int plekId = Convert.ToInt32(collection["plekId"]);
+            //string voornaam = collection["voornaam"];
+            //string tussenvoegsel = collection["tussenvoegsel"];
+            //string achternaam = collection["achternaam"];
+            //string straat = collection["straat"];
+            //string huisnummer = collection["huisnummer"];
+            //string woonplaats = collection["woonplaats"];
+            //string banknummer = collection["banknummer"];
+
+
+            // TODO: Add insert logic here
+            reserveringrepo.CreateReservering(Convert.ToDateTime(collection["events.DatumStart"]), Convert.ToDateTime(collection["events.DatumEinde"]), 0, Convert.ToInt32(Session["UserId"]), 0, Convert.ToString(collection["plekId"]), collection["voornaam"], collection["tussenvoegsel"], collection["achternaam"], collection["straat"], collection["huisnummer"], collection["woonplaats"], collection["banknummer"]);
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
+                
+            
         }
 
         // GET: Reservering/Edit/5
@@ -95,6 +120,34 @@ namespace ASP_PROFTAAK.Controllers
                 return View();
             }
         }
+
+        //get:
+        public ActionResult AddGroepslid()
+        {
+            List<Account> accounts = accountrepo.GetAllAccounts();// moet nog bij dat de hoofdboeker niet wordt ingeladen
+
+            var viewmodel = new ReserveringMakenViewModel()
+            {
+                accounts = accounts
+
+            };
+
+            return View(viewmodel);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddGroepsLid(FormCollection collection)
+        {
+            string[] ids = collection["accountId"].Split(','); //geselecteerde ids ophalen van form
+            foreach (string id in ids)
+            {
+                groepslidrepo.GeefGroepslidBandjeEnKoppelAanLaatstGeinserteReservering(Convert.ToInt32(id));
+            }
+            return RedirectToAction("AddGroepsLid");
+        }
+
+
 
         // GET: Reservering/Delete/5
         public ActionResult Delete(decimal id)

@@ -99,6 +99,35 @@ namespace ASP_PROFTAAK.App_DAL
             return Plekken;
         }
 
+        public List<Plek> GetPlekByEventId(int eventId)
+        {
+            List<Plek> Plekken = new List<Plek>();
+            
+                using (SqlConnection connection = Database.Connection)
+                {
+                    string query = "SELECT Plek.* FROM Plek INNER JOIN LOCATIE ON Plek.locatie_id = LOCATIE.ID INNER JOIN EVENT ON LOCATIE.ID = EVENT.locatie_id WHERE EVENT.ID = @id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("id", eventId);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+
+                                Plekken.Add(CreatePlekFromReader(reader));
+
+                            }
+
+                        }
+                    }
+                }
+            
+            return Plekken;
+        }
+
         private Plek CreatePlekFromReader(SqlDataReader reader)
         {
             return new Plek(

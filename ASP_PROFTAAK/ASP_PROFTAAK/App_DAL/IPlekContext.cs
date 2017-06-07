@@ -17,6 +17,6 @@ namespace ASP_PROFTAAK.App_DAL
         bool UpdatePlek(Plek plek);
         List<Decimal> GetPlekId(decimal id);
         List<Plek> GetPlekById(List<decimal> id);
-
+        List<Plek> GetPlekByEventId(int eventId);
     }
 }

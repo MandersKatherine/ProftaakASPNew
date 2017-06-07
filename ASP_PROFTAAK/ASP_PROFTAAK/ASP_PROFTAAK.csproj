@@ -187,6 +187,7 @@
     <Compile Include="Controllers\ContentViewModel.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventRepository.cs" />
+    <Compile Include="Controllers\GroepslidRepository.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocatieController.cs" />
     <Compile Include="Controllers\LocatieRepository.cs" />
@@ -306,24 +307,23 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Shared\_LoggedInNavBarForUser.cshtml" />
+    <Content Include="Views\Shared\_LoggedInNavBarForAdmin.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Reservering\AddGroepslid.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Reservering\Details.cshtml" />
+    <Content Include="Views\Reservering\Create.cshtml" />
+    <Content Include="Views\Persoon\Details.cshtml" />
+    <Content Include="Views\ProductCategorie\Index.cshtml" />
+    <Content Include="Views\ProductCategorie\Details.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Resources\" />
-    <Content Include="Views\Reservering\Details.cshtml" />
-
-    <Content Include="Views\Reservering\Create.cshtml" />
-
-
-    <Content Include="Views\Persoon\Details.cshtml" />
-    <Content Include="Views\ProductCategorie\Index.cshtml" />
-    <Content Include="Views\ProductCategorie\Details.cshtml" />
-
-    <Content Include="Views\Event\Delete.cshtml" />
-
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Verhuur\" />
   </ItemGroup>
   <ItemGroup>

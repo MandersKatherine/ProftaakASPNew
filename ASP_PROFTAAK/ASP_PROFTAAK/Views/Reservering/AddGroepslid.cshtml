@@ -1,0 +1,68 @@
+﻿@model ASP_PROFTAAK.Models.ReserveringMakenViewModel
+
+@{
+    ViewBag.Title = "AddGroepslid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddGroepslid</h2>
+@using (Html.BeginForm("AddGroepsLid", "Reservering", FormMethod.Post))
+{
+    
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.gebruikersnaam)
+            </th>
+           
+           
+            <th>
+                @Html.DisplayNameFor(model => model.voornaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tussenvoegsel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.achternaam)
+            </th>
+            
+           
+            <th>
+                select
+            </th>
+        </tr>
+
+        @foreach (var item in Model.accounts) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gebruikersnaam)
+                </td>
+               
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Voornaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tussenvoegsel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Achternaam)
+                </td>
+               
+               
+                <td>
+                    <input type="checkbox" class="chkCheckBoxId" value="@item.Id" name="accountId"/>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <input type="submit" value="Voeg geselecteerde groepsleden toe" onclick="return confirm('Voeg groepsleden toe aan reservering?')" class="btn btn-primary pull-right btn-block">
+
+
+}

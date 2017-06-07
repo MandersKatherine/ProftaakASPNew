@@ -39,5 +39,15 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetReserveringById(id);
         }
+
+        public void CreateReservering(DateTime datumStart, DateTime datumEinde, int betaald, int accountId,
+            int aanwezig, string plekId, string voornaam, string tussenvoegsel, string achternaam, string straat,
+            string huisnummer, string woonplaats, string banknummer)
+        {
+            context.CreateReservering(datumStart, datumEinde, betaald, accountId,
+                aanwezig, plekId, voornaam, tussenvoegsel, achternaam, straat,
+                huisnummer, woonplaats, banknummer);
+        }
+
     }
 }
