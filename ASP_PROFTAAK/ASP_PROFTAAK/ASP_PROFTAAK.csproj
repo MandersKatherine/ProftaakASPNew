@@ -170,6 +170,7 @@
     <Compile Include="App_DAL\LocatieSQLContext.cs" />
     <Compile Include="App_DAL\PersoonSQLContext.cs" />
     <Compile Include="App_DAL\PlekSQLContext.cs" />
+    <Compile Include="App_DAL\PolsbandjeSQLContext.cs" />
     <Compile Include="App_DAL\ProductCategorieSQLContext.cs" />
     <Compile Include="App_DAL\ProductExemplaarSQLContext.cs" />
     <Compile Include="App_DAL\ProductSQLContext.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Controllers\PersoonRepository.cs" />
     <Compile Include="Controllers\PlekController.cs" />
     <Compile Include="Controllers\PlekRepository.cs" />
+    <Compile Include="Controllers\PolsbandjeController.cs" />
+    <Compile Include="Controllers\PolsbandjeRepository.cs" />
     <Compile Include="Controllers\ProductCategorieController.cs" />
     <Compile Include="Controllers\ProductCategorieRepository.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -207,6 +210,7 @@
     <Compile Include="Controllers\ReserveringRepository.cs" />
     <Compile Include="Controllers\VerhuurController.cs" />
     <Compile Include="Controllers\VerhuurRepository.cs" />
+    <Compile Include="Controllers\ViewModelEventPlek.cs" />
     <Compile Include="Controllers\ViewModelCreateProduct.cs" />
     <Compile Include="Controllers\ReserveringViewModel.cs" />
     <Compile Include="Controllers\SpecificatieRepository.cs" />
@@ -315,11 +319,22 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservering\AddGroepslid.cshtml" />
+
     <Content Include="Views\Event\AddLocation.cshtml" />
     <Content Include="Views\Event\EditPlekken.cshtml" />
     <Content Include="Views\Event\EditLocatie.cshtml" />
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Locaties.cshtml" />
+
+
+    <Content Include="Views\Polsbandje\Index.cshtml" />
+    <Content Include="Views\Polsbandje\Create.cshtml" />
+    <Content Include="Views\Polsbandje\Details.cshtml" />
+    <Content Include="Views\Polsbandje\Edit.cshtml" />
+
+    <Content Include="Views\Account\Activate.cshtml" />
+
+    <Content Include="Views\Reservering\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />

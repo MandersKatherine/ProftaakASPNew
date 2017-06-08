@@ -18,7 +18,7 @@ namespace ASP_PROFTAAK.App_DAL
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@CustomerID", id);
+                    command.Parameters.AddWithValue("@id", id);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())

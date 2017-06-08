@@ -101,5 +101,35 @@ namespace ASP_PROFTAAK.Controllers
                 return View();
             }
         }
+
+        public ActionResult Activate()
+        {
+            return View(); 
+        }
+
+        [HttpPost]
+        public ActionResult Activate(FormCollection collection)
+        {
+            try
+            {
+                int accountId = accountrepo.GetaccountId(collection["username"]);
+                if (accountrepo.CheckHash(accountId, collection["activationhash"]))
+                {
+                    TempData["Activated"] = "Activated";
+                    return View();
+                }
+                else
+                {
+                    TempData["Activatedfailed"] = "failed";
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                TempData["Activatedfailed"] = "failed";
+                return View();
+                throw;
+            }
+        }
     }
 }
