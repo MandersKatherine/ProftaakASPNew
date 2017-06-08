@@ -39,6 +39,13 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetAccountById(id);
         }
-        
+
+        public List<Account> GetAllAccountsBehalveIngelogdeAccount(int loggedInAccountId)
+        {
+            return context.GetAllAccountsBehalveIngelogdeAccount(loggedInAccountId);
+        }
+
+
+
     }
 }

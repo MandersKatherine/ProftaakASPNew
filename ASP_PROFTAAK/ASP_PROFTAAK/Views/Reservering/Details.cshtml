@@ -47,7 +47,7 @@
     </dl>
 </div>
 <div>
-    <h4>Persoon</h4>
+    <h4>Hoofdboeker</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -107,6 +107,30 @@
         </dd>
 
     </dl>
+</div>
+
+<div>
+    <h4>Groepsleden</h4>
+    @foreach (var item in Model.groepsleden)
+    {
+        <hr />
+        <dl class="dl-horizontal">
+            
+
+            <dt>
+                @Html.DisplayNameFor(model => model.persoon.Achternaam)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.persoon.Voornaam)
+            </dd>
+
+
+
+        </dl>
+    }
+    
+
 </div>
 
 <div>
