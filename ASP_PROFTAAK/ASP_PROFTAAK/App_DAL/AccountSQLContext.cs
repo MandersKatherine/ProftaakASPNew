@@ -33,6 +33,31 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return accounts;
         }
+
+        public List<Account> GetAllAccountsBehalveIngelogdeAccount(int loggedInAccountId)
+        {
+            List<Account> accounts = new List<Account>();
+            using (SqlConnection connection = Database.Connection)
+            {
+
+                string query = "SELECT * FROM Account where id not like @loggedInAccountId ORDER BY ID";
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("loggedInAccountId", loggedInAccountId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            accounts.Add(CreateAccountFromReader(reader));
+                        }
+                    }
+                }
+            }
+            return accounts;
+        }
         public Account GetAccountById(int id)
         {
             

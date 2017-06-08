@@ -41,6 +41,8 @@ namespace ASP_PROFTAAK.Controllers
             Plek plek = newPlek.First();
             newLocatie = locatierepo.GetLocatieById(plek.LocatieId);
             newEvent = eventrepo.GetEventById(newLocatie.Id);
+            List<Groepslid> groepsleden = groepslidrepo.getGroepsledenByReserveringId(Convert.ToInt32(id));
+
 
             var viewmodel = new ReserveringViewModelELPRP()
             {
@@ -48,7 +50,9 @@ namespace ASP_PROFTAAK.Controllers
                 locatie = newLocatie,
                 plekken = newPlek,
                 reservering = newReservering,
-                persoon = newPersoon
+                persoon = newPersoon,
+                groepsleden = groepsleden
+
 
             };
                 return View(viewmodel);
@@ -124,7 +128,7 @@ namespace ASP_PROFTAAK.Controllers
         //get:
         public ActionResult AddGroepslid()
         {
-            List<Account> accounts = accountrepo.GetAllAccounts();// moet nog bij dat de hoofdboeker niet wordt ingeladen
+            List<Account> accounts = accountrepo.GetAllAccountsBehalveIngelogdeAccount(Convert.ToInt32(Session["UserId"]));
 
             var viewmodel = new ReserveringMakenViewModel()
             {
