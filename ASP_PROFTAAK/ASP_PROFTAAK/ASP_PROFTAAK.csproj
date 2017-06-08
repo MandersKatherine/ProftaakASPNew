@@ -312,6 +312,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservering\AddGroepslid.cshtml" />
+    <Content Include="Views\Reservering\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />
