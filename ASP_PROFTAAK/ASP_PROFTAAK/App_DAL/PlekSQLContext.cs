@@ -99,6 +99,34 @@ namespace ASP_PROFTAAK.App_DAL
             return Plekken;
         }
 
+        public Plek GetPlekById(int id)
+        {
+
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "select * from plek where id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        if (reader.Read())
+                        {
+
+                           return CreatePlekFromReader(reader);
+
+                        }
+
+                    }
+                }
+            }
+            return null;
+
+        }
+
         public List<Plek> GetPlekByEventId(int eventId)
         {
             List<Plek> Plekken = new List<Plek>();
@@ -128,6 +156,36 @@ namespace ASP_PROFTAAK.App_DAL
             return Plekken;
         }
 
+        public List<Plek> GetPlekByLocatieId(int locatieId)
+        {
+            List<Plek> Plekken = new List<Plek>();
+
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM Plek where locatie_id = @locatie_id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@locatie_id", locatieId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            Plekken.Add(CreatePlekFromReader(reader));
+
+                        }
+
+                    }
+                }
+            }
+
+            return Plekken;
+        }
+
+
         private Plek CreatePlekFromReader(SqlDataReader reader)
         {
             return new Plek(
@@ -141,12 +199,12 @@ namespace ASP_PROFTAAK.App_DAL
         {
             using (SqlConnection connection = Database.Connection)
             {
-                string query = "INSERT INTO PLEK (nummer, capaciteit)" +
-                        "VALUES (@num, @cap)";
+                string query = "INSERT INTO PLEK (locatie_id, nummer, capaciteit)" +
+                        "VALUES (@locid, @num, @cap)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-
-                    command.Parameters.AddWithValue("@num", plek.Nummer);
+                    command.Parameters.AddWithValue("@locid", plek.LocatieId);
+                    command.Parameters.AddWithValue("@num", plek.ID);
                     command.Parameters.AddWithValue("@cap", plek.Capaciteit);
                     try
                     {

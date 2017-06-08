@@ -89,12 +89,47 @@ namespace ASP_PROFTAAK
                         "VALUES (@naam, @straat, @nummer, @postcode, @plaats)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    if (Convert.ToString(locatie.Naam) == "")
+                    {
+                        command.Parameters.AddWithValue("@naam", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@naam", locatie.Naam);
+                    }
 
-                    command.Parameters.AddWithValue("@naam", locatie.Naam);
-                    command.Parameters.AddWithValue("@straat", locatie.Straat);
-                    command.Parameters.AddWithValue("@nummer", locatie.Nummer);
-                    command.Parameters.AddWithValue("@postcode", locatie.Postcode);
-                    command.Parameters.AddWithValue("@plaats", locatie.Plaats);
+                    if (Convert.ToString(locatie.Straat) == "")
+                    {
+                        command.Parameters.AddWithValue("@straat", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@straat", locatie.Straat);
+                    }
+                    if (Convert.ToString(locatie.Nummer) == "")
+                    {
+                        command.Parameters.AddWithValue("@nummer", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@nummer", locatie.Nummer);
+                    }
+                    if (Convert.ToString(locatie.Postcode) == "")
+                    {
+                        command.Parameters.AddWithValue("@postcode", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@postcode", locatie.Postcode);
+                    }
+                    if (Convert.ToString(locatie.Plaats) == "")
+                    {
+                        command.Parameters.AddWithValue("@plaats", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@plaats", locatie.Plaats);
+                    }
                     try
                     {
                         command.ExecuteNonQuery();
@@ -162,168 +197,194 @@ namespace ASP_PROFTAAK
 
 
 
+        public int GetLocatieId()
+        {
+            int locatieId;
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT TOP 1 ID FROM Locatie ORDER BY ID DESC";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    locatieId = Convert.ToInt32(command.ExecuteScalar());
+                    return locatieId;
+                }
+            }
+        }
+
+
 
         private Locatie CreateLocatieFromReader(SqlDataReader reader)
         {
-            if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null && Convert.ToString(reader["Postcode"]) != null && Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                 Convert.ToInt32(reader["ID"]),
-                 Convert.ToString(reader["Naam"]),
-                 Convert.ToString(reader["Straat"]),
-                 Convert.ToString(reader["nr"]),
-                 Convert.ToString(reader["Postcode"]),
-                 Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null &&
-                     Convert.ToString(reader["Postcode"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    Convert.ToString(reader["nr"]),
-                    Convert.ToString(reader["Postcode"]),
-                    "Geen Plaats");
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    Convert.ToString(reader["nr"]),
-                    "Geen Postcode",
-                    "Geen Plaats");
-            }
-            else if (Convert.ToString(reader["Straat"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    "Geen Nummer",
-                    "Geen Postcode",
-                    "Geen Plaats");
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    Convert.ToString(reader["nr"]),
-                    "Geen Postcode",
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && 
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    "Geen Nummer",
-                    "Geen Postcode",
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    "Geen Straat",
-                    "Geen Nummer",
-                    "Geen Postcode",
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && 
-                     Convert.ToString(reader["Postcode"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    "Geen Nummer",
-                    Convert.ToString(reader["Postcode"]),
-                    "Geen Plaats");
-            }
-            else if (Convert.ToString(reader["nr"]) != null &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    "Geen Straat",
-                    Convert.ToString(reader["nr"]),
-                    "Geen Postcode",
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["Postcode"]) != null &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    "Geen Nummer",
-                    Convert.ToString(reader["Postcode"]),
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null  &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    "Geen Nummer",
-                    "Geen Postcode",
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    Convert.ToString(reader["Straat"]),
-                    "Geen Nummer",
-                    "Geen Postcode",
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    "Geen Straat",
-                    Convert.ToString(reader["nr"]),
-                    Convert.ToString(reader["Postcode"]),
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else if (Convert.ToString(reader["Straat"]) != null &&
-                     Convert.ToString(reader["Plaats"]) != null)
-            {
-                return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    "Geen Straat",
-                    "Geen Nummer",
-                    Convert.ToString(reader["Postcode"]),
-                    Convert.ToString(reader["Plaats"]));
-            }
-            else return new Locatie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToString(reader["Naam"]),
-                    "Geen Straat",
-                    "Geen Nummer",
-                    "Geen Postcode",
-                    "Geen Plaats");
-                
+            return new Locatie(
+                Convert.ToInt32(reader["ID"]),
+                Convert.ToString(reader["Naam"]),
+                Convert.ToString(reader["Straat"] != DBNull.Value ? Convert.ToString(reader["Straat"]) : ""),
+                Convert.ToString(reader["nr"] != DBNull.Value ? Convert.ToString(reader["nr"]) : ""),
+                Convert.ToString(reader["Postcode"] != DBNull.Value ? Convert.ToString(reader["Postcode"]) : ""),
+                Convert.ToString(reader["Plaats"] != DBNull.Value ? Convert.ToString(reader["Plaats"]) : ""));
         }
+
+        //private Locatie CreateLocatieFromReader(SqlDataReader reader)
+        //{
+        //    if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null && Convert.ToString(reader["Postcode"]) != null && Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //         Convert.ToInt32(reader["ID"]),
+        //         Convert.ToString(reader["Naam"]),
+        //         Convert.ToString(reader["Straat"]),
+        //         Convert.ToString(reader["nr"]),
+        //         Convert.ToString(reader["Postcode"]),
+        //         Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null &&
+        //             Convert.ToString(reader["Postcode"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            Convert.ToString(reader["nr"]),
+        //            Convert.ToString(reader["Postcode"]),
+        //            "Geen Plaats");
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            Convert.ToString(reader["nr"]),
+        //            "Geen Postcode",
+        //            "Geen Plaats");
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            "Geen Nummer",
+        //            "Geen Postcode",
+        //            "Geen Plaats");
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            Convert.ToString(reader["nr"]),
+        //            "Geen Postcode",
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && 
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            "Geen Nummer",
+        //            "Geen Postcode",
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            "Geen Straat",
+        //            "Geen Nummer",
+        //            "Geen Postcode",
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && 
+        //             Convert.ToString(reader["Postcode"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            "Geen Nummer",
+        //            Convert.ToString(reader["Postcode"]),
+        //            "Geen Plaats");
+        //    }
+        //    else if (Convert.ToString(reader["nr"]) != null &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            "Geen Straat",
+        //            Convert.ToString(reader["nr"]),
+        //            "Geen Postcode",
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["Postcode"]) != null &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            "Geen Nummer",
+        //            Convert.ToString(reader["Postcode"]),
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null  &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            "Geen Nummer",
+        //            "Geen Postcode",
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            Convert.ToString(reader["Straat"]),
+        //            "Geen Nummer",
+        //            "Geen Postcode",
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null && Convert.ToString(reader["nr"]) != null &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            "Geen Straat",
+        //            Convert.ToString(reader["nr"]),
+        //            Convert.ToString(reader["Postcode"]),
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else if (Convert.ToString(reader["Straat"]) != null &&
+        //             Convert.ToString(reader["Plaats"]) != null)
+        //    {
+        //        return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            "Geen Straat",
+        //            "Geen Nummer",
+        //            Convert.ToString(reader["Postcode"]),
+        //            Convert.ToString(reader["Plaats"]));
+        //    }
+        //    else return new Locatie(
+        //            Convert.ToInt32(reader["ID"]),
+        //            Convert.ToString(reader["Naam"]),
+        //            "Geen Straat",
+        //            "Geen Nummer",
+        //            "Geen Postcode",
+        //            "Geen Plaats");
+                
+        //}
 
     }
 }

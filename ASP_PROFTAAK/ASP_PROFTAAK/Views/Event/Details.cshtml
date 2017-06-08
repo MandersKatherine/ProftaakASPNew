@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details Event</h2>
+<h2>Event details</h2>
 
 <div>
-    <h4>Event</h4>
     <hr />
     <dl class="dl-horizontal">
         
@@ -48,11 +47,10 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.event1.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit event", "Edit", new { id = Model.event1.Id })
 </p>
 <div>
-    <h4>Locatie</h4>
+    <h2>Locatie details</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -131,6 +129,12 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit Locatie", "Edit", new { id = Model.locatie.Id })
+    @Html.ActionLink("Edit Locatie", "EditLocatie", new { id = Model.locatie.Id }) |
+    @Html.ActionLink("Edit Plekken van de locatie", "EditPlekken", new { id = Model.locatie.Id })
+
+</p>
+<p>
+    @Html.ActionLink("Terug naar event overzicht", "Index")
+
 </p>
 

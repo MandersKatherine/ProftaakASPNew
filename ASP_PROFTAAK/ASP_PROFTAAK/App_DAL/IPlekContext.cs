@@ -11,12 +11,14 @@ namespace ASP_PROFTAAK.App_DAL
         List<Plek> GetAll();
 
         Plek InsertPlek(Plek plek);
-
+        List<Plek> GetPlekByLocatieId(int locatieId);
         bool DeletePlek(int id);
 
         bool UpdatePlek(Plek plek);
         List<Decimal> GetPlekId(decimal id);
         List<Plek> GetPlekById(List<decimal> id);
+        Plek GetPlekById(int id);
+
         List<Plek> GetPlekByEventId(int eventId);
     }
 }

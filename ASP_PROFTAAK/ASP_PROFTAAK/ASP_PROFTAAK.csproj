@@ -227,10 +227,13 @@
     <Compile Include="Models\Bijdrage.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Email\Email.cs" />
+    <Compile Include="Models\CreateEventViewModel.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventLocationViewModel.cs" />
     <Compile Include="Models\Groepslid.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\Locatie.cs" />
+    <Compile Include="Models\LocatiePlekViewModel.cs" />
     <Compile Include="Models\Mening.cs" />
     <Compile Include="Models\Persoon.cs" />
     <Compile Include="Models\Plek.cs" />
@@ -317,6 +320,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservering\AddGroepslid.cshtml" />
 
+    <Content Include="Views\Event\AddLocation.cshtml" />
+    <Content Include="Views\Event\EditPlekken.cshtml" />
+    <Content Include="Views\Event\EditLocatie.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\Locaties.cshtml" />
+
+
     <Content Include="Views\Polsbandje\Index.cshtml" />
     <Content Include="Views\Polsbandje\Create.cshtml" />
     <Content Include="Views\Polsbandje\Details.cshtml" />
@@ -325,7 +335,6 @@
     <Content Include="Views\Account\Activate.cshtml" />
 
     <Content Include="Views\Reservering\Delete.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />

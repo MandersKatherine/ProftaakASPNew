@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASP_PROFTAAK.Models.Event>
+﻿@model ASP_PROFTAAK.Models.EventLocationViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -19,23 +19,26 @@
         <tr>
         
             <th>
-                @Html.DisplayNameFor(model => model.Naam)
+                @Html.DisplayNameFor(model => Model.Event.Naam)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DatumStart)
+                @Html.DisplayNameFor(model => model.Event.DatumStart)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DatumEinde)
+                @Html.DisplayNameFor(model => model.Event.DatumEinde)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaxBezoekers)
+                @Html.DisplayNameFor(model => model.Event.MaxBezoekers)
             </th>
+            
             <th></th>
+            
         </tr>
 
-        @foreach (var item in Model) {
+        @foreach (var item in Model.events)
+        {
             <tr>
-        
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Naam)
                 </td>
@@ -48,14 +51,28 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.MaxBezoekers)
                 </td>
+                @if (Convert.ToInt32(Session["userid"]) > 0)
+                {
+
+                
+
+
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Event", new {id = item.Id}, null) |
-                    @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id}) |
-                    @Html.ActionLink("Reservering maken", "Create", "Reservering", new {  id = item.Id}, null)
+                    @Html.ActionLink("Edit", "Edit", "Event", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                    @Html.ActionLink("Reservering maken", "Create", "Reservering", new { id = item.Id }, null)
                 </td>
+                }
+
             </tr>
         }
+        @if (Convert.ToInt32(Session["userid"]) > 0)
+        {
+            @Html.ActionLink("Event maken", "Create", "Event", null)
+
+        }
+
 
     </table>
 

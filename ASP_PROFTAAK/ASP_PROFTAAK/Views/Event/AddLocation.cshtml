@@ -1,0 +1,82 @@
+﻿@model ASP_PROFTAAK.Models.LocatiePlekViewModel
+
+@{
+    ViewBag.Title = "AddLocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Voeg locatie toe</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.locatie.Naam, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.locatie.Naam, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.locatie.Naam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.locatie.Straat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.locatie.Straat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.locatie.Straat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.locatie.Nummer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.locatie.Nummer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.locatie.Nummer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.locatie.Postcode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.locatie.Postcode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.locatie.Postcode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.locatie.Plaats, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.locatie.Plaats, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.locatie.Plaats, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-2">Aantal plekken</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.plekAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.plekAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="button" class="btn btn-info" value="Create locatie" onclick="location.href='@Url.Action("EditPlekken", "Event")'" />*@
+                <input type="submit" class="btn btn-info" value="Create locatie" />
+
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Event overzicht", "Index") | 
+    @Html.ActionLink("Locatie overzicht", "Locaties") | 
+    @Html.ActionLink("Terug naar maak een event", "Create")
+
+</div>

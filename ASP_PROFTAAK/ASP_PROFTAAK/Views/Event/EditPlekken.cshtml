@@ -1,0 +1,54 @@
+﻿@model List<ASP_PROFTAAK.Models.Plek>
+
+@{
+    ViewBag.Title = "EditPlekken";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit de eigenschappen van de plekken</h2>
+ 
+@using (Html.BeginForm("EditPlekken", "Event", FormMethod.Post))
+{
+    <table class="table">
+        
+        <tr>
+            <td>
+                ID (disabled)
+            </td>
+            <td>
+               Locatie ID (disabled)
+            </td>
+            <td>
+                Huisnummmer
+            </td>
+            <td>
+                Capaciteit
+            </td>
+        </tr>
+        
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.TextBox("plekken[" + @i + "].ID", Model[i].ID, new {@readonly = "readonly"})
+                </td>
+                <td>
+                    @Html.TextBox("plekken[" + @i + "].LocatieId", Model[i].LocatieId, new {@readonly = "readonly"})
+                </td>
+                <td>
+                    @Html.TextBox("plekken[" + @i + "].Nummer", Model[i].Nummer)
+                </td>
+                <td>
+                    @Html.TextBox("plekken[" + @i + "].Capaciteit", Model[i].Capaciteit)
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="4">
+                <input type="submit" value="Submit"/>
+            </td>
+        </tr>
+    </table>
+}   
