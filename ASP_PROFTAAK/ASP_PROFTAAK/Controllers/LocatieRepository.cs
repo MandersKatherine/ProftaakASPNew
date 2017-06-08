@@ -42,5 +42,11 @@ namespace ASP_PROFTAAK
         {
             return context.GetLocatieById(id);
         }
+
+        public int GetLocatieId()
+        {
+            return context.GetLocatieId();
+        }
+
     }
 }

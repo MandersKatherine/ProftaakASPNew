@@ -20,5 +20,8 @@ namespace ASP_PROFTAAK
         bool UpdateLocatie(Locatie locatie);
         Locatie GetLocatieById(int id);
 
+        int GetLocatieId();
+
+
     }
 }

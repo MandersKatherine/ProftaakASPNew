@@ -26,10 +26,7 @@ namespace ASP_PROFTAAK.Controllers
             return context.DeletePlek(id);
         }
 
-        public Plek InsertPlek(Plek plek)
-        {
-            return context.InsertPlek(plek);
-        }
+        
 
         public bool UpdatePlek(Plek plek)
         {
@@ -48,5 +45,23 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetPlekByEventId(eventId);
         }
-    }
+
+        public Plek InsertPlek(Plek plek)
+        {
+            return context.InsertPlek(plek);
+        }
+
+        public List<Plek> GetPlekByLocatieId(int locatieId)
+        {
+            return context.GetPlekByLocatieId(locatieId);
+        }
+
+        public Plek GetPlekById(int id)
+        {
+            return context.GetPlekById(id);
+        }
+
+
+
+}
 }

@@ -8,10 +8,15 @@ namespace ASP_PROFTAAK.Models
     public class Plek
     {
         //private Specificatie Spec;
-        public int ID { get; private set; }
-        public int LocatieId { get; private set; }
-        public string Nummer { get; private set; }
-        public int Capaciteit { get; private set; }
+        public int ID { get; set; }
+        public int LocatieId { get; set; }
+        public string Nummer { get; set; }
+        public int Capaciteit { get; set; }
+
+        public Plek()
+        {
+            
+        }
 
         public Plek(int iD, int locatieid, string nummer, int capaciteit)
         {

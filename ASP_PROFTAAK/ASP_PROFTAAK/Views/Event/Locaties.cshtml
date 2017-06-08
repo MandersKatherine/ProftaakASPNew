@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ASP_PROFTAAK.Models.Locatie>
+
+@{
+    ViewBag.Title = "Locaties";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Locaties</h2>
+
+<p>
+    @Html.ActionLink("Locatie toevoegen", "AddLocation")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Straat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nummer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plaats)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Straat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nummer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plaats)
+        </td>
+        <td>
+            @Html.ActionLink("Edit locatie", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Edit plekken", "EditPlekken", new { id=item.Id }) |
+            @Html.ActionLink("Delete locatie", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
