@@ -31,10 +31,7 @@ namespace ASP_PROFTAAK.Controllers
             context.UpdateReservering(reserveringen);
         }
 
-        public void DeleteReservering(Reservering reserveringen)
-        {
-            context.DeleteReservering(reserveringen);
-        }
+      
         public Reservering GetReserveringById(decimal id)
         {
             return context.GetReserveringById(id);
@@ -47,6 +44,10 @@ namespace ASP_PROFTAAK.Controllers
             context.CreateReservering(datumStart, datumEinde, betaald, accountId,
                 aanwezig, plekId, voornaam, tussenvoegsel, achternaam, straat,
                 huisnummer, woonplaats, banknummer);
+        }
+        public void DeleteReservering(int id)
+        {
+            context.DeleteReservering(id);
         }
 
     }
