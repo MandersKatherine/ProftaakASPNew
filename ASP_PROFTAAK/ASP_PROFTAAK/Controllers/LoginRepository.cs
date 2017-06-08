@@ -17,7 +17,7 @@ namespace ASP_PROFTAAK.Controllers
             IAccountContext = accountContext;
         }
 
-        public Account Login(string email, string password)
+        public bool Login(string email, string password)
         {
             return IAccountContext.Login(email, password);
         }
