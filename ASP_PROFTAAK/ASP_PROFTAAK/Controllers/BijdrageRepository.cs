@@ -51,6 +51,9 @@ namespace ASP_PROFTAAK.Controllers
             return context.GetAllBijdrages();
         }
 
-        
+        public bool Like(int Bijdrageid, int Accountid)
+        {
+            return context.Like(Bijdrageid, Accountid);
+        }
     }
 }

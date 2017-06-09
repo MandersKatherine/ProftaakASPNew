@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data;
+using ASP_PROFTAAK.Controllers;
 using ASP_PROFTAAK.Models;
 
 namespace ASP_PROFTAAK.App_DAL
@@ -107,45 +108,102 @@ namespace ASP_PROFTAAK.App_DAL
             return bijdrageList;
         }
 
+        public bool Like(int Bijdrageid, int Accountid)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "EXEC VotingSystem @BijdrageID = @bijdrid, @AccountID = @accid";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@bijdrid", Bijdrageid);
+                    command.Parameters.AddWithValue("@accid", Accountid);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            }
+        }
+
         private Bijdrage CreateBijdrageFromReader(SqlDataReader reader)
         {
+            AccountRepository accRepo = new AccountRepository(new AccountSQLContext());
             if (reader["soort"].ToString() == "bestand")
             {
+              {  Account account = accRepo.GetAccountById(Convert.ToInt32(reader["acccount_id"]));
+                AccountBijdrage accBijdrage;
+                try
                 {
+                    accBijdrage = new AccountBijdrage(Convert.ToInt32(reader["account_id"]),Convert.ToInt32(reader["bijdrage_id"]),Convert.ToInt32(reader["like"]), Convert.ToInt32(reader["ongewenst"]));
+                }
+                catch (Exception e)
+                {
+                    accBijdrage = new AccountBijdrage(0,0,0,0,0);
+                }
+                
                     return new Bestand(
                         Convert.ToInt32(reader["ID"]),
-                        Convert.ToInt32(reader["account_id"]),
+                        account,
                         Convert.ToDateTime(reader["datum"]),
                         Convert.ToString(reader["soort"]),
                         Convert.ToInt32(reader["categorie_id"] != DBNull.Value ? Convert.ToInt32(reader["categorie_id"]) : 0),
                         Convert.ToString(reader["bestandslocatie"] != DBNull.Value ? Convert.ToString(reader["bestandslocatie"]) : ""),
-                        Convert.ToInt32(reader["grootte"] != DBNull.Value ? Convert.ToInt32(reader["grootte"]) : 0)
+                        Convert.ToInt32(reader["grootte"] != DBNull.Value ? Convert.ToInt32(reader["grootte"]) : 0),
+                        accBijdrage
                     );
                 }
             }
 
             if (reader["soort"].ToString() == "categorie")
             {
-                return new Categorie(
-                    Convert.ToInt32(reader["ID"]),
-                    Convert.ToInt32(reader["account_id"]),
-                    Convert.ToDateTime(reader["datum"]),
-                    Convert.ToString(reader["soort"]),
-                    Convert.ToInt32(reader["categorie_id"] != DBNull.Value ? Convert.ToInt32(reader["categorie_id"]) : 0),
-                    Convert.ToString(reader["naam"])
-                );
+                {
+                    Account account = accRepo.GetAccountById(Convert.ToInt32(reader["acccount_id"]));
+                    AccountBijdrage accBijdrage;
+                    try
+                    {
+                        accBijdrage = new AccountBijdrage(Convert.ToInt32(reader["account_id"]),
+                            Convert.ToInt32(reader["bijdrage_id"]), Convert.ToInt32(reader["like"]),
+                            Convert.ToInt32(reader["ongewenst"]));
+                    }
+                    catch (Exception e)
+                    {
+                        accBijdrage = new AccountBijdrage(0, 0, 0, 0, 0);
+                    }
+                    return new Categorie(
+                        Convert.ToInt32(reader["ID"]),
+                        account,
+                        Convert.ToDateTime(reader["datum"]),
+                        Convert.ToString(reader["soort"]),
+                        Convert.ToInt32(reader["categorie_id"] != DBNull.Value
+                            ? Convert.ToInt32(reader["categorie_id"])
+                            : 0),
+                        Convert.ToString(reader["naam"]),
+                        accBijdrage
+                    );
+                }
             }
+            
             
             if (reader["soort"].ToString() == "bericht")
             {
+               { Account account = accRepo.GetAccountById(Convert.ToInt32(reader["acccount_id"]));
+                AccountBijdrage accBijdrage;
+                try
                 {
+                    accBijdrage = new AccountBijdrage(Convert.ToInt32(reader["account_id"]), Convert.ToInt32(reader["bijdrage_id"]), Convert.ToInt32(reader["like"]), Convert.ToInt32(reader["ongewenst"]));
+                }
+                catch (Exception e)
+                {
+                    accBijdrage = new AccountBijdrage(0, 0, 0, 0, 0);
+                }
+                
                     return new Bericht(
                         Convert.ToInt32(reader["ID"]),
-                        Convert.ToInt32(reader["account_id"]),
+                        account,
+                        accBijdrage,
                         Convert.ToDateTime(reader["datum"]),
                         Convert.ToString(reader["soort"]),
                         Convert.ToString(reader["titel"]),
                         Convert.ToString(reader["inhoud"])
+                        
                     );
                 }
             }

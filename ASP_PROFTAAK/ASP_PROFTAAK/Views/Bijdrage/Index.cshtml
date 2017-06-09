@@ -1,5 +1,5 @@
 ﻿@using ASP_PROFTAAK.Models
-@model IEnumerable<ASP_PROFTAAK.Models.Bijdrage>
+@model BijdragePosterViewModel
 <link rel="stylesheet" type="text/css" href="~/Content/comment.css">
 @{
     ViewBag.Title = "Index";
@@ -10,14 +10,14 @@
 </p>
 
 
-@foreach (var item in Model)
+
+@foreach (var item in Model.Bedrijges)
 {
 
+ if (item is Categorie)
+ {
 
-    if (item is Categorie)
-    {
-
-        Categorie b = (Categorie)item;
+     Categorie b = (Categorie)item;
 
         <div class="col-md-8 col-md-offset-4">
             <div class="panel panel-default panel-google-plus">
@@ -35,15 +35,14 @@
                 </div>
                 <div class="panel-heading">
                     <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
-                    <h3>Robert McIntosh</h3>
-                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                    <h3>Harry1234</h3>
+                    <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
-                    <p>@b.Naam</p>
+                    <p>Wolly</p>
                 </div>
                 <div class="panel-footer">
-                    <button type="button" class="[ btn btn-default ]">+1</button>
-                    <button type="button" class="[ btn btn-default ]">
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                    <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
                     <div class="input-placeholder">Add a comment...</div>
@@ -88,15 +87,14 @@
                 </div>
                 <div class="panel-heading">
                     <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
-                    <h3>Robert McIntosh</h3>
-                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                    <h3>Hansie</h3>
+                    <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
                     <p>@b.Bestandlocatie</p>
                 </div>
                 <div class="panel-footer">
-                    <button type="button" class="btn btn-default">+1</button>
-                    <button type="button" class="btn btn-default">
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                    <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-share-alt"></span>
                     </button>
                     <div class="input-placeholder">Add a comment...</div>
@@ -139,14 +137,15 @@
                 </div>
                 <div class="panel-heading">
                     <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
-                    <h3>Robert McIntosh</h3>
-                    <h5><span>Shared publicly</span> - <span>Jun 27, 2014</span> </h5>
+                    <h3>Karel42=</h3>
+                    <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
                     <p>@b.Inhoud</p>
                         </div>
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-default">+1</button>
+                         <!--    <button type="button" class="btn btn-default"></button>-->
+                           <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
                             <button type="button" class="btn btn-default">
                                 <span class="[ glyphicon glyphicon-share-alt ]"></span>
                             </button>
@@ -163,8 +162,8 @@
                         </div>
                     </div>
                 </div>
-    }
-
+     }
+ }
 
 }
 

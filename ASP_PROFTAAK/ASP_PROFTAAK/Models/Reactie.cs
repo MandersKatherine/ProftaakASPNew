@@ -10,9 +10,10 @@ namespace ASP_PROFTAAK.Models
         
         private int berichtId;
 
-        public Reactie(int BijdrageId, int berichtId, int accountId, DateTime datum, string soort): base(BijdrageId, accountId, datum, soort)
+        public Reactie(int berichtId, Account accountId, DateTime datum, string soort, AccountBijdrage accBijdrage): base(accountId, datum, soort, accBijdrage)
         {
             this.berichtId = berichtId;
+            
         }
 
         public int BerichtId

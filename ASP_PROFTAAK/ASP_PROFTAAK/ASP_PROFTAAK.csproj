@@ -221,6 +221,7 @@
     <Compile Include="Models\Bericht.cs" />
     <Compile Include="Models\Bestand.cs" />
     <Compile Include="Models\Bijdrage.cs" />
+    <Compile Include="Models\BijdragePosterViewModel.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Email\Email.cs" />
     <Compile Include="Models\Event.cs" />
