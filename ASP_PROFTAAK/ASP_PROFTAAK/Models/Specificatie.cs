@@ -8,7 +8,7 @@ namespace ASP_PROFTAAK.Models
     public class Specificatie
     {
         public int ID { get; private set; }
-        public string Naam { get; private set; }
+        public string Naam { get; set; }
 
         public Specificatie(int iD, string naam)
         {
