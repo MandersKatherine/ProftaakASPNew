@@ -10,7 +10,7 @@ namespace ASP_PROFTAAK.App_DAL
     public interface ISpecificatieContext
     {
         List<Specificatie> GetAll();
-        Specificatie InsertSpecificatie(Specificatie specificatie);
+        void InsertSpecificatie(Specificatie specificatie);
 
         bool DeleteSpecificatie(int id);
 

@@ -26,9 +26,9 @@ namespace ASP_PROFTAAK.Controllers
             return context.DeleteSpecificatie(id);
         }
 
-        public Specificatie InsertSpecificatie(Specificatie specificatie)
+        public void InsertSpecificatie(Specificatie specificatie)
         {
-            return context.InsertSpecificatie(specificatie);
+             context.InsertSpecificatie(specificatie);
         }
 
         public bool UpdatePlek(Specificatie specificatie)

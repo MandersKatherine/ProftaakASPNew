@@ -38,7 +38,7 @@ namespace ASP_PROFTAAK.App_DAL
                );
         }
 
-        public Specificatie InsertSpecificatie(Specificatie specificatie)
+        public void InsertSpecificatie(Specificatie specificatie)
         {
             using (SqlConnection connection = Database.Connection)
             {
@@ -55,8 +55,7 @@ namespace ASP_PROFTAAK.App_DAL
                     {
 
                     }
-                    return specificatie;
-
+                    
                 }
 
             }
