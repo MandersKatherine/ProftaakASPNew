@@ -1,14 +1,66 @@
-﻿@using ASP_PROFTAAK.Models
+﻿<script src="~/Scripts/jquery-1.10.2.js"></script>
+@using ASP_PROFTAAK.Models
 @model BijdragePosterViewModel
 <link rel="stylesheet" type="text/css" href="~/Content/comment.css">
 @{
     ViewBag.Title = "Index";
 }
 <h2>Index</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-default" type="button">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</button>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Soort').on('change', function () {
+            if (this.value == '1') {
+                $("#tbNaamCategorie").show();
+                $("#tbBestandsLoc").hide();
+                $("#tbBestandGrootte").hide();
+                $("#tbTitel").hide();
+                $("#tbInhoud").hide();
+                }
+               if (this.value == '2') {
+                   $("#tbNaamCategorie").hide();
+                   $("#tbBestandsLoc").show();
+                   $("#tbBestandGrootte").show();
+                   $("#tbTitel").hide();
+                   $("#tbInhoud").hide();
+                }
+
+            if (this.value == '3') {
+                $("#tbNaamCategorie").hide();
+                $("#tbBestandsLoc").hide();
+                $("#tbBestandGrootte").hide();
+                $("#tbTitel").show();
+                $("#tbInhoud").show();
+                }
+        });
+    });
+    $(function () {
+        $('.panel-google-plus > .panel-footer > .input-placeholder, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > button[type="reset"]').on('click', function (event) {
+            var $panel = $(this).closest('.panel-google-plus');
+            $comment = $panel.find('.panel-google-plus-comment');
+
+            $comment.find('.btn:first-child').addClass('disabled');
+            $comment.find('textarea').val('');
+
+            $panel.toggleClass('panel-google-plus-show-comment');
+
+            if ($panel.hasClass('panel-google-plus-show-comment')) {
+                $comment.find('textarea').focus();
+            }
+        });
+        $('.panel-google-plus-comment > .panel-google-plus-textarea > textarea').on('keyup', function (event) {
+            var $comment = $(this).closest('.panel-google-plus-comment');
+
+            $comment.find('button[type="submit"]').addClass('disabled');
+            if ($(this).val().length >= 1) {
+                $comment.find('button[type="submit"]').removeClass('disabled');
+            }
+        });
+    });
+</script>
 
 
 @foreach (var item in Model.Bedrijges)
@@ -39,10 +91,11 @@
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
-                    <p>Wolly</p>
+                    <p>@item.Account1.Gebruikersnaam</p>
                 </div>
                 <div class="panel-footer">
-                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                    <button type="button" class="[ btn btn-default ]">
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                  
+                      <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
                     <div class="input-placeholder">Add a comment...</div>
@@ -55,6 +108,12 @@
                         <button type="reset" class="btn btn-default">Cancel</button>
                     </div>
                     <div class="clearfix"></div>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="[btn btn-default loadcomments]">
+                        <span class="[ glyphicon glyphicon glyphicon-comment ]"></span>
+                        Load Comments
+                    </button>
                 </div>
             </div>
         </div>
@@ -87,7 +146,7 @@
                 </div>
                 <div class="panel-heading">
                     <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
-                    <h3>Hansie</h3>
+                    <h3>@item.Account1.Gebruikersnaam</h3>
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
@@ -137,7 +196,7 @@
                 </div>
                 <div class="panel-heading">
                     <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
-                    <h3>Karel42=</h3>
+                    <h3>@item.Account1.Gebruikersnaam</h3>
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
@@ -165,7 +224,90 @@
      }
  }
 
+@using (Html.BeginForm("AddBijdrage", "Bijdrage", FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
+
+    <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title" id="lineModalLabel">Uploaden</h3>
+                </div>
+
+                <ul class="nav nav-tabs" id="tabContent">
+                    <li class="active"><a href="#categorie" data-toggle="tab" value="1">Categorie</a></li>
+                    <li><a href="#bestand" data-toggle="tab" value="2">Bestand</a></li>
+                    <li><a href="#bericht" data-toggle="tab" value="3">Bericht</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="categorie">
+                        <form>
+                            <hr/>
+                            
+                            <div class="form-group">
+                                <input type="text" name="CategorieNaamNieuw" id="CategorieNaam" placeholder="Categorie" />
+                            </div>
+                            <label>Subgenre:</label>
+                            <select>
+                                <option>Geen</option>
+                                @foreach (var item1 in Model.Categories)
+                                {
+                                    <option name="CategorieNaam">@item1.Naam</option>
+                                }
+                            </select>
+                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Submit"/>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane" id="bestand">
+                        <form>
+                            <hr />
+                            <select>
+                                @foreach (var item1 in Model.Categories)
+                                {
+                                    <option name="CategorieNaam" >@item1.Naam</option>
+                                }
+                                </select>
+                            <div class="form-group">
+                                <label>Upload Bestand</label>
+                                <input type="file" name="Bestand" id="Bestand"/>
+                            </div>
+                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Submit"/>
+                        </form>
+                    </div>
+                     
+                    <div class="tab-pane" id="bericht">
+                        <form>
+                            <hr />
+                            <div class="form-group">
+                                <input type="text" name="Titel" id="Titel" placeholder="Titel"/>
+                            </div>
+                            <div class="form-group">
+                                <textarea cols="80" rows="5" type="text" id="Inhoud" name ="Inhoud" placeholder="Inhoud"></textarea>
+                            </div>
+                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Submit"/>
+                        </form>
+                    </div> 
+                </div>
+                
+
+            
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
 }
+
 
 
 

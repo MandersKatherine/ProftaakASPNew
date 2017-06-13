@@ -16,6 +16,10 @@ namespace ASP_PROFTAAK.Controllers
             this.context = context; 
         }
 
+        public List<Categorie> GetAllCategories()
+        {
+            return context.GetAllCategories();
+        }
         public List<Bericht> GetAllBerichts()
         {
             return context.GetAllBerichts();
