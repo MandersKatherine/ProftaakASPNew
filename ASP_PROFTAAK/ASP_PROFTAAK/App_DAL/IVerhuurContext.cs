@@ -8,7 +8,7 @@ namespace ASP_PROFTAAK.App_DAL
 {
     public interface IVerhuurContext
     {
-        List<Verhuurd> GetAllVerhuurd();
+        List<Verhuurd> GetAllVerhuurdByAccountId(int accountId);
         void Insert(Verhuurd verhuurd);
         void Update(Verhuurd verhuurd);
         void Delete(Verhuurd verhuurd);

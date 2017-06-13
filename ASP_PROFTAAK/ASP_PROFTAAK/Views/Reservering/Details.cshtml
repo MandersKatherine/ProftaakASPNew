@@ -248,8 +248,12 @@
     </dl>
 </div>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.reservering.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (Convert.ToInt32(Session["UserId"]) == 1)
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.reservering.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
 

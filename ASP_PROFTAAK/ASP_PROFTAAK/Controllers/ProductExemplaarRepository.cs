@@ -35,5 +35,16 @@ namespace ASP_PROFTAAK.Controllers
         {
             context.Delete(productExemplaar);
         }
+
+        public List<ProductExemplaar> GetAllBeschikbareProductExemplaren()
+        {
+            return context.GetAllBeschikbareProductExemplaren();
+        }
+
+        public ProductExemplaar GetByProductExemplaarID(int id)
+        {
+            return context.GetByProductExemplaarID(id);
+        }
+
     }
 }
