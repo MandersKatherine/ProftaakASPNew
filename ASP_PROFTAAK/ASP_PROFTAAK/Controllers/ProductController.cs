@@ -115,23 +115,26 @@ namespace ASP_PROFTAAK.Controllers
             return View();
         }
 
-        // POST: Product/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                //ID nog instellen bij cat
+                Product product = new Product(Convert.ToDecimal(collection["CategorieId"]), collection["Merk"], collection["Serie"], collection["Typenummer"], Convert.ToDecimal(collection["Prijs"]));
+                ProductCategorie categorie = new ProductCategorie(Convert.ToDecimal(collection["CategorieId"]), "test");
+                PR.Insert(product, categorie);
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                throw;
+                return View();
+            }
+        }
 
-        
+
         public ActionResult NieuwProduct()
         {
             ViewModelCreateProduct v = new ViewModelCreateProduct() { categorien = pcr.GetAllCategories() };
@@ -185,7 +188,6 @@ namespace ASP_PROFTAAK.Controllers
         {
             string[] ids = collection["productId"].Split(',');
             
-
 
             // met een foreach alle geselecteerde producten verwijderen
             return RedirectToAction("Index");
