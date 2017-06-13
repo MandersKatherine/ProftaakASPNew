@@ -49,5 +49,11 @@ namespace ASP_PROFTAAK.Controllers
                 huisnummer, woonplaats, banknummer);
         }
 
+        public List<Reservering> GetReserveringByAccountId(decimal accountid)
+        {
+            return context.GetReserveringByAccountId(accountid);
+        }
+
+
     }
 }

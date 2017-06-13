@@ -12,11 +12,11 @@ namespace ASP_PROFTAAK.Controllers
     {
         // GET: Verhuur
         VerhuurRepository vr = new VerhuurRepository(new VerhuurSqlContext());
-        public ActionResult Index()
-        {
-            List<Verhuurd> verhuurd = vr.GetAllVerhuurd();
-            return View(verhuurd);
-        }
+        //public ActionResult Index()
+        //{
+        //    List<Verhuurd> verhuurd = vr.GetAllVerhuurd();
+        //    return View(verhuurd);
+        //}
 
         // GET: Verhuur/Details/5
         public ActionResult Details(int id)

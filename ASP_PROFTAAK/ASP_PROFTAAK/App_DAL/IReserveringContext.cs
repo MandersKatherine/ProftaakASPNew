@@ -18,6 +18,9 @@ namespace ASP_PROFTAAK.App_DAL
         void DeleteReservering(Reservering reserveringen);
         Reservering GetReserveringById(decimal id);
 
+        List<Reservering> GetReserveringByAccountId(decimal accountid);
+
+
         void CreateReservering(DateTime datumStart, DateTime datumEinde, int betaald, int accountId, int aanwezig,
             string plekId, string voornaam, string tussenvoegsel, string achternaam, string straat, string huisnummer,
             string woonplaats, string banknummer);

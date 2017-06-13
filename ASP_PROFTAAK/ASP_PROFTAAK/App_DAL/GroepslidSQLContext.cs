@@ -18,7 +18,7 @@ namespace ASP_PROFTAAK.App_DAL
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@CustomerID", id);
+                    command.Parameters.AddWithValue("@id", id);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -30,6 +30,31 @@ namespace ASP_PROFTAAK.App_DAL
                 }
             }
             return groepsleden;
+        }
+
+        public Groepslid GetGroepslidByAccountIDandResID(int accountId, int reserveringId)
+        {
+           
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "select * from RESERVERING_POLSBANDJE where account_id = @id and reservering_id = @resid";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", accountId);
+                    command.Parameters.AddWithValue("@resid", reserveringId);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return createGroepslidFromReader(reader);
+
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public void GeefGroepslidBandjeEnKoppelAanLaatstGeinserteReservering(int accountId)//checken of niet aanwezig goed is en of er genoeg bandjes zijn
@@ -47,6 +72,28 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
+        public List<Groepslid> getAllResPolsByAccountId(int accountId)
+        {
+            List<Groepslid> groepsleden = new List<Groepslid>();
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "select * from RESERVERING_POLSBANDJE where account_id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", accountId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            groepsleden.Add(createGroepslidFromReader(reader));
+
+                        }
+                    }
+                }
+            }
+            return groepsleden;
+        }
 
         private Groepslid createGroepslidFromReader(SqlDataReader reader)
         {

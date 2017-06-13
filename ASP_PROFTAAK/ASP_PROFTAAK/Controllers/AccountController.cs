@@ -57,11 +57,40 @@ namespace ASP_PROFTAAK.Controllers
             }
         }
 
+
+        public ActionResult EditPersonalDetails()
+        {
+            Account account = accountrepo.GetAccountById(Convert.ToInt32(Session ["UserId"]));
+            return View(account);
+
+        }
+
+        //Update personal details
+        [HttpPost]
+        public ActionResult EditPersonalDetails(FormCollection collection)
+        {
+            Account account = new Account(collection["Voornaam"], collection["Tussenvoegsel"], collection["Achternaam"], Convert.ToInt32(collection["Telefoonnummer"]), collection["Gebruikersnaam"], collection["Wachtwoord"], collection["Email"]);
+            try
+            {
+                // TODO: Add update logic here
+                accountrepo.UpdateAccount(Convert.ToInt32(Session["UserId"]), account);
+                return RedirectToAction("Details", "Account");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
         // GET: Account/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Account account = accountrepo.GetAccountById(id);
+            return View(account);
         }
+
+
 
         // POST: Account/Edit/5
         [HttpPost]

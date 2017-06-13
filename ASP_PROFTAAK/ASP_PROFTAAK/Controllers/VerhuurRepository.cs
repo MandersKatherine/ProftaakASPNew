@@ -16,10 +16,11 @@ namespace ASP_PROFTAAK.Controllers
             this.context = context;
         }
 
-        public List<Verhuurd> GetAllVerhuurd()
+        public List<Verhuurd> GetAllVerhuurdByAccountId(int accountId)
         {
-            return context.GetAllVerhuurd();
+            return context.GetAllVerhuurdByAccountId(accountId);
         }
+
 
         public void Insert(Verhuurd verhuurd)
         {

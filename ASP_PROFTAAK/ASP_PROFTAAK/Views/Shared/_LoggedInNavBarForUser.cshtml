@@ -12,11 +12,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Customers", "Index", "Bijdrage")</li>
                 <li>@Html.ActionLink("Events", "Index", "Event")</li>
-                <li>@Html.ActionLink("Locaties", "Locaties", "Event")</li>
-                <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                <li>@Html.ActionLink("Reserveringen", "Index", "Reservering")</li>
+                <li>@Html.ActionLink("Producten huren", "ProductExemplaren", "Product")</li>
                 <li>@Html.ActionLink("Media", "Index", "Bijdrage")</li>
 
 
@@ -29,9 +26,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">iets</a></li>
-                        <li><a href="#">iets</a></li>
-                        <li><a href="#">iets</a></li>
+                        <li>@Html.ActionLink("Wijzig accountgegevens", "EditPersonalDetails", "Account")</li>
+                        <li>@Html.ActionLink("Beheer gehuurde producten", "MijnProductExemplaren", "Product")</li>
+                        <li>@Html.ActionLink("Beheer reserveringen", "Reservering", "Reservering")</li>
                         <li role="separator" class="divider"></li>
                         <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
 

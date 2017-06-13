@@ -30,6 +30,14 @@ namespace ASP_PROFTAAK.Controllers
             List<Reservering> reserveringen = reserveringrepo.GetAllReserveringen();
             return View(reserveringen);
         }
+
+        //GET: Persoonlijke reservering
+        public ActionResult Reservering()
+        {
+            List <Reservering> reservering = reserveringrepo.GetReserveringByAccountId(Convert.ToInt32(Session["UserId"]));
+
+            return View(reservering);
+        }
         
         // GET: Reservering/Details/5
         public ActionResult Details(decimal id)

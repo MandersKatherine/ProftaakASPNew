@@ -11,6 +11,11 @@ namespace ASP_PROFTAAK.App_DAL
        List<Groepslid> getGroepsledenByReserveringId(int id);
        void GeefGroepslidBandjeEnKoppelAanLaatstGeinserteReservering(int accountId);
 
+       List<Groepslid> getAllResPolsByAccountId(int accountId);
+
+        Groepslid GetGroepslidByAccountIDandResID(int accountId, int reserveringId);
+
+
 
     }
 }

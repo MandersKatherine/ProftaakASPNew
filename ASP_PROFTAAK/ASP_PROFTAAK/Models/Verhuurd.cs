@@ -14,6 +14,12 @@ namespace ASP_PROFTAAK.Models
         private DateTime datumUit;
         private decimal prijs;
         private decimal betaald;
+        private string merk;
+        private string serie;
+        private string typenummer;
+        private decimal totaalPrijs;
+        private string catNaam;
+        private string catSubNaam;
 
         public Verhuurd(decimal id, decimal productExemplaarId, decimal groepsLidId, DateTime datumIn, DateTime datumUit,
             decimal prijs, decimal betaald)
@@ -31,6 +37,44 @@ namespace ASP_PROFTAAK.Models
         {
             
         }
+
+        public Verhuurd(decimal productExemplaarId, decimal groepsLidId, DateTime datumIn, DateTime datumUit, decimal prijs, decimal betaald)
+        {
+            this.productExemplaarId = productExemplaarId;
+            this.groepsLidId = groepsLidId;
+            this.datumIn = datumIn;
+            this.datumUit = datumUit;
+            this.prijs = prijs;
+            this.betaald = betaald;
+        }
+
+        public Verhuurd(decimal id, decimal productExemplaarId, decimal groepsLidId, DateTime datumIn, DateTime datumUit, decimal prijs, decimal betaald, string merk, string serie, string typenummer, decimal totaalPrijs, string catNaam, string catSubNaam)
+        {
+            this.id = id;
+            this.productExemplaarId = productExemplaarId;
+            this.groepsLidId = groepsLidId;
+            this.datumIn = datumIn;
+            this.datumUit = datumUit;
+            this.prijs = prijs;
+            this.betaald = betaald;
+            this.merk = merk;
+            this.serie = serie;
+            this.typenummer = typenummer;
+            this.totaalPrijs = totaalPrijs;
+            this.catNaam = catNaam;
+            this.catSubNaam = catSubNaam;
+        }
+
+        public Verhuurd(string merk, string serie, string typenummer, decimal totaalPrijs, string catNaam, string catSubNaam)
+        {
+            this.merk = merk;
+            this.serie = serie;
+            this.typenummer = typenummer;
+            this.totaalPrijs = totaalPrijs;
+            this.catNaam = catNaam;
+            this.catSubNaam = catSubNaam;
+        }
+
         public decimal Id
         {
             get

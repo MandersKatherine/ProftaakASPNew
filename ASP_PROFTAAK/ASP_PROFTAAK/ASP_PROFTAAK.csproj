@@ -236,6 +236,7 @@
     <Compile Include="Models\Polsbandje.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategorie.cs" />
+    <Compile Include="Models\ProductenHurenViewModel.cs" />
     <Compile Include="Models\ProductExemplaar.cs" />
     <Compile Include="Models\Reactie.cs" />
     <Compile Include="Models\Reservering.cs" />
@@ -320,6 +321,10 @@
     <Content Include="Views\Event\EditLocatie.cshtml" />
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\Locaties.cshtml" />
+    <Content Include="Views\Product\ProductExemplaren.cshtml" />
+    <Content Include="Views\Product\MijnProductExemplaren.cshtml" />
+    <Content Include="Views\Reservering\Reservering.cshtml" />
+    <Content Include="Views\Account\EditPersonalDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />

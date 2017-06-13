@@ -214,6 +214,45 @@ namespace ASP_PROFTAAK.App_DAL
             return false;
         }
 
+
+        public bool UpdatePersonalAccount(int id, Account account)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+
+
+                string query = "UPDATE ACCOUNT SET Gebruikersnaam = @gebruikersnaam, Email = @email, Wachtwoord = @wachtwoord, Voornaam = @voornaam, Tussenvoegsel = @tussenvoegsel, Achternaam = @achternaam, Telefoonnummer = @telefoonnummer WHERE Id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@gebruikersnaam", account.Gebruikersnaam);
+                    command.Parameters.AddWithValue("@email", account.Email);
+                    command.Parameters.AddWithValue("@wachtwoord", account.Wachtwoord);
+                    command.Parameters.AddWithValue("@voornaam", account.Voornaam);
+                    command.Parameters.AddWithValue("@tussenvoegsel", account.Tussenvoegsel);
+                    command.Parameters.AddWithValue("@achternaam", account.Achternaam);
+                    command.Parameters.AddWithValue("@telefoonnr", account.Telefoonnr);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    try
+                    {
+                        if (Convert.ToInt32(command.ExecuteNonQuery()) > 0)
+                        {
+                            return true;
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+
+                    }
+
+                }
+            }
+
+            return false;
+        }
+
         private Account CreateAccountFromReader(SqlDataReader reader)
         {
             if (Convert.ToString(reader["Voornaam"]) != null && Convert.ToString(reader["Tussenvoegsel"]) != null && Convert.ToString(reader["Achternaam"]) != null)
