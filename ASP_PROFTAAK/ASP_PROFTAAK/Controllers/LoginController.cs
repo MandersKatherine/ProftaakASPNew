@@ -26,13 +26,14 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
-            Account loggedInUser = new Account(email, password);
+            Account loggedInUser = new Account(email, password,);
             int ID = accountrepo.GetaccountId(loggedInUser.Email);
 
             if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == true)
             {
                 Session["Email"] = loggedInUser.Email;
-                Session["UserId"] = loggedInUser.Id;
+                Session["UserId"] = ID;
+
                 return RedirectToAction("Index", "Home");
 
             }
