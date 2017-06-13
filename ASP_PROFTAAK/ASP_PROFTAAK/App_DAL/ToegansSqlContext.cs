@@ -25,11 +25,31 @@ namespace ASP_PROFTAAK.App_DAL
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    string tussenvoegsel = string.Empty;
+                    string voornaam = String.Empty;
+                    string achternaam = string.Empty;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            aanwezigheidEvent.Add(CreateAanwezigheidFromReader(reader));
+                            decimal id = (decimal) reader["id"];
+                            string barcode = (string) reader["barcode"];
+                            decimal aanwezig = (decimal) reader["aanwezig"];
+                            if (reader["voornaam"] != DBNull.Value)
+                            {
+                                voornaam = (string)reader["voornaam"];
+                            }
+                            if (reader["tussenvoegsel"] != DBNull.Value)
+                            {
+                               tussenvoegsel = (string)reader["tussenvoegsel"];
+                            }
+                            if (reader["achternaam"] != DBNull.Value)
+                            {
+                                achternaam = (string)reader["achternaam"];
+                            }
+                            
+                            int telefoonnr = (int) reader["telefoonnummer"];
+                            aanwezigheidEvent.Add (new Aanwezig(id, barcode, aanwezig, voornaam, tussenvoegsel, achternaam, telefoonnr));
                         }
                     }
                 }
@@ -98,19 +118,6 @@ namespace ASP_PROFTAAK.App_DAL
                     command.ExecuteNonQuery();
                 }
             }
-        }
-
-
-        private Aanwezig CreateAanwezigheidFromReader(SqlDataReader reader)
-        {
-            return new Aanwezig(
-                (decimal)reader["id"],
-                (string)reader["barcode"],
-                (decimal)reader["aanwezig"],
-                (string)reader["voornaam"],
-                (string)reader["tussenvoegsel"],
-                (string)reader["achternaam"],
-                (string)reader["telefoonnummer"]);
         }
     }
 }

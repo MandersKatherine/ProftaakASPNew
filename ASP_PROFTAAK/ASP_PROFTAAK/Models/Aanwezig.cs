@@ -13,9 +13,9 @@ namespace ASP_PROFTAAK.Models
         private string voornaam;
         private string tussenvoegsel;
         private string achternaam;
-        private string telefoonNummer;
+        private int telefoonNummer;
 
-        public Aanwezig(decimal id, string barcode, decimal aanwezigopEvent, string voornaam, string tussenvoegsel, string achternaam, string telefoonNummer)
+        public Aanwezig(decimal id, string barcode, decimal aanwezigopEvent, string voornaam, string tussenvoegsel, string achternaam, int telefoonNummer)
         {
             Id = id;
             Barcode = barcode;
@@ -104,7 +104,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public string TelefoonNummer
+        public int TelefoonNummer
         {
             get
             {
