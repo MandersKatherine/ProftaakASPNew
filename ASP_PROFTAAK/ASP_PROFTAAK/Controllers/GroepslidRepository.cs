@@ -26,16 +26,6 @@ namespace ASP_PROFTAAK.Controllers
             return context.getGroepsledenByReserveringId(id);
         }
 
-        public List<Groepslid> getAllResPolsByAccountId(int accountId)
-        {
-            return context.getAllResPolsByAccountId(accountId);
-        }
-
-        public Groepslid GetGroepslidByAccountIDandResID(int accountId, int reserveringId)
-        {
-            return context.GetGroepslidByAccountIDandResID(accountId, reserveringId);
-        }
-
 
     }
 }

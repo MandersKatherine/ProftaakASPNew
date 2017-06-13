@@ -56,33 +56,6 @@ namespace ASP_PROFTAAK.App_DAL
 
 
 
-        public List<Reservering> GetReserveringByAccountId(decimal accountid)
-        {
-            List<Reservering>reservering = new List<Reservering>();
-            using (SqlConnection connection = Database.Connection)
-            {
-                string query = "select RESERVERING.*, RESERVERING_POLSBANDJE.* " +
-                               "from RESERVERING inner join RESERVERING_POLSBANDJE on reservering.ID = RESERVERING_POLSBANDJE.reservering_id " +
-                               "where account_id = @id";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@id", accountid);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                           reservering.Add(CreateReserveringFromReader(reader));
-                        }
-                    }
-                }
-            }
-            return reservering;
-        }
-
-
-
-
 
         public Reservering InsertReservering(Reservering reserveringen)
         {

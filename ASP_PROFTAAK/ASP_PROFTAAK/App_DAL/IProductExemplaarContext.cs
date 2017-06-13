@@ -13,9 +13,5 @@ namespace ASP_PROFTAAK.App_DAL
         void Insert(ProductExemplaar productExemplaar, Product product);
         void Update(ProductExemplaar productExemplaar);
         void Delete(ProductExemplaar productExemplaar);
-        List<ProductExemplaar> GetAllBeschikbareProductExemplaren();
-        ProductExemplaar GetByProductExemplaarID(int id);
-
-
     }
 }

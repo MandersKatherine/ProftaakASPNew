@@ -50,11 +50,5 @@ namespace ASP_PROFTAAK.Controllers
             context.DeleteReservering(id);
         }
 
-        public List<Reservering> GetReserveringByAccountId(decimal accountid)
-        {
-            return context.GetReserveringByAccountId(accountid);
-        }
-
-
     }
 }
