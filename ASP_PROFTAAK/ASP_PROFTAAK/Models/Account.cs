@@ -43,6 +43,12 @@ namespace ASP_PROFTAAK.Models
             this.geactiveerd = geactiveerd;
         }
 
+        public Account(string email, string password)
+        {
+            this.email = email;
+            this.wachtwoord = password; 
+        }
+
         public Account(string voornaam, string tussenvoegsel, string achternaam, int telefoonnummer, string gebruikersnaam, string wachtwoord, string email, string activatiehash, decimal geactiveerd)
         {
             this.gebruikersnaam = gebruikersnaam;

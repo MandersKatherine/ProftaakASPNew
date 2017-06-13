@@ -1841,6 +1841,7 @@ textarea.input-sm {
   font-size: 18px;
   line-height: 1.33;
   border-radius: 6px;
+  margin: 0 auto;
 }
 
 select.input-lg {

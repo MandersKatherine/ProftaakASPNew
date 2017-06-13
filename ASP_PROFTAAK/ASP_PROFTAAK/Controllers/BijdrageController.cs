@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,12 +12,20 @@ namespace ASP_PROFTAAK.Controllers
     public class BijdrageController : Controller
     {
         BijdrageRepository bijdragerepo = new BijdrageRepository(new BijdrageSQLContext());
+        AccountRepository accrepo = new AccountRepository(new AccountSQLContext());
         // GET: Bijdrage
         
         public ActionResult Index()
         {
             List<Bijdrage> bijdrages = bijdragerepo.GetAllBijdrages();
-            return View(bijdrages);
+            List<Account> accounts = new List<Account>();
+            
+            var ViewModel = new BijdragePosterViewModel
+            {
+                Bedrijges = bijdragerepo.GetAllBijdrages(),
+                Accounts = accounts
+            };
+            return View(ViewModel);
         }
 
   
@@ -91,6 +100,13 @@ namespace ASP_PROFTAAK.Controllers
             {
                 return View();
             }
+        }
+
+        
+        public ActionResult Like(int AccountID, int BijdrageID)
+        {
+            bijdragerepo.Like(BijdrageID, AccountID);
+            return RedirectToAction("Index", "Bijdrage");
         }
     }
 }

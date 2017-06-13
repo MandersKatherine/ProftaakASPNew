@@ -22,13 +22,13 @@ namespace ASP_PROFTAAK.Models
             set { naam = value; }
         }
 
-        public Categorie(int id, int accountId, DateTime datum, string soort, int categorieId, string naam) : base(id, accountId, datum, soort)
+        public Categorie(int id, Account account, DateTime datum, string soort, int categorieId, string naam, AccountBijdrage accountBijdrage) : base(id, account, datum, soort, accountBijdrage)
         {
             this.categorieId = categorieId;
             this.naam = naam;
         }
 
-        public Categorie(int accountId, DateTime datum, string soort, int categorieId, string naam) : base(accountId, datum, soort)
+        public Categorie(Account account, DateTime datum, string soort, int categorieId, string naam, AccountBijdrage accBijdrage) : base(account, datum, soort, accBijdrage)
         {
             this.categorieId = categorieId;
             this.naam = naam;

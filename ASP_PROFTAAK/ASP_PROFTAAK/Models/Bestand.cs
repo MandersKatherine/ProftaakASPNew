@@ -30,14 +30,14 @@ namespace ASP_PROFTAAK.Models
             set { grootte = value; }
         }
 
-        public Bestand(int accountId, DateTime datum, string soort, int categorieId, string bestandlocatie, int grootte) : base(accountId, datum, soort)
+        public Bestand(DateTime datum, string soort, int categorieId, string bestandlocatie, int grootte, Account account, AccountBijdrage accBijdrage) : base(account, datum, soort, accBijdrage)
         {
             this.categorieId = categorieId;
             this.bestandlocatie = bestandlocatie;
             this.grootte = grootte;
         }
 
-        public Bestand(int id, int accountId, DateTime datum, string soort, int categorieId, string bestandlocatie, int grootte) : base(id, accountId, datum, soort)
+        public Bestand(int id, Account account, DateTime datum, string soort, int categorieId, string bestandlocatie, int grootte, AccountBijdrage accBijdrage) : base(id, account, datum, soort, accBijdrage)
         {
             this.categorieId = categorieId;
             this.bestandlocatie = bestandlocatie;

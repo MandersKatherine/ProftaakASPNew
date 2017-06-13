@@ -82,7 +82,7 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return account;
         }
-        public Account Login(string email, string password)
+        public bool Login(string email, string password)
         {
             SqlConnection connection = Database.Connection;
             ConnectionState conState = connection.State;
@@ -100,8 +100,8 @@ namespace ASP_PROFTAAK.App_DAL
                         {
                             while (reader.Read())
                             {
-                                Account account = CreateAccountFromReader(reader);
-                                return account;
+                                //Account account = CreateAccountFromReader(reader);
+                                return true;
                             }
                         }
                         
@@ -110,14 +110,78 @@ namespace ASP_PROFTAAK.App_DAL
                 }
 
             }
-
-            return null;
-
-
-
+            return false;
         }
 
 
+        public bool GetActivationStatus(int ID)
+        {
+            using (SqlConnection connectie = Database.Connection)
+            {
+                SqlCommand cmd1 = new SqlCommand(@"select geactiveerd from Account where ID = @id;",
+                    connectie);
+                cmd1.Parameters.AddWithValue("@id", ID);
+                int status = Convert.ToInt32(cmd1.ExecuteScalar());
+                if (status == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //activeerd account door geactiveerd op een te zetten
+        public bool ActivateAccount(int ID)
+        {
+            using (SqlConnection connectie = Database.Connection)
+            {
+                SqlCommand cmd1 =
+                    new SqlCommand(
+                        @"update Account set geactiveerd = 1 where ID = @id;",
+                        connectie);
+                cmd1.CommandType = CommandType.Text;
+                cmd1.Connection = connectie;
+                cmd1.Parameters.AddWithValue("@id", ID);
+                cmd1.ExecuteNonQuery();
+                return true;
+            }
+        }
+
+        public bool CheckHash(int ID, string hash)
+        {
+            using (SqlConnection connectie = Database.Connection)
+            {
+                SqlCommand cmd1 = new SqlCommand(@"select activatiehash from Account where ID = @id;",
+                    connectie);
+                cmd1.Parameters.AddWithValue("@id", ID);
+                string foundhash = (string)cmd1.ExecuteScalar();
+                if (foundhash == hash)
+                {
+                    ActivateAccount(ID);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public int GetaccountId(string email)
+        {
+            int accountID;
+            using (SqlConnection connectie = Database.Connection)
+            {
+                SqlCommand cmd1 = new SqlCommand(@"SELECT ID FROM Account WHERE email=@email;",
+                    connectie);
+                cmd1.Parameters.AddWithValue("@email", email);
+                accountID = Convert.ToInt32(cmd1.ExecuteScalar());
+                return accountID;
+            }
+        }
 
 
         public Account InsertAccount(Account account)

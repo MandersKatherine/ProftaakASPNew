@@ -5,9 +5,9 @@ using System.Web;
 
 namespace ASP_PROFTAAK.Models
 {
-    public class Mening: Bijdrage
+    public class Mening// : Bijdrage
     {
-        private int id;
+        /*private int id;
         private int accountID;
         private int bijdrageID;
         private int like;
@@ -56,7 +56,7 @@ namespace ASP_PROFTAAK.Models
             this.bijdrageID = bijdrageID;
             this.like = like;
             this.ongewenst = ongewenst;
-        }
+        }*/
 
     }
 }

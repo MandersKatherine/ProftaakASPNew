@@ -22,13 +22,13 @@ namespace ASP_PROFTAAK.Models
             set { inhoud = value; }
         }
 
-        public Bericht(int id, int accountId, DateTime datum, string soort, string titel, string inhoud) : base(id, accountId, datum, soort)
+        public Bericht(int id, Account account, AccountBijdrage accountBijdrage, DateTime datum, string soort, string titel, string inhoud) : base(id, account, datum, soort, accountBijdrage)
         {
             this.titel = titel;
             this.inhoud = inhoud;
         }
 
-        public Bericht(int accountId, DateTime datum, string soort, string titel, string inhoud) : base(accountId, datum, soort)
+        public Bericht(Account account, DateTime datum, string soort, string titel, string inhoud, AccountBijdrage accountBijdrage) : base(account, datum, soort, accountBijdrage)
         {
             this.titel = titel;
             this.inhoud = inhoud;
