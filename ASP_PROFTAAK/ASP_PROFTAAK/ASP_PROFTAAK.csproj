@@ -166,6 +166,7 @@
     <Compile Include="App_DAL\IProductExemplaarContext.cs" />
     <Compile Include="App_DAL\IReserveringContext.cs" />
     <Compile Include="App_DAL\ISpecificatieContext.cs" />
+    <Compile Include="App_DAL\IToegangsControleContext.cs" />
     <Compile Include="App_DAL\IVerhuurContext.cs" />
     <Compile Include="App_DAL\LocatieSQLContext.cs" />
     <Compile Include="App_DAL\PersoonSQLContext.cs" />
@@ -176,6 +177,8 @@
     <Compile Include="App_DAL\ProductSQLContext.cs" />
     <Compile Include="App_DAL\ReserveringSQLContext.cs" />
     <Compile Include="App_DAL\SpecificatieSQLContext.cs" />
+    <Compile Include="App_DAL\ToegangSQLContext.cs" />
+    <Compile Include="App_DAL\ToegansSqlContext.cs" />
     <Compile Include="App_DAL\VerhuurSqlContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -208,6 +211,8 @@
     <Compile Include="Controllers\ProductRepository.cs" />
     <Compile Include="Controllers\ReserveringController.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
+    <Compile Include="Controllers\ToegangController.cs" />
+    <Compile Include="Controllers\ToeganRepository.cs" />
     <Compile Include="Controllers\VerhuurController.cs" />
     <Compile Include="Controllers\VerhuurRepository.cs" />
     <Compile Include="Controllers\ViewModelEventPlek.cs" />
@@ -220,6 +225,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aanwezig.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBijdrage.cs" />
     <Compile Include="Models\Bericht.cs" />
@@ -321,7 +327,6 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservering\AddGroepslid.cshtml" />
-
     <Content Include="Views\Event\AddLocation.cshtml" />
     <Content Include="Views\Event\EditPlekken.cshtml" />
     <Content Include="Views\Event\EditLocatie.cshtml" />
@@ -335,10 +340,9 @@
     <Content Include="Views\Polsbandje\Create.cshtml" />
     <Content Include="Views\Polsbandje\Details.cshtml" />
     <Content Include="Views\Polsbandje\Edit.cshtml" />
-
     <Content Include="Views\Account\Activate.cshtml" />
-
     <Content Include="Views\Reservering\Delete.cshtml" />
+    <Content Include="Views\Toegang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />
