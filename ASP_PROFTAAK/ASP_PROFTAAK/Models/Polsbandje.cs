@@ -7,24 +7,24 @@ namespace ASP_PROFTAAK.Models
 {
     public class Polsbandje
     {
-        private int id;
-        private int barcode;
-        private bool actief;
+        private decimal id;
+        private string barcode;
+        private decimal actief;
 
-        public Polsbandje(int id, int barcode, bool actief)
+        public Polsbandje(decimal id, string barcode, decimal actief)
         {
             this.id = id;
             this.barcode = barcode;
             this.actief = actief;
         }
 
-        public Polsbandje(int barcode, bool actief)
+        public Polsbandje(string barcode, decimal actief)
         {
             this.barcode = barcode;
             this.actief = actief;
         }
 
-        public int Id
+        public decimal Id
         {
             get
             {
@@ -37,7 +37,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public int Barcode
+        public string Barcode
         {
             get
             {
@@ -50,7 +50,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public bool Actief
+        public decimal Actief
         {
             get
             {

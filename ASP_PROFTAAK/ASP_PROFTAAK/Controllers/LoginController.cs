@@ -11,6 +11,7 @@ namespace ASP_PROFTAAK.Controllers
     public class LoginController : Controller
     {
         LoginRepository loginrepo = new LoginRepository(new AccountSQLContext());
+        AccountRepository accountrepo = new AccountRepository(new AccountSQLContext());
 
         // GET: Login
         public ActionResult Index()
@@ -18,21 +19,32 @@ namespace ASP_PROFTAAK.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View(); 
+        }
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
-            try
+            Account loggedInUser = new Account(email, password);
+            int ID = accountrepo.GetaccountId(loggedInUser.Email);
+
+            if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == true)
             {
-                Account loggedInUser = loginrepo.Login(email, password);
                 Session["Email"] = loggedInUser.Email;
                 Session["UserId"] = loggedInUser.Id;
                 return RedirectToAction("Index", "Home");
 
-
             }
-            catch (Exception)
+            else if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == false)
             {
-                return View("Index");
+                TempData["NotActivated"] = "NotActivated";
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                TempData["Login"] = "Wrong login";
+                return RedirectToAction("Index", "Login");
             }
 
         }

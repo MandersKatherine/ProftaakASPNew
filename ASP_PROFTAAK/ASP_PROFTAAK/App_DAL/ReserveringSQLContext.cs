@@ -166,13 +166,13 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
-        public void DeleteReservering(Reservering reserveringen)
+        public void DeleteReservering(int id)
         {
             string query = "DELETE FROM RESERVERING WHERE Id = @id";
             using (SqlConnection connection = Database.Connection)
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", reserveringen.Id);
+                command.Parameters.AddWithValue("@id", id);
                 command.ExecuteNonQuery();
             }
         }

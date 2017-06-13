@@ -45,6 +45,20 @@ namespace ASP_PROFTAAK.Controllers
             return context.GetAllAccountsBehalveIngelogdeAccount(loggedInAccountId);
         }
 
+        public bool CheckHash(int ID, string hash)
+        {
+            return context.CheckHash(ID, hash);
+        }
+
+        public bool CheckActivationStatus(int ID)
+        {
+            return context.GetActivationStatus(ID);
+        }
+
+        public int GetaccountId(string username)
+        {
+            return context.GetaccountId(username);
+        }
 
 
     }
