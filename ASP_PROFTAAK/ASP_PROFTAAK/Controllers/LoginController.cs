@@ -32,7 +32,8 @@ namespace ASP_PROFTAAK.Controllers
             if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == true)
             {
                 Session["Email"] = loggedInUser.Email;
-                Session["UserId"] = loggedInUser.Id;
+                Session["UserId"] = ID;
+
                 return RedirectToAction("Index", "Home");
 
             }

@@ -53,22 +53,33 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Prijs)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.ProductId}) |
-                    @Html.ActionLink("Details", "Details", new {id = item.ProductId}) |
+                @if (Convert.ToInt32(Session["UserId"]) >= 1)//nog aanpassen
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.ProductId}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.ProductId}) |
                     
-                </td>
+                    </td>
+                }
+             
                 <td>
                     <input type="checkbox" class="chkCheckBoxId" value="@item.ProductId" name="productId"/>
                 </td>
                
             </tr>
         }
-        <tr>
-            <td>
-                <input type="submit" value="Delete" onclick="return confirm('Delete?')" class="btn btn-primary pull-right btn-block">
-            </td>
-        </tr>
+        
+        @if (Convert.ToInt32(Session["UserId"]) >= 1)//nog aanpassen
+        {
+
+            <tr>
+                <td>
+                    <input type="submit" value="Delete" onclick="return confirm('Delete?')" class="btn btn-primary pull-right btn-block">
+                </td>
+            </tr>
+        }
+        
+      
 
     </table>
 }

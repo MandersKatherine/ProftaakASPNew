@@ -68,6 +68,17 @@ namespace ASP_PROFTAAK.Models
 
         }
 
+        public Account(string gebruikersnaam, string email, string wachtwoord, string voornaam, string tussenvoegsel, string achternaam, int telefoonnr)
+        {
+            this.gebruikersnaam = gebruikersnaam;
+            this.email = email;
+            this.wachtwoord = wachtwoord;
+            this.voornaam = voornaam;
+            this.tussenvoegsel = tussenvoegsel;
+            this.achternaam = achternaam;
+            this.telefoonnr = telefoonnr;
+        }
+
 
         //public Like(Bijdrage bijdrage)
         //{

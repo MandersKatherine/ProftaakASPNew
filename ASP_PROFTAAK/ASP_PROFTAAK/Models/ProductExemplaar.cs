@@ -11,21 +11,41 @@ namespace ASP_PROFTAAK.Models
         private decimal productId;
         private decimal volgnummer;
         private string barcode;
-        private bool verhuurd;
-
+        private string verhuurd;
+        private string merk;
+        private string serie;
+        private string typenummer;
+        private decimal prijs;
+        private string catNaam;
+        private string catSubNaam;
 
         public ProductExemplaar()
         {
             
         }
 
-        public ProductExemplaar(decimal id, decimal productId, decimal volgnummer, string barcode, bool verhuurd)
+        public ProductExemplaar(decimal id, decimal productId, decimal volgnummer, string barcode, string verhuurd)
         {
             this.Id = id;
             this.ProductId = productId;
             this.Volgnummer = volgnummer;
             this.Barcode = barcode;
-            this.Verhuurd = verhuurd;
+            this.verhuurd = verhuurd;
+        }
+
+        public ProductExemplaar(decimal id, decimal productId, decimal volgnummer, string barcode, string verhuurd, string merk, string serie, string typenummer, decimal prijs, string catNaam, string catSubNaam)
+        {
+            this.id = id;
+            this.productId = productId;
+            this.volgnummer = volgnummer;
+            this.barcode = barcode;
+            this.verhuurd = verhuurd;
+            this.merk = merk;
+            this.serie = serie;
+            this.typenummer = typenummer;
+            this.prijs = prijs;
+            this.catNaam = catNaam;
+            this.catSubNaam = catSubNaam;
         }
 
         public decimal Id
@@ -74,7 +94,7 @@ namespace ASP_PROFTAAK.Models
             }
         }
 
-        public bool Verhuurd
+        public string Verhuurd
         {
             get
             {
@@ -84,6 +104,84 @@ namespace ASP_PROFTAAK.Models
             set
             {
                 verhuurd = value;
+            }
+        }
+
+        public string Merk
+        {
+            get
+            {
+                return merk;
+            }
+
+            set
+            {
+                merk = value;
+            }
+        }
+
+        public string Serie
+        {
+            get
+            {
+                return serie;
+            }
+
+            set
+            {
+                serie = value;
+            }
+        }
+
+        public decimal Prijs
+        {
+            get
+            {
+                return prijs;
+            }
+
+            set
+            {
+                prijs = value;
+            }
+        }
+
+        public string CatNaam
+        {
+            get
+            {
+                return catNaam;
+            }
+
+            set
+            {
+                catNaam = value;
+            }
+        }
+
+        public string CatSubNaam
+        {
+            get
+            {
+                return catSubNaam;
+            }
+
+            set
+            {
+                catSubNaam = value;
+            }
+        }
+
+        public string Typenummer
+        {
+            get
+            {
+                return typenummer;
+            }
+
+            set
+            {
+                typenummer = value;
             }
         }
 
