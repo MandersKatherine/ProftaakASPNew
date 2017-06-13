@@ -19,7 +19,7 @@ namespace ASP_PROFTAAK.App_DAL
         bool UpdateBijdrageBericht(Bericht bericht);
         bool UpdateBijdrageBestand(Bestand bestand);
         List<Bijdrage> GetAllBijdrages();
-
+        List<Categorie> GetAllCategories();
         bool Like(int BijdrageID, int AccountID);
 
     }

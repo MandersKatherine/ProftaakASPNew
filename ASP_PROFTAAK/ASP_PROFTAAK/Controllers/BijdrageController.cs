@@ -18,17 +18,30 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Index()
         {
             List<Bijdrage> bijdrages = bijdragerepo.GetAllBijdrages();
-            List<Account> accounts = new List<Account>();
+            List<Categorie> categories = bijdragerepo.GetAllCategories();
+            /*List<Account> accounts = new List<Account>();*/
             
             var ViewModel = new BijdragePosterViewModel
             {
                 Bedrijges = bijdragerepo.GetAllBijdrages(),
-                Accounts = accounts
+                Categories = categories
             };
             return View(ViewModel);
         }
-
-  
+        //Is het slim om hier door de modal alle mogelijke variabele door te laten sturen en dan door middel van if'jes het juiste pad te kiezen
+        public ActionResult AddBijdrage(string Titel,string Inhoud)
+        {
+            try
+            {
+                //bijdragerepo.InsertBijdrage();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+            
+        }
         // GET: Bijdrage/Details
         public ActionResult Details(int id)
         {
