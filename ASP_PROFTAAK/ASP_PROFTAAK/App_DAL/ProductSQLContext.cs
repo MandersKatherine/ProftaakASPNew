@@ -75,10 +75,6 @@ namespace ASP_PROFTAAK.App_DAL
         }
 
 
-       
-
-
-
         public void Delete(Product product)
         {
             using (SqlConnection connection = Database.Connection)
@@ -102,8 +98,6 @@ namespace ASP_PROFTAAK.App_DAL
                 (string) (reader["typenummer"]),
                 (decimal) (reader["prijs"]));
         }
-
-      
 
     }
 }
