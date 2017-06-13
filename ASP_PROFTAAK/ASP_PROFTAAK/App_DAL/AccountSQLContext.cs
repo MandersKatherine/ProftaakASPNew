@@ -268,6 +268,7 @@ namespace ASP_PROFTAAK.App_DAL
                      Convert.ToString(reader["Email"]),
                      Convert.ToString(reader["Activatiehash"]),
                      Convert.ToInt32(reader["Geactiveerd"]));
+                //
             }
             else if (Convert.ToString(reader["Voornaam"]) != null && Convert.ToString(reader["Tussenvoegsel"]) != null)
             {
