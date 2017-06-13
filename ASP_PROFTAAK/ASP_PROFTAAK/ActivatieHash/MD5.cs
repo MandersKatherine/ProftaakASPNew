@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 
 namespace ASP_PROFTAAK.ActivatieHash
-{
+{ //testomtewerkenofditwerktzonderdoodtegaan
     public static class MD5
     {
         public static string CreateMD5(string input)
