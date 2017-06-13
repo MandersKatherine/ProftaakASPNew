@@ -69,7 +69,7 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Reservering/Create
         public ActionResult Create(int id, ReserveringMakenViewModel rmvm)
         {
-            Event events = eventrepo.GetEventById(id);
+            Event events = eventrepo.GetByID(id);
             List<Plek> plekken = plekrepo.GetPlekByEventId(id);
 
             var viewmodel = new ReserveringMakenViewModel()
@@ -104,7 +104,8 @@ namespace ASP_PROFTAAK.Controllers
 
 
             // TODO: Add insert logic here
-            reserveringrepo.CreateReservering(Convert.ToDateTime(collection["events.DatumStart"]), Convert.ToDateTime(collection["events.DatumEinde"]), 0, Convert.ToInt32(Session["UserId"]), 0, Convert.ToString(collection["plekId"]), collection["voornaam"], collection["tussenvoegsel"], collection["achternaam"], collection["straat"], collection["huisnummer"], collection["woonplaats"], collection["banknummer"]);
+            
+                reserveringrepo.CreateReservering(Convert.ToDateTime(collection["events.DatumStart"]), Convert.ToDateTime(collection["events.DatumEinde"]), 0, Convert.ToInt32(Session["UserId"]), 0, Convert.ToString(collection["plekId"]), collection["voornaam"], collection["tussenvoegsel"], collection["achternaam"], collection["straat"], collection["huisnummer"], collection["woonplaats"], collection["banknummer"]);
                 return RedirectToAction("Index");
             
                 
@@ -162,19 +163,20 @@ namespace ASP_PROFTAAK.Controllers
 
 
         // GET: Reservering/Delete/5
-        public ActionResult Delete(decimal id)
+        public ActionResult Delete(int id)
         {
-            return View();
+            Reservering reservering = reserveringrepo.GetReserveringById(id);
+            return View(reservering);
         }
 
         // POST: Reservering/Delete/5
         [HttpPost]
-        public ActionResult Delete(decimal id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                reserveringrepo.DeleteReservering(id);
                 return RedirectToAction("Index");
             }
             catch

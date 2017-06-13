@@ -5,25 +5,20 @@ using System.Web;
 
 namespace ASP_PROFTAAK.Models
 {
-    public class Bijdrage
+    public abstract class Bijdrage
     {
         private int id;
-        private int accountId;
+        private Account Account;
         private DateTime datum;
         private string soort;
-
+        private AccountBijdrage accountBijdrage;
         public int Id
         {
             get { return id; }
             set { id = value; }
         }
 
-        public int AccountId
-        {
-            get { return accountId; }
-            set { accountId = value; }
-        }
-
+        
         public DateTime Datum
         {
             get { return datum; }
@@ -36,19 +31,47 @@ namespace ASP_PROFTAAK.Models
             set { soort = value; }
         }
 
-        public Bijdrage(int id, int accountId, DateTime datum, string soort)
+        public AccountBijdrage AccountBijdrage
         {
-            this.id = id;
-            this.accountId = accountId;
-            this.datum = datum;
-            this.soort = soort;
+            get
+            {
+                return accountBijdrage;
+            }
+
+            set
+            {
+                accountBijdrage = value;
+            }
         }
 
-        public Bijdrage(int accountId, DateTime datum, string soort)
+        public Account Account1
         {
-            this.accountId = accountId;
+            get
+            {
+                return Account;
+            }
+
+            set
+            {
+                Account = value;
+            }
+        }
+
+        public Bijdrage(int id, Account accountId, DateTime datum, string soort, AccountBijdrage accountBijdrage)
+        {
+            this.id = id;
+            this.Account = accountId;
             this.datum = datum;
             this.soort = soort;
+            this.AccountBijdrage = accountBijdrage;
+        }
+
+        public Bijdrage(Account accountId, DateTime datum, string soort, AccountBijdrage accountBijdrage)
+        {
+            this.Account = accountId;
+            this.datum = datum;
+            this.soort = soort;
+            this.AccountBijdrage = accountBijdrage;
         }
 
     }

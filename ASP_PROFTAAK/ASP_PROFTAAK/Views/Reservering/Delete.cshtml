@@ -1,0 +1,57 @@
+﻿@model ASP_PROFTAAK.Models.Reservering
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Reservering</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumEinde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumEinde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Betaald)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Betaald)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

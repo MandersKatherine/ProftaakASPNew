@@ -57,6 +57,7 @@
     <Compile Include="App_DAL\SpecificatieSQLContextTests.cs" />
     <Compile Include="App_DAL\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_DAL\AccountSQLContextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ASP_PROFTAAK\ASP_PROFTAAK.csproj">
