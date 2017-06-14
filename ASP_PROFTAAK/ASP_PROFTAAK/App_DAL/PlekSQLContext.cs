@@ -70,10 +70,10 @@ namespace ASP_PROFTAAK.App_DAL
         public List<Plek> GetPlekById(List<decimal> id)
         {
             List<Plek> Plekken = new List<Plek>();
-            
+
             foreach (decimal newId in id)
             {
-                
+
                 using (SqlConnection connection = Database.Connection)
                 {
                     string query = "SELECT * FROM PLEK WHERE ID = @id";
@@ -89,7 +89,7 @@ namespace ASP_PROFTAAK.App_DAL
                             {
 
                                 Plekken.Add(CreatePlekFromReader(reader));
-                                
+
                             }
 
                         }
@@ -116,7 +116,7 @@ namespace ASP_PROFTAAK.App_DAL
                         if (reader.Read())
                         {
 
-                           return CreatePlekFromReader(reader);
+                            return CreatePlekFromReader(reader);
 
                         }
 
@@ -130,29 +130,29 @@ namespace ASP_PROFTAAK.App_DAL
         public List<Plek> GetPlekByEventId(int eventId)
         {
             List<Plek> Plekken = new List<Plek>();
-            
-                using (SqlConnection connection = Database.Connection)
+
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT Plek.* FROM Plek INNER JOIN LOCATIE ON Plek.locatie_id = LOCATIE.ID INNER JOIN EVENT ON LOCATIE.ID = EVENT.locatie_id WHERE EVENT.ID = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    string query = "SELECT Plek.* FROM Plek INNER JOIN LOCATIE ON Plek.locatie_id = LOCATIE.ID INNER JOIN EVENT ON LOCATIE.ID = EVENT.locatie_id WHERE EVENT.ID = @id";
+                    command.Parameters.AddWithValue("id", eventId);
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("id", eventId);
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
 
-                            while (reader.Read())
-                            {
-
-                                Plekken.Add(CreatePlekFromReader(reader));
-
-                            }
+                            Plekken.Add(CreatePlekFromReader(reader));
 
                         }
+
                     }
                 }
-            
+            }
+
             return Plekken;
         }
 

@@ -7,18 +7,18 @@
 
 <h2>Maak een event</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     Html.EnableClientValidation(true);
 
     @Html.AntiForgeryToken()
 
-    
+
     <div class="form-horizontal">
         <hr />
-        
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-      
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Naam, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -51,16 +51,16 @@
                 @Html.ValidationMessageFor(model => model.MaxBezoekers, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
-            <label class = "control-label col-md-2">Locatie toevoegen</label>
+            <label class="control-label col-md-2">Locatie toevoegen</label>
             <div class="col-md-10">
-                @Html.DropDownList("locatie", null, "select locatie", new {@class = "dropdown"})
+                @Html.DropDownList("locatie", null, "select locatie", new { @class = "dropdown" })
                 @Html.ActionLink("Add een nieuwe locatie", "AddLocation")
 
             </div>
         </div>
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
