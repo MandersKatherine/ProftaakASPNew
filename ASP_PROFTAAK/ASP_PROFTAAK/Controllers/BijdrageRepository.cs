@@ -68,5 +68,15 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.AddReactie(Tekst, accountId, postId);
         }
+
+        public bool Report(int Bijdrageid, int Accountid)
+        {
+            return context.Report(Bijdrageid, Accountid);
+        }
+
+        public List<Bijdrage> GetAllReports()
+        {
+            return context.GetAllReports();
+        }
     }
 }
