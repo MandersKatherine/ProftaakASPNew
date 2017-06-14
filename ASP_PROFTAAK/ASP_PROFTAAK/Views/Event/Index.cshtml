@@ -9,15 +9,15 @@
 @using (Html.BeginForm("edit", "Event", FormMethod.Post))
 {
 
-<p>
-    @*@if((int)Session["UserId"] == 1)
-    {
-    @Html.ActionLink("Create New", "Create")
-    }*@
-</p>
+    <p>
+        @*@if((int)Session["UserId"] == 1)
+            {
+            @Html.ActionLink("Create New", "Create")
+            }*@
+    </p>
     <table class="table">
         <tr>
-        
+
             <th>
                 @Html.DisplayNameFor(model => Model.Event.Naam)
             </th>
@@ -30,9 +30,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Event.MaxBezoekers)
             </th>
-            
+
             <th></th>
-            
+
         </tr>
 
         @foreach (var item in Model.events)
@@ -54,19 +54,19 @@
                 @if (Convert.ToInt32(Session["userid"]) > 0)
                 {
 
-                
+
 
 
                     <td>
                         @if (Convert.ToInt32(Session["userid"]) == 1)
                         {
-                            @Html.ActionLink("Edit", "Edit", "Event", new {id = item.Id}, null);
-                            @Html.ActionLink("Details", "Details", new {id = item.Id});
-                            @Html.ActionLink("Delete", "Delete", new {id = item.Id});
+                            @Html.ActionLink("Edit", "Edit", "Event", new { id = item.Id }, null);
+                            @Html.ActionLink("Details", "Details", new { id = item.Id });
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id });
                         }
 
-                       
-                        @Html.ActionLink("Reservering maken", "Create", "Reservering", new {id = item.Id}, null)
+
+                        @Html.ActionLink("Reservering maken", "Create", "Reservering", new { id = item.Id }, null)
                     </td>
                 }
 

@@ -31,7 +31,7 @@ namespace ASP_PROFTAAK.Controllers
             context.UpdateReservering(reserveringen);
         }
 
-      
+
         public Reservering GetReserveringById(decimal id)
         {
             return context.GetReserveringById(id);

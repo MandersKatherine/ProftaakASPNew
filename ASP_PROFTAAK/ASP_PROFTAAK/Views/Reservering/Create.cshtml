@@ -35,7 +35,7 @@
 
 
 
-        
+
 
         <h2>Gegevens hoofdboeker</h2>
         <div class="form-group">
@@ -94,48 +94,48 @@
             </div>
         </div>
 
-       
 
-    <div>
-        <h2>Selecteer Plekken</h2>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayName("Nummer")
-                </th>
-                <th>
-                    @Html.DisplayName("Capaciteit")
-                </th>
-                <th>
-                    select
-                </th>
-            </tr>
 
-            @foreach (var item in Model.plekken)
-            {
+        <div>
+            <h2>Selecteer Plekken</h2>
+            <table class="table">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nummer)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Capaciteit)
-                    </td>
-                    <td>
-                        <input type="checkbox" class="chkCheckBoxId" value="@item.ID" name="plekId" />
-                    </td>
+                    <th>
+                        @Html.DisplayName("Nummer")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Capaciteit")
+                    </th>
+                    <th>
+                        select
+                    </th>
                 </tr>
-            }
 
-        </table>
-    </div>
-        
+                @foreach (var item in Model.plekken)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nummer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Capaciteit)
+                        </td>
+                        <td>
+                            <input type="checkbox" class="chkCheckBoxId" value="@item.ID" name="plekId" />
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-    }
+}
 
 
 <div>
