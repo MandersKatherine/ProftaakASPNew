@@ -260,6 +260,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\comment.css" />
+    <Content Include="Content\Image\EventImage.jpg" />
+    <Content Include="Content\Image\GamingGear.jpg" />
+    <Content Include="Content\Image\HomepageImage1.jpg" />
+    <Content Include="Content\Image\HomepageImage2.jpg" />
+    <Content Include="Content\Image\SocialMedia.jpg" />
     <Content Include="Email\emailtemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -321,7 +326,6 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservering\AddGroepslid.cshtml" />
-
     <Content Include="Views\Event\AddLocation.cshtml" />
     <Content Include="Views\Event\EditPlekken.cshtml" />
     <Content Include="Views\Event\EditLocatie.cshtml" />
@@ -335,9 +339,7 @@
     <Content Include="Views\Polsbandje\Create.cshtml" />
     <Content Include="Views\Polsbandje\Details.cshtml" />
     <Content Include="Views\Polsbandje\Edit.cshtml" />
-
     <Content Include="Views\Account\Activate.cshtml" />
-
     <Content Include="Views\Reservering\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -381,7 +383,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3258</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
