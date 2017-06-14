@@ -123,7 +123,7 @@ namespace ASP_PROFTAAK.App_DAL
             using (SqlConnection connection = Database.Connection)
             {
                 string query = "update polsbandje set actief = 0 where barcode = @barcode; " +
-                        "update RESERVERING_POLSBANDJE set aanwezig = 0 from RESERVERING_POLSBANDJE" +
+                        "update RESERVERING_POLSBANDJE set aanwezig = 0 from RESERVERING_POLSBANDJE " +
                         "inner join polsbandje on RESERVERING_POLSBANDJE.polsbandje_id = polsbandje.ID where barcode = @barcode";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
