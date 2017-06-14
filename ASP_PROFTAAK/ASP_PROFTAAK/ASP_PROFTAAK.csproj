@@ -274,9 +274,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\ajax-loader.gif" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -346,6 +348,14 @@
     <Content Include="Views\Polsbandje\Edit.cshtml" />
     <Content Include="Views\Account\Activate.cshtml" />
     <Content Include="Views\Reservering\Delete.cshtml" />
+
+    <Content Include="Views\Bijdrage\NoComments.cshtml" />
+    <Content Include="Views\Bijdrage\Comments.cshtml" />
+    <Content Include="Views\Bijdrage\MisluktRea.cshtml" />
+    <Content Include="Views\Bijdrage\AddCategorie.cshtml" />
+    <Content Include="Views\Bijdrage\AddBericht.cshtml" />
+    <Content Include="Views\Bijdrage\AddBestand.cshtml" />
+
     <Content Include="Views\Toegang\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

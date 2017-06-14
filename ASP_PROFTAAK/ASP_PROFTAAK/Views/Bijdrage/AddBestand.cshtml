@@ -1,0 +1,33 @@
+﻿@model ASP_PROFTAAK.Models.BijdragePosterViewModel
+
+@{
+    ViewBag.Title = "AddBestand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("AddBijdrage", "Bijdrage", FormMethod.Post))
+{
+    <h2>AddBestand</h2>
+
+    <form>
+        <hr/>
+        <select>
+            @foreach (var item1 in Model.Categories)
+            {
+                <option name="catid" value="@item1.Id">@item1.Naam</option>
+            }
+        </select>
+        <label>Plaats BestandLink (bv. Youtube-Link, GoogleImage-Link)</label>
+        <div class="form-group">
+
+            <input type="text" name="bestandslocatie" id="bestandslocatie"/>
+            
+        </div>
+        <textarea type="text" id="Titel" name="Titel" style="display: none"></textarea>
+        <textarea type="text" id="catNaam" name="catNaam" style="display: none"></textarea>
+        <textarea type="text" id="Inhoud" name="Inhoud" style="display: none"></textarea>
+        <input type="submit" name="soort" class="btn btn-lg btn-default btn-block" value="bestand" />
+    @*<button class="btn btn-lg btn-default btn-block" type="submit" value="bestand">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>*@
+    </form>
+}

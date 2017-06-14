@@ -12,7 +12,7 @@ namespace ASP_PROFTAAK.App_DAL
         List<Bericht> GetAllBerichts();
 
         Bijdrage GetByID(int ID);
-        bool InsertBijdrage(Bijdrage bijdrage);
+        bool InsertBijdrage(int Accountid, string soort, string titel, string inhoud, int catId, string bestandloc, string catNaam);
 
         bool DeleteBijdrage(int id);
 
@@ -21,6 +21,8 @@ namespace ASP_PROFTAAK.App_DAL
         List<Bijdrage> GetAllBijdrages();
         List<Categorie> GetAllCategories();
         bool Like(int BijdrageID, int AccountID);
+        List<Reactie> GetAllReactiesByBijdrageID(int id);
 
+        bool AddReactie(string Tekst, int accountId, int postId);
     }
 }
