@@ -265,6 +265,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\comment.css" />
+    <Content Include="Content\Image\EventImage.jpg" />
+    <Content Include="Content\Image\GamingGear.jpg" />
+    <Content Include="Content\Image\HomepageImage1.jpg" />
+    <Content Include="Content\Image\HomepageImage2.jpg" />
+    <Content Include="Content\Image\SocialMedia.jpg" />
     <Content Include="Email\emailtemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -384,7 +389,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3258</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

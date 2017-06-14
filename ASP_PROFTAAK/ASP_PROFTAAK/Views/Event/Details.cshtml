@@ -10,7 +10,7 @@
 <div>
     <hr />
     <dl class="dl-horizontal">
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.event1.Naam)
         </dt>
@@ -66,9 +66,9 @@
         </dt>
 
         <dd>
-            @if(Model.locatie.Nummer != null)
+            @if (Model.locatie.Nummer != null)
             {
-                   @Html.DisplayFor(model => model.locatie.Nummer)
+                @Html.DisplayFor(model => model.locatie.Nummer)
             }
             @if (Model.locatie.Nummer == "")
             {
@@ -77,12 +77,12 @@
         </dd>
 
         <dt>
-            
+
             @Html.DisplayNameFor(model => model.locatie.Plaats)
         </dt>
 
         <dd>
-            @if(Model.locatie.Plaats != null)
+            @if (Model.locatie.Plaats != null)
             {
                 @Html.DisplayFor(model => model.locatie.Plaats)
             }
@@ -90,7 +90,7 @@
             {
                 @Html.DisplayFor(model => model.locatie.NullString)
             }
-            
+
         </dd>
 
         <dt>
@@ -106,7 +106,7 @@
             {
                 @Html.DisplayFor(model => model.locatie.NullString)
             }
-            
+
         </dd>
 
         <dt>
@@ -122,7 +122,7 @@
             {
                 @Html.DisplayFor(model => model.locatie.NullString)
             }
-            
+
         </dd>
 
     </dl>

@@ -18,7 +18,19 @@ namespace ASP_PROFTAAK.App_DAL
 
         public bool InsertBijdrage(Bijdrage bijdrage)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "INSERT INTO BIJDRAGE (account_id, datum, soort)" +
+                               "VALUES (@accid, @dat, @soort)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@accid", bijdrage.Account1.Id);
+                    command.Parameters.AddWithValue("@dat", DateTime.Now);
+                    command.Parameters.AddWithValue("@soort", bijdrage.Soort);
+                   command.ExecuteNonQuery();
+                    return true;
+                }
+            }
         }
 
         public bool DeleteBijdrage(int id)
@@ -74,8 +86,34 @@ namespace ASP_PROFTAAK.App_DAL
             return berichtcollection;
         }
 
-       
+        public List<Categorie> GetAllCategories()
+        {
+            List<Categorie> catList = new List<Categorie>();
+            using (SqlConnection connectie = Database.Connection)
+            {
+                string query = "select categorie_id ,naam from CATEGORIE";
+                using (SqlCommand command = new SqlCommand(query, connectie))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Categorie bijdrage = CreateCategorieromReader(reader);
+                            catList.Add(bijdrage);
+                        }
+                    }
+                }
+            }
+            return catList;
+        }
 
+        private Categorie CreateCategorieromReader(SqlDataReader reader)
+        {
+            return new Categorie(
+                Convert.ToInt32(reader["categorie_id"] != DBNull.Value ? Convert.ToInt32(reader["categorie_id"]) : 0),
+                Convert.ToString(reader["naam"])
+                );
+        }
 
         public List<Bijdrage> GetAllBijdrages()
         {
@@ -128,7 +166,7 @@ namespace ASP_PROFTAAK.App_DAL
             AccountRepository accRepo = new AccountRepository(new AccountSQLContext());
             if (reader["soort"].ToString() == "bestand")
             {
-              {  Account account = accRepo.GetAccountById(Convert.ToInt32(reader["acccount_id"]));
+              {  Account account = accRepo.GetAccountById(Convert.ToInt32(reader["account_id"]));
                 AccountBijdrage accBijdrage;
                 try
                 {
@@ -155,7 +193,7 @@ namespace ASP_PROFTAAK.App_DAL
             if (reader["soort"].ToString() == "categorie")
             {
                 {
-                    Account account = accRepo.GetAccountById(Convert.ToInt32(reader["acccount_id"]));
+                    Account account = accRepo.GetAccountById(Convert.ToInt32(reader["account_id"]));
                     AccountBijdrage accBijdrage;
                     try
                     {
@@ -184,7 +222,7 @@ namespace ASP_PROFTAAK.App_DAL
             
             if (reader["soort"].ToString() == "bericht")
             {
-               { Account account = accRepo.GetAccountById(Convert.ToInt32(reader["acccount_id"]));
+               { Account account = accRepo.GetAccountById(Convert.ToInt32(reader["account_id"]));
                 AccountBijdrage accBijdrage;
                 try
                 {

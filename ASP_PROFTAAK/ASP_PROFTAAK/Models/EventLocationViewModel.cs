@@ -11,6 +11,6 @@ namespace ASP_PROFTAAK.Models
         public List<Locatie> locaties { get; set; }
         public Event Event { get; set; }
         public Locatie locatie { get; set; }
-    
+
     }
 }

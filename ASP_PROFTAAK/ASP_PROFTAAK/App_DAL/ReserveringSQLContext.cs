@@ -34,7 +34,7 @@ namespace ASP_PROFTAAK.App_DAL
         }
         public Reservering GetReserveringById(decimal id)
         {
-            
+
             using (SqlConnection connection = Database.Connection)
             {
                 string query = "SELECT * FROM RESERVERING WHERE Id = @id";
@@ -58,7 +58,7 @@ namespace ASP_PROFTAAK.App_DAL
 
         public List<Reservering> GetReserveringByAccountId(decimal accountid)
         {
-            List<Reservering>reservering = new List<Reservering>();
+            List<Reservering> reservering = new List<Reservering>();
             using (SqlConnection connection = Database.Connection)
             {
                 string query = "select RESERVERING.*, RESERVERING_POLSBANDJE.* " +
@@ -72,7 +72,7 @@ namespace ASP_PROFTAAK.App_DAL
                     {
                         while (reader.Read())
                         {
-                           reservering.Add(CreateReserveringFromReader(reader));
+                            reservering.Add(CreateReserveringFromReader(reader));
                         }
                     }
                 }
@@ -135,7 +135,7 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
-        
+
 
         //@datumStart date,
         //    @datumEinde date,

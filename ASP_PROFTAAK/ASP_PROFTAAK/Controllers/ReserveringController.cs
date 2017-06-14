@@ -34,17 +34,17 @@ namespace ASP_PROFTAAK.Controllers
         //GET: Persoonlijke reservering
         public ActionResult Reservering()
         {
-            List <Reservering> reservering = reserveringrepo.GetReserveringByAccountId(Convert.ToInt32(Session["UserId"]));
+            List<Reservering> reservering = reserveringrepo.GetReserveringByAccountId(Convert.ToInt32(Session["UserId"]));
 
             return View(reservering);
         }
-        
+
         // GET: Reservering/Details/5
         public ActionResult Details(decimal id)
         {
             newReservering = reserveringrepo.GetReserveringById(id);
             newPersoon = persoonrepo.getHoofdboekerByReserveringId((decimal)newReservering.PersonId);
-            plekken = plekrepo.GetPlekId(id);     
+            plekken = plekrepo.GetPlekId(id);
             newPlek = plekrepo.GetPlekById(plekken);
             Plek plek = newPlek.First();
             newLocatie = locatierepo.GetLocatieById(plek.LocatieId);
@@ -63,7 +63,7 @@ namespace ASP_PROFTAAK.Controllers
 
 
             };
-                return View(viewmodel);
+            return View(viewmodel);
         }
 
         // GET: Reservering/Create
@@ -77,9 +77,9 @@ namespace ASP_PROFTAAK.Controllers
                 events = events,
                 plekken = plekken
 
-            };  
-            
-           
+            };
+
+
             return View(viewmodel);
         }
 
@@ -104,12 +104,12 @@ namespace ASP_PROFTAAK.Controllers
 
 
             // TODO: Add insert logic here
-            
-                reserveringrepo.CreateReservering(Convert.ToDateTime(collection["events.DatumStart"]), Convert.ToDateTime(collection["events.DatumEinde"]), 0, Convert.ToInt32(Session["UserId"]), 0, Convert.ToString(collection["plekId"]), collection["voornaam"], collection["tussenvoegsel"], collection["achternaam"], collection["straat"], collection["huisnummer"], collection["woonplaats"], collection["banknummer"]);
-                return RedirectToAction("Index");
-            
-                
-            
+
+            reserveringrepo.CreateReservering(Convert.ToDateTime(collection["events.DatumStart"]), Convert.ToDateTime(collection["events.DatumEinde"]), 0, Convert.ToInt32(Session["UserId"]), 0, Convert.ToString(collection["plekId"]), collection["voornaam"], collection["tussenvoegsel"], collection["achternaam"], collection["straat"], collection["huisnummer"], collection["woonplaats"], collection["banknummer"]);
+            return RedirectToAction("Index");
+
+
+
         }
 
         // GET: Reservering/Edit/5

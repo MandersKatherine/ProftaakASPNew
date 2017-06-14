@@ -1,31 +1,188 @@
-﻿@{
+﻿@model IEnumerable<ASP_PROFTAAK.Models.Event>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    .mySlides {
+        display: none;
+    }
+</style>
+<body>
+
+
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+        <!-- Automatic Slideshow Images -->
+        <div class="mySlides w3-display-container w3-center">
+            <img src="~/Content/Image/HomepageImage1.jpg" height="550" width="900">
+            <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+                <h3>PC Gaming</h3>
+                <p><b>Join our events with massive gaming tournaments!</b></p>
+            </div>
+        </div>
+        <div class="mySlides w3-display-container w3-center">
+            <img src="~/Content/Image/HomepageImage2.jpg" height="550" width="900">
+            <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+                <h3>Camping Reeëndal</h3>
+                <p><b>Enjoy the atmosphere on the camping!</b></p>
+            </div>
+        </div>
+
+        <!-- The Camping Section -->
+        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+            <h2 class="w3-wide">Camping Reeëndal</h2>
+            <p class="w3-opacity"><i>We love camping</i></p>
+            <p class="w3-justify">
+                Insert some heartfelt text here about how good the camping is. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="w3-row w3-padding-32">
+                <div class="w3-third">
+                    <p>Make a reservation for our events!</p>
+                    <img src="~/Content/Image/EventImage.jpg" class="w3-round w3-margin-bottom" alt="Event" style="width:75%">
+                </div>
+                <div class="w3-third">
+                    <p>Keep in touch by posting your thoughts!</p>
+                    <img src="~/Content/Image/SocialMedia.jpg" class="w3-round w3-margin-bottom" alt="SocialMedia" style="width:70%">
+                </div>
+                <div class="w3-third">
+                    <p>Hire products for your own LAN Party!</p>
+                    <img src="~/Content/Image/GamingGear.jpg" class="w3-round" alt="Products" style="width:75%">
+                </div>
+            </div>
+        </div>
+
+        <!-- The Event Section -->
+        <div class="card mb-5">
+            <h2 class="w3-wide">Current Events:</h2>
+            <div class="card-block p-0">
+                <table class="table table-bordered table-sm m-0">
+                    <thead class="">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Naam)</th>
+                            <th>@Html.DisplayNameFor(model => model.DatumStart)</th>
+                            <th>@Html.DisplayNameFor(model => model.DatumEinde)</th>
+                            <th>@Html.DisplayNameFor(model => model.MaxBezoekers)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Naam)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DatumStart)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DatumEinde)</td>
+                                <td>@Html.DisplayFor(modelItem => item.MaxBezoekers)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+            <!-- The Contact Section -->
+            <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+                <h2 class="w3-wide w3-center">CONTACT</h2>
+                <p class="w3-opacity w3-center"><i>Want to contact us? Fill in the form below!</i></p>
+                <div class="w3-row w3-padding-32">
+                    <div class="w3-col m6 w3-large w3-margin-bottom">
+                        <i class="fa fa-map-marker" style="width:30px"></i> Nederland, Loenen<br>
+                        <i class="fa fa-phone" style="width:30px"></i> Phone: 055-5053900<br>
+                        <i class="fa fa-envelope" style="width:30px"> </i> Email: camping@reeendal.nl<br>
+                    </div>
+                    <div class="w3-col m6">
+                        <form action="/action_page.php" target="_blank">
+                            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                                <div class="w3-half">
+                                    <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                                </div>
+                                <div class="w3-half">
+                                    <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                                </div>
+                            </div>
+                            <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+                            <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Page Content -->
+        </div>
+
+
+
+        <!-- Add Google Maps -->
+        <div id="googleMap" style="height:400px;" class="w3-grayscale-max"></div>
+        <script>
+            function myMap() {
+                myCenter = new google.maps.LatLng(52.118847, 6.006917);
+                var mapOptions = {
+                    center: myCenter,
+                    zoom: 17, scrollwheel: false, draggable: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+                var marker = new google.maps.Marker({
+                    position: myCenter,
+                });
+                marker.setMap(map);
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaa2c-ltKByGUCHuAtdxSyVc5jBjw6VLI&callback=myMap"></script>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </footer>
+
+        <script>
+            // Automatic Slideshow - change image every 4 seconds
+            var myIndex = 0;
+            carousel();
+
+            function carousel() {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                myIndex++;
+                if (myIndex > x.length) { myIndex = 1 }
+                x[myIndex - 1].style.display = "block";
+                setTimeout(carousel, 4000);
+            }
+
+
+        </script>
+
+</body>
+</html>

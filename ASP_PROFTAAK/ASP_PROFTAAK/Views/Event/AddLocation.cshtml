@@ -7,10 +7,10 @@
 
 <h2>Voeg locatie toe</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
                 @Html.ValidationMessageFor(model => model.locatie.Plaats, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
             <label class="control-label col-md-2">Aantal plekken</label>
             <div class="col-md-10">
@@ -61,8 +61,8 @@
                 @Html.ValidationMessageFor(model => model.plekAmount, "", new { @class = "text-danger" })
             </div>
         </div>
-        
-        
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -75,8 +75,8 @@
 }
 
 <div>
-    @Html.ActionLink("Event overzicht", "Index") | 
-    @Html.ActionLink("Locatie overzicht", "Locaties") | 
+    @Html.ActionLink("Event overzicht", "Index") |
+    @Html.ActionLink("Locatie overzicht", "Locaties") |
     @Html.ActionLink("Terug naar maak een event", "Create")
 
 </div>
