@@ -32,10 +32,10 @@ namespace ASP_PROFTAAK.App_DAL
 
         private Specificatie CreateSpecificatieFromReader(SqlDataReader reader)
         {
-           return new Specificatie(
-               Convert.ToInt32(reader["ID"]),
-               Convert.ToString(reader["Naam"])
-               );
+            return new Specificatie(
+                Convert.ToInt32(reader["ID"]),
+                Convert.ToString(reader["Naam"])
+                );
         }
 
         public void InsertSpecificatie(Specificatie specificatie)
@@ -55,7 +55,7 @@ namespace ASP_PROFTAAK.App_DAL
                     {
 
                     }
-                    
+
                 }
 
             }

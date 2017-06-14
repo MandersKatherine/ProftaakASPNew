@@ -28,7 +28,7 @@ namespace ASP_PROFTAAK.Controllers
 
         public void InsertSpecificatie(Specificatie specificatie)
         {
-             context.InsertSpecificatie(specificatie);
+            context.InsertSpecificatie(specificatie);
         }
 
         public bool UpdatePlek(Specificatie specificatie)

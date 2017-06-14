@@ -15,7 +15,7 @@ namespace ASP_PROFTAAK.App_DAL
 
         void UpdateReservering(Reservering reserveringen);
 
-        
+
         Reservering GetReserveringById(decimal id);
 
         List<Reservering> GetReserveringByAccountId(decimal accountid);

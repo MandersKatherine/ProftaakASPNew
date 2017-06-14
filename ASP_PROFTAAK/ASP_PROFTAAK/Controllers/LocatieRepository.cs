@@ -8,10 +8,10 @@ namespace ASP_PROFTAAK
 {
     public class LocatieRepository
     {
-        private ILocatieContext context; 
+        private ILocatieContext context;
         public LocatieRepository(ILocatieContext context)
         {
-            this.context = context; 
+            this.context = context;
         }
 
         public Locatie GetByEvent(Event eEvent)
@@ -21,7 +21,7 @@ namespace ASP_PROFTAAK
 
         public List<Locatie> GetAllLocations()
         {
-            return context.GetAllLocations(); 
+            return context.GetAllLocations();
         }
 
         public Locatie InsertLocatie(Locatie locatie)
@@ -31,12 +31,12 @@ namespace ASP_PROFTAAK
 
         public bool DeleteLocatie(int id)
         {
-            return context.DeleteLocatie(id); 
+            return context.DeleteLocatie(id);
         }
 
         public bool UpdateLocatie(Locatie locatie)
         {
-            return context.UpdateLocatie(locatie); 
+            return context.UpdateLocatie(locatie);
         }
         public Locatie GetLocatieById(int id)
         {
