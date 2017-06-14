@@ -16,6 +16,20 @@ namespace ASP_PROFTAAK.Controllers
             this.context = context;
         }
 
+        public Product GetProduct(int id)
+        {
+            return context.GetProduct(id); 
+        }
+
+        public bool ReturnProduct(int id)
+        {
+            return context.ReturnProduct(id);
+        }
+        public void Update(Product product)
+        {
+            context.Update(product); 
+        }
+
         public List<Product> GetAllProducts()
         {
             return context.GetAllProducts();

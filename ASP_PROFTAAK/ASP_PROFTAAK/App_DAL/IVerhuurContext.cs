@@ -12,5 +12,6 @@ namespace ASP_PROFTAAK.App_DAL
         void Insert(Verhuurd verhuurd);
         void Update(Verhuurd verhuurd);
         void Delete(Verhuurd verhuurd);
+        void Delete(int id);
     }
 }

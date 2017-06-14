@@ -26,28 +26,6 @@ namespace ASP_PROFTAAK.Controllers
             return View(productcategorie);
         }
 
-        // GET: ProductCategorie/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ProductCategorie/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: ProductCategorie/Edit/5
         public ActionResult Edit(int id)
         {
@@ -90,6 +68,52 @@ namespace ASP_PROFTAAK.Controllers
             {
                 return View();
             }
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ViewData["category"] = new SelectList(pcr.GetAllCategories(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
+
+
+            List<ProductCategorie> categories = pcr.GetAllCategories();
+            List<SelectListItem> categoryItems = new List<SelectListItem>();
+
+            foreach (ProductCategorie category in categories)
+            {
+                categoryItems.Add(new SelectListItem { Text = Convert.ToString(category.Naam), Value = Convert.ToString(category.Id) });
+            }
+
+            ViewBag.category = categoryItems;
+            ViewData["category"] = new SelectList(pcr.GetAllCategories(), "Id", "Naam");
+
+
+            return View(); 
+        }
+
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                if (collection["productid"] != null)
+                {
+                    ProductCategorie cat = new ProductCategorie(Convert.ToDecimal(Request.Form["category"]),collection["naam"]);
+                    pcr.Insert(cat);
+                }
+                else
+                {
+                    ProductCategorie cat = new ProductCategorie(collection["naam"]);
+                    pcr.Insert(cat);
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                TempData["Error"] = "Error";
+                return View();
+                throw;
+            }
+            
         }
     }
 }

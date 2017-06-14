@@ -24,6 +24,22 @@ namespace ASP_PROFTAAK.Models
             this.Naam = naam;
         }
 
+        public ProductCategorie(decimal id)
+        {
+            this.id = id; 
+        }
+
+        public ProductCategorie(string naam, decimal productCatId)
+        {
+            this.ProductCatId = productCatId;
+            this.Naam = naam;
+        }
+
+        public ProductCategorie(string naam)
+        {
+            this.Naam = naam;
+        }
+
         public ProductCategorie()
         {
             

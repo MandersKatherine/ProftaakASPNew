@@ -90,6 +90,19 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
+        public void Delete(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "DELETE FROM Verhuurd WHERE id = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         private Verhuurd CreateProductFromReader(SqlDataReader reader)
         {
             return new Verhuurd(

@@ -33,6 +33,14 @@ namespace ASP_PROFTAAK.Models
             this.verhuurd = verhuurd;
         }
 
+        public ProductExemplaar(decimal productId, decimal volgnummer, string barcode, string verhuurd)
+        {
+            this.ProductId = productId;
+            this.Volgnummer = volgnummer;
+            this.Barcode = barcode;
+            this.verhuurd = verhuurd;
+        }
+
         public ProductExemplaar(decimal id, decimal productId, decimal volgnummer, string barcode, string verhuurd, string merk, string serie, string typenummer, decimal prijs, string catNaam, string catSubNaam)
         {
             this.id = id;

@@ -321,7 +321,6 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Reservering\AddGroepslid.cshtml" />
-
     <Content Include="Views\Event\AddLocation.cshtml" />
     <Content Include="Views\Event\EditPlekken.cshtml" />
     <Content Include="Views\Event\EditLocatie.cshtml" />
@@ -335,10 +334,13 @@
     <Content Include="Views\Polsbandje\Create.cshtml" />
     <Content Include="Views\Polsbandje\Details.cshtml" />
     <Content Include="Views\Polsbandje\Edit.cshtml" />
-
     <Content Include="Views\Account\Activate.cshtml" />
-
     <Content Include="Views\Reservering\Delete.cshtml" />
+    <Content Include="Views\ProductCategorie\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\ProductExemplaar\Create.cshtml" />
+    <Content Include="Views\Product\Return.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />
