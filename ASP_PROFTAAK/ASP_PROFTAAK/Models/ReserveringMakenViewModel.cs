@@ -8,6 +8,7 @@ namespace ASP_PROFTAAK.Models
     public class ReserveringMakenViewModel
     {
         public DateTime datumStart { get; set; }
+
         public DateTime datumEinde { get; set; }
         public int betaald { get; set; }
         public int accountId { get; set; }
@@ -28,6 +29,7 @@ namespace ASP_PROFTAAK.Models
         public Account account { get; set; }
         public decimal Id { get; set; }
         public string gebruikersnaam { get; set; }
+        public Reservering reservering { get; set; }
         //public string Email { get; set; }
         //public string Activatiehash { get; set; }
         //public string Wachtwoord { get; set; }
