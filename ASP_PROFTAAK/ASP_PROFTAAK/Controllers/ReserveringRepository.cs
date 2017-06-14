@@ -54,6 +54,10 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetReserveringByAccountId(accountid);
         }
+        public void betaalReservering(int id)
+        {
+            context.betaalReservering(id);
+        }
 
 
     }

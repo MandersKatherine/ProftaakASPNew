@@ -35,5 +35,9 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.UpdateSpecificatie(specificatie);
         }
+        public List<Specificatie> GetAllSpecificatieByPlekId(int id)
+        {
+            return context.GetAllSpecificatieByPlekId(id);
+        }
     }
 }

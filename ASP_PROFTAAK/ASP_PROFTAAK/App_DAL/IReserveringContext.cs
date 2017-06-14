@@ -26,5 +26,6 @@ namespace ASP_PROFTAAK.App_DAL
             string woonplaats, string banknummer);
 
         void DeleteReservering(int id);
+        void betaalReservering(int id);
     }
 }
