@@ -118,12 +118,25 @@
 
 
             <dt>
-                @Html.DisplayNameFor(model => model.persoon.Achternaam)
+                @Html.DisplayNameFor(model => item.Voornaam)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.persoon.Voornaam)
+                @Html.DisplayFor(model => item.Voornaam)
             </dd>
+            <dt>
+                @Html.DisplayNameFor(model => item.Achternaam)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => item.Achternaam)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => item.Telefoonnr)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => item.Telefoonnr)
+            </dd>
+
 
 
 
@@ -253,7 +266,16 @@
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.reservering.Id }) |
         @Html.ActionLink("Back to List", "Index")
+        @if ((bool)Session["isBetaald"] == false)
+        {
+            <div class="container">
+                <div class="row">
+                    @using (Html.BeginForm("Betalen", "Reservering"))
+                    {
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="@Model.reservering.Id" name="Betalen" />
+                    }
+                </div>
+            </div>
+        }
     </p>
 }
-
-

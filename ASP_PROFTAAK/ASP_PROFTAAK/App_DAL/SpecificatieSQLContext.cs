@@ -107,5 +107,27 @@ namespace ASP_PROFTAAK.App_DAL
 
             return false;
         }
+
+        public List<Specificatie> GetAllSpecificatieByPlekId(int id)
+        {
+            List<Specificatie> Specs = new List<Specificatie>();
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "SELECT * FROM SPECIFICATIE INNER JOIN PLEK_SPECIFICATIE ON SPECIFICATIE.ID = PLEK_SPECIFICATIE.specificatie_id WHERE plek_id = @id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Specs.Add(CreateSpecificatieFromReader(reader));
+                        }
+                    }
+                }
+            }
+            return Specs;
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Details(decimal id)
         {
             newReservering = reserveringrepo.GetReserveringById(id);
+            Session["isBetaald"] = newReservering.Betaald;
             newPersoon = persoonrepo.getHoofdboekerByReserveringId((decimal)newReservering.PersonId);
             plekken = plekrepo.GetPlekId(id);
             newPlek = plekrepo.GetPlekById(plekken);
@@ -50,8 +51,11 @@ namespace ASP_PROFTAAK.Controllers
             newLocatie = locatierepo.GetLocatieById(plek.LocatieId);
             newEvent = eventrepo.GetEventById(newLocatie.Id);
             List<Groepslid> groepsleden = groepslidrepo.getGroepsledenByReserveringId(Convert.ToInt32(id));
-
-
+            List<Account> groepPersonen = new List<Account>();
+            foreach (Groepslid groepslid in groepsleden)
+            {
+                groepPersonen.Add(accountrepo.GetAccountById(groepslid.AccountId));
+            }
             var viewmodel = new ReserveringViewModelELPRP()
             {
                 events = newEvent,
@@ -135,13 +139,14 @@ namespace ASP_PROFTAAK.Controllers
         }
 
         //get:
-        public ActionResult AddGroepslid()
+        public ActionResult AddGroepslid(int id)
         {
             List<Account> accounts = accountrepo.GetAllAccountsBehalveIngelogdeAccount(Convert.ToInt32(Session["UserId"]));
-
+            Reservering reservering = reserveringrepo.GetReserveringById(id);
             var viewmodel = new ReserveringMakenViewModel()
             {
-                accounts = accounts
+                accounts = accounts,
+                reservering = reservering
 
             };
 
@@ -155,7 +160,7 @@ namespace ASP_PROFTAAK.Controllers
             string[] ids = collection["accountId"].Split(','); //geselecteerde ids ophalen van form
             foreach (string id in ids)
             {
-                groepslidrepo.GeefGroepslidBandjeEnKoppelAanLaatstGeinserteReservering(Convert.ToInt32(id));
+                groepslidrepo.GeefPolsbandjeAf(Convert.ToInt32(id), Convert.ToInt32(collection["reserveringId"]));
             }
             return RedirectToAction("AddGroepsLid");
         }
@@ -183,6 +188,12 @@ namespace ASP_PROFTAAK.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Betalen(FormCollection collection)
+        {
+            reserveringrepo.betaalReservering(Convert.ToInt32(collection["Betalen"]));
+            return RedirectToAction("Index", "Reservering");
         }
     }
 }

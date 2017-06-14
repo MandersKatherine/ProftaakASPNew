@@ -177,6 +177,18 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
+        public void betaalReservering(int id)
+        {
+            string query = "UPDATE RESERVERING SET Betaald = 1 WHERE ID = @id";
+            using (SqlConnection connection = Database.Connection)
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
         private Reservering CreateReserveringFromReader(SqlDataReader reader)
         {
             return new Reservering(

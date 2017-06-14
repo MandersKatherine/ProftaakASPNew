@@ -71,7 +71,21 @@ namespace ASP_PROFTAAK.App_DAL
                 }
             }
         }
+        public void GeefPolsbandjeAf(int accountId, int reserveringId)//checken of niet aanwezig goed is en of er genoeg bandjes zijn
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
 
+                using (SqlCommand command = new SqlCommand("AddGroepsLidToeReservering", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@accountId", accountId);
+                    command.Parameters.AddWithValue("@aanwezig", 0);
+                    command.Parameters.AddWithValue("@reserveringId", reserveringId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public List<Groepslid> getAllResPolsByAccountId(int accountId)
         {
             List<Groepslid> groepsleden = new List<Groepslid>();
