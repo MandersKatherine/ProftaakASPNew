@@ -25,9 +25,9 @@ namespace ASP_PROFTAAK.Controllers
             return context.GetAllBerichts();
         }
 
-        public bool InsertBijdrage(Bijdrage bijdrage)
+        public bool InsertBijdrage(int Accountid, string soort, string titel, string inhoud, int catId, string bestandloc, string catNaam)
         {
-            return context.InsertBijdrage(bijdrage);
+            return context.InsertBijdrage(Accountid, soort, titel, inhoud, catId, bestandloc, catNaam);
         }
 
         public bool DeleteBijdrage(int ID)
@@ -58,6 +58,15 @@ namespace ASP_PROFTAAK.Controllers
         public bool Like(int Bijdrageid, int Accountid)
         {
             return context.Like(Bijdrageid, Accountid);
+        }
+        public List<Reactie> GetAllReactiesByBijdrageID(int id)
+        {
+            return context.GetAllReactiesByBijdrageID(id);
+        }
+
+        public bool AddReactie(string Tekst, int accountId, int postId)
+        {
+            return context.AddReactie(Tekst, accountId, postId);
         }
     }
 }

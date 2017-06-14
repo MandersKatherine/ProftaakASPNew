@@ -16,18 +16,22 @@ namespace ASP_PROFTAAK.App_DAL
             throw new NotImplementedException();
         }
 
-        public bool InsertBijdrage(Bijdrage bijdrage)
+        public bool InsertBijdrage(int Accountid, string soort, string titel, string inhoud, int catId, string bestandloc, string catNaam)
         {
             using (SqlConnection connection = Database.Connection)
             {
-                string query = "INSERT INTO BIJDRAGE (account_id, datum, soort)" +
-                               "VALUES (@accid, @dat, @soort)";
+                string query = "EXEC NieuweBijdrage @account_id = @accid, @soort = @soort1, @titel = @titel1, @inhoud = @inhoud1, @categorie_id = @catId, @bestandlocatie = @bestandloc, @grootte = @grootte1, @naam = @naam1";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@accid", bijdrage.Account1.Id);
-                    command.Parameters.AddWithValue("@dat", DateTime.Now);
-                    command.Parameters.AddWithValue("@soort", bijdrage.Soort);
-                   command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@accid", Accountid);
+                    command.Parameters.AddWithValue("@soort1", soort);
+                    command.Parameters.AddWithValue("@titel1", titel);
+                    command.Parameters.AddWithValue("@inhoud1", inhoud);
+                    command.Parameters.AddWithValue("@catId", catId);
+                    command.Parameters.AddWithValue("@bestandloc", bestandloc);
+                    command.Parameters.AddWithValue("@grootte1", 10);
+                    command.Parameters.AddWithValue("@naam1", catNaam);
+                    command.ExecuteNonQuery();
                     return true;
                 }
             }
@@ -91,7 +95,7 @@ namespace ASP_PROFTAAK.App_DAL
             List<Categorie> catList = new List<Categorie>();
             using (SqlConnection connectie = Database.Connection)
             {
-                string query = "select categorie_id ,naam from CATEGORIE";
+                string query = "select bijdrage_id, categorie_id ,naam from CATEGORIE";
                 using (SqlCommand command = new SqlCommand(query, connectie))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -110,6 +114,7 @@ namespace ASP_PROFTAAK.App_DAL
         private Categorie CreateCategorieromReader(SqlDataReader reader)
         {
             return new Categorie(
+                Convert.ToInt32(reader["bijdrage_id"]),
                 Convert.ToInt32(reader["categorie_id"] != DBNull.Value ? Convert.ToInt32(reader["categorie_id"]) : 0),
                 Convert.ToString(reader["naam"])
                 );
@@ -126,8 +131,8 @@ namespace ASP_PROFTAAK.App_DAL
                     "LEFT JOIN CATEGORIE c on b.ID = c.bijdrage_id " +
                     "LEFT JOIN BESTAND be on b.ID = be.bijdrage_id " +
                     "LEFT JOIN BERICHT br on b.ID = br.bijdrage_id " +
-                    "LEFT JOIN ACCOUNT a on b.account_id = a.ID " +
-                    "LEFT JOIN ACCOUNT_BIJDRAGE ab on b.ID = ab.bijdrage_id";
+                    "LEFT JOIN ACCOUNT a on b.account_id = a.ID WHERE br.reactie = 0 OR be.reactie = 0 OR c.reactie = 0";
+                    //"LEFT JOIN ACCOUNT_BIJDRAGE ab on b.ID = ab.bijdrage_id";
 
 
 
@@ -159,6 +164,54 @@ namespace ASP_PROFTAAK.App_DAL
                     return true;
                 }
             }
+        }
+
+        public List<Reactie> GetAllReactiesByBijdrageID(int id)
+        {
+            List<Reactie> reactieList = new List<Reactie>();
+            using (SqlConnection connectie = Database.Connection)
+            {
+                string query = "SELECT bericht_id, inhoud FROM BIJDRAGE INNER JOIN BIJDRAGE_BERICHT ON BIJDRAGE.ID = BIJDRAGE_BERICHT.bijdrage_id INNER JOIN BERICHT ON BIJDRAGE_BERICHT.bericht_id = BERICHT.bijdrage_id WHERE BIJDRAGE.ID = @id ;";
+                using (SqlCommand command = new SqlCommand(query, connectie))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Reactie reactie = CreateReactieromReader(reader);
+                            reactieList.Add(reactie);
+                        }
+                    }
+                }
+            }
+            return reactieList;
+        }
+
+        public bool AddReactie(string Tekst, int accountId, int postId)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "EXEC AddReactie @Titel = @Titel1, @Inhoud = @Tekst, @Datum = @Date, @Soort = 'bericht', @AccID = @accid, @ReactiePostID = @postID";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Titel1", "ReactieOp" + Convert.ToString(postId));
+                    command.Parameters.AddWithValue("@Tekst", Tekst);
+                    command.Parameters.AddWithValue("@Date", DateTime.Now);
+                    command.Parameters.AddWithValue("@accid", accountId);
+                    command.Parameters.AddWithValue("@postID", postId);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            }
+        }
+
+        private Reactie CreateReactieromReader(SqlDataReader reader)
+        {
+            return new Reactie(
+                Convert.ToInt32(reader["bericht_id"]),
+                Convert.ToString(reader["inhoud"])
+            );
         }
 
         private Bijdrage CreateBijdrageFromReader(SqlDataReader reader)
