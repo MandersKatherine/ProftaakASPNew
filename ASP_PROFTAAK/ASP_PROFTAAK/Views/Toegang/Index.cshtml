@@ -5,11 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Aanwezigen op evenement</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -54,11 +51,25 @@
                 @Html.DisplayFor(modelItem => item.TelefoonNummer)
             </td>
             <td>
+
+                @using (Html.BeginForm("ChangeAanwezigheid", "Toegang", new {eventid = item.EventId, barcode = item.Barcode}))
+                {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" name="ChangeAanwezigheid" value="Verrander aanwezigheid" class="btn btn-default"/>
+                        </div>
+                    </div>
+                }
+                @using (Html.BeginForm("ChangeAanwezigheid", "Toegang", new {eventid = item.EventId, barcode = item.Barcode}))
+                {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" name="ChangeAanwezigheid" value="Verrander aanwezigheid" class="btn btn-default"/>
+                        </div>
+                    </div>
+                }
                 
 
-                @Html.ActionLink("Verrander aanwezigheid", "ChangeAanwezigheid", new {eventid = item.EventId, barcode = item.Barcode}) |
-                @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
             </td>
         </tr>
     }

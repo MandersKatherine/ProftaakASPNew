@@ -23,7 +23,15 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult ChangeAanwezigheid(int eventid, string barcode)
         {
             tr.ChangeAanwezigheid(eventid, barcode);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "toegang", new { eventid });
+        }
+
+
+        [HttpPost]
+        public ActionResult BrengPolsbandjeTerug(int eventid, string barcode)
+        {
+            tr.BrengPolsbandjeTerug(barcode);
+            return RedirectToAction("Index", "toegang", new { eventid });
         }
 
         // GET: Toegang/Create
