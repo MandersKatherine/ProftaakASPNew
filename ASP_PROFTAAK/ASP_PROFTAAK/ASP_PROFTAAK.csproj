@@ -177,7 +177,6 @@
     <Compile Include="App_DAL\ProductSQLContext.cs" />
     <Compile Include="App_DAL\ReserveringSQLContext.cs" />
     <Compile Include="App_DAL\SpecificatieSQLContext.cs" />
-    <Compile Include="App_DAL\ToegangSQLContext.cs" />
     <Compile Include="App_DAL\ToegansSqlContext.cs" />
     <Compile Include="App_DAL\VerhuurSqlContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

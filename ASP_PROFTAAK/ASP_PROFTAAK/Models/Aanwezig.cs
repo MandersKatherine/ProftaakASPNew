@@ -14,8 +14,9 @@ namespace ASP_PROFTAAK.Models
         private string tussenvoegsel;
         private string achternaam;
         private int telefoonNummer;
+        private decimal eventId;
 
-        public Aanwezig(decimal id, string barcode, decimal aanwezigopEvent, string voornaam, string tussenvoegsel, string achternaam, int telefoonNummer)
+        public Aanwezig(decimal id, string barcode, decimal aanwezigopEvent, string voornaam, string tussenvoegsel, string achternaam, int telefoonNummer, decimal eventId)
         {
             Id = id;
             Barcode = barcode;
@@ -24,6 +25,7 @@ namespace ASP_PROFTAAK.Models
             Tussenvoegsel = tussenvoegsel;
             Achternaam = achternaam;
             TelefoonNummer = telefoonNummer;
+            EventId = eventId;
         }
 
         public decimal Id
@@ -114,6 +116,19 @@ namespace ASP_PROFTAAK.Models
             set
             {
                 telefoonNummer = value;
+            }
+        }
+
+        public decimal EventId
+        {
+            get
+            {
+                return eventId;
+            }
+
+            set
+            {
+                eventId = value;
             }
         }
 

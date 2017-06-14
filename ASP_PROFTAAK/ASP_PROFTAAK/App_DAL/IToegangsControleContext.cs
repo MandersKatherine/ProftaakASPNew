@@ -8,8 +8,8 @@ namespace ASP_PROFTAAK.App_DAL
 {
     public interface IToegangsControleContext
     {
-        List<Aanwezig> GetAllAanwezig();
-        void ChangeAanwezigheid(decimal accountid);
+        List<Aanwezig> GetAllAanwezig(int eventid);
+        void ChangeAanwezigheid(int eventid, string barcode);
         bool CheckBetaald(string barcode);
         void BrengPolsbandjeTerug(string barcode);
     }

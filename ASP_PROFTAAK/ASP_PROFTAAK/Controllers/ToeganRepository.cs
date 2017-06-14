@@ -16,14 +16,14 @@ namespace ASP_PROFTAAK.Controllers
             this.context = context;
         }
 
-        public List<Aanwezig> GetAllAanwezig()
+        public List<Aanwezig> GetAllAanwezig(int eventid)
         {
-            return context.GetAllAanwezig();
+            return context.GetAllAanwezig(eventid);
         }
 
-        public void ChangeAanwezigheid(decimal accountid)
+        public void ChangeAanwezigheid(int eventid, string barcode)
         {
-            context.ChangeAanwezigheid(accountid);
+            context.ChangeAanwezigheid(eventid, barcode);
         }
 
         public bool CheckBetaald(string barcode)

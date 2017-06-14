@@ -12,17 +12,18 @@ namespace ASP_PROFTAAK.Controllers
     {
         ToeganRepository tr = new ToeganRepository(new ToegansSqlContext());
         // GET: Toegang
-        public ActionResult Index()
+        public ActionResult Index(int eventid)
         {
-            List<Aanwezig> aanwezigen = tr.GetAllAanwezig();
+            List<Aanwezig> aanwezigen = tr.GetAllAanwezig(eventid);
            
             return View(aanwezigen);
         }
 
-        // GET: Toegang/Details/5
-        public ActionResult Details(int id)
+        [HttpPost]
+        public ActionResult ChangeAanwezigheid(int eventid, string barcode)
         {
-            return View();
+            tr.ChangeAanwezigheid(eventid, barcode);
+            return RedirectToAction("Index");
         }
 
         // GET: Toegang/Create
