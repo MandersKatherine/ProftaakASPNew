@@ -59,7 +59,14 @@
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        @if ((int?)Session["UserID"] == b.Account1.Id)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -77,9 +84,7 @@
 
                 <div class="panel-footer">
                     <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove-circle">Rapporteer</span>
-                    </button>
+                    <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
                     <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
@@ -135,7 +140,14 @@
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        @if ((int?)Session["UserID"] == b.Account1.Id)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -171,9 +183,7 @@
                 </div>
                 <div class="panel-footer">
                     <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                  
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove-circle">Rapporteer</span>
-                    </button>
+                    <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-share-alt"></span>
                     </button>
@@ -225,7 +235,14 @@
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        @if((int?)Session["UserID"] == b.Account1.Id)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -249,9 +266,7 @@
                 <div class="panel-footer">
                     <!--    <button type="button" class="btn btn-default"></button>-->
                     <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove-circle">Rapporteer</span>
-                    </button>
+                    <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
                     <button type="button" class="btn btn-default">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>

@@ -41,20 +41,12 @@ namespace ASP_PROFTAAK.App_DAL
         {
             using (SqlConnection connection = Database.Connection)
             {
-                //hier wordt een stored procedure genaamd deletebijdrage aangeroepen, EXEC DeleteBijdrage @ID = id
-                using (SqlCommand command = new SqlCommand("DeleteBijdrage", connection))
+                string query = "DELETE FROM BIJDRAGE WHERE ID = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@ID", id);
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                        return true;
-                    }
-                    catch (SqlException e)
-                    {
-                    }
-                    return false;
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    return true;
                 }
             }
         }
@@ -165,7 +157,20 @@ namespace ASP_PROFTAAK.App_DAL
                 }
             }
         }
-
+        public bool Report(int Bijdrageid, int Accountid)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "EXEC ReportSys @BijdrageID = @bijdrid, @AccountID = @accid";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@bijdrid", Bijdrageid);
+                    command.Parameters.AddWithValue("@accid", Accountid);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            }
+        }
         public List<Reactie> GetAllReactiesByBijdrageID(int id)
         {
             List<Reactie> reactieList = new List<Reactie>();
@@ -204,6 +209,37 @@ namespace ASP_PROFTAAK.App_DAL
                     return true;
                 }
             }
+        }
+
+        public List<Bijdrage> GetAllReports()
+        {
+            List<Bijdrage> bijdrageList = new List<Bijdrage>();
+
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query =
+                    "SELECT * FROM BIJDRAGE b " +
+                    "LEFT JOIN CATEGORIE c on b.ID = c.bijdrage_id " +
+                    "LEFT JOIN BESTAND be on b.ID = be.bijdrage_id " +
+                    "LEFT JOIN BERICHT br on b.ID = br.bijdrage_id " +
+                    "LEFT JOIN ACCOUNT a on b.account_id = a.ID LEFT JOIN ACCOUNT_BIJDRAGE ab on b.ID = ab.bijdrage_id WHERE ab.ongewenst = 1";
+                //"";
+
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Bijdrage bijdrage = CreateBijdrageFromReader(reader);
+                            bijdrageList.Add(bijdrage);
+                        }
+                    }
+                }
+            }
+            return bijdrageList;
         }
 
         private Reactie CreateReactieromReader(SqlDataReader reader)

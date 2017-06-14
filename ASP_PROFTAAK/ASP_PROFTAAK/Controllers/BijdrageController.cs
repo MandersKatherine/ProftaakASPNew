@@ -65,7 +65,11 @@ namespace ASP_PROFTAAK.Controllers
             };
             return View(ViewModel);
         }
-
+        public ActionResult VerwijderBijdrage(int id)
+        {
+            bijdragerepo.DeleteBijdrage(id);
+            return RedirectToAction("Index");
+        }
         public ActionResult LoadBerichtenByPostId(int id)
         {
               
@@ -190,6 +194,18 @@ namespace ASP_PROFTAAK.Controllers
         {
             bijdragerepo.Like(BijdrageID, AccountID);
             return RedirectToAction("Index", "Bijdrage");
+        }
+
+        public ActionResult Report(int AccountID, int BijdrageID)
+        {
+            bijdragerepo.Report(BijdrageID, AccountID);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Reports()
+        {
+            List<Bijdrage> bijdrages = bijdragerepo.GetAllReports();
+            return View(bijdrages);
         }
     }
 }
