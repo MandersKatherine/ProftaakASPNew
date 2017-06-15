@@ -18,7 +18,7 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Index()
         {
             List<Event> events = eventrepo.GetAllEvents();
-            List<Locatie>locaties = new List<Locatie>();
+            List<Locatie> locaties = new List<Locatie>();
             foreach (Event item in events)
             {
                 locaties.Add(locrepo.GetByEvent(item));
@@ -32,22 +32,22 @@ namespace ASP_PROFTAAK.Controllers
         }
 
         //GET: EventView
-       /* public ActionResult EventView()
-        {
-            List<Event> events = eventrepo.GetAllEvents();
-            List<Locatie> locaties = locrepo.GetAllLocations();
-            List<Plek> plekken = plekrepo.GetAll();
-            List<Specificatie> specs = specrepo.GetAll();
+        /* public ActionResult EventView()
+         {
+             List<Event> events = eventrepo.GetAllEvents();
+             List<Locatie> locaties = locrepo.GetAllLocations();
+             List<Plek> plekken = plekrepo.GetAll();
+             List<Specificatie> specs = specrepo.GetAll();
 
-            var viewModel = new EventViewModel
-            {
-                locatie = locaties,
-                event1 = events,
-                plek = plekken,
-                spec = specs
-            };
-            return View(viewModel);
-        }*/
+             var viewModel = new EventViewModel
+             {
+                 locatie = locaties,
+                 event1 = events,
+                 plek = plekken,
+                 spec = specs
+             };
+             return View(viewModel);
+         }*/
 
         // GET: Event/Details/5
         public ActionResult Details(int id)
@@ -98,11 +98,11 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection) //validation fixen, de requireds in de event model werken niet
         {
-            
-                // TODO: Add insert logic here
-                ViewData["locatie"] = new SelectList(locrepo.GetAllLocations(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
-                
-                string locatie = Request.Form["locatie"].ToString();
+
+            // TODO: Add insert logic here
+            ViewData["locatie"] = new SelectList(locrepo.GetAllLocations(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
+
+            string locatie = Request.Form["locatie"].ToString();
 
             if (string.IsNullOrEmpty(locatie))
             {
@@ -125,13 +125,13 @@ namespace ASP_PROFTAAK.Controllers
 
                 }
             }
-               
 
 
-           
-            
-                return View();
-            
+
+
+
+            return View();
+
 
 
 
@@ -154,7 +154,7 @@ namespace ASP_PROFTAAK.Controllers
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id,FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             Event events = new Event(Convert.ToInt32(collection["locatie_id"]), collection["Naam"], Convert.ToDateTime(collection["datumStart"]), Convert.ToDateTime(collection["datumEinde"]), Convert.ToInt32(collection["maxBezoekers"]));
             try
@@ -243,9 +243,9 @@ namespace ASP_PROFTAAK.Controllers
             }
             else
             {
-            int lastInsertedLocationId = locrepo.GetLocatieId();
-            List<Plek> plekken = plekrepo.GetPlekByLocatieId(lastInsertedLocationId);
-            return View(plekken);
+                int lastInsertedLocationId = locrepo.GetLocatieId();
+                List<Plek> plekken = plekrepo.GetPlekByLocatieId(lastInsertedLocationId);
+                return View(plekken);
             }
 
         }
@@ -262,10 +262,10 @@ namespace ASP_PROFTAAK.Controllers
                 plek.Capaciteit = nieuwePlek.Capaciteit;
                 plekrepo.UpdatePlek(plek);
             }
-               
-                return RedirectToAction("Index");
+
+            return RedirectToAction("Index");
         }
 
-       
-}
+
+    }
 }

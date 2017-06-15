@@ -31,7 +31,7 @@ namespace ASP_PROFTAAK.Controllers
             context.UpdateReservering(reserveringen);
         }
 
-      
+
         public Reservering GetReserveringById(decimal id)
         {
             return context.GetReserveringById(id);
@@ -53,6 +53,10 @@ namespace ASP_PROFTAAK.Controllers
         public List<Reservering> GetReserveringByAccountId(decimal accountid)
         {
             return context.GetReserveringByAccountId(accountid);
+        }
+        public void betaalReservering(int id)
+        {
+            context.betaalReservering(id);
         }
 
 

@@ -1,42 +1,22 @@
-﻿<script src="~/Scripts/jquery-1.10.2.js"></script>
+﻿
 @using ASP_PROFTAAK.Models
 @model BijdragePosterViewModel
 <link rel="stylesheet" type="text/css" href="~/Content/comment.css">
 @{
     ViewBag.Title = "Index";
 }
-<h2>Index</h2>
-<button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-default" type="button">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-</button>
-
+<h2>Posts</h2>
+@*<button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-default" type="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>*@
+<a class="btn btn-default" href="@Url.Action("AddCategorie")"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Categorie</a>
+<a class="btn btn-default" href="@Url.Action("AddBericht")"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Bericht</a>
+<a class="btn btn-default" href="@Url.Action("AddBestand")"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Bestand</a>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/Ajax.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#Soort').on('change', function () {
-            if (this.value == '1') {
-                $("#tbNaamCategorie").show();
-                $("#tbBestandsLoc").hide();
-                $("#tbBestandGrootte").hide();
-                $("#tbTitel").hide();
-                $("#tbInhoud").hide();
-                }
-               if (this.value == '2') {
-                   $("#tbNaamCategorie").hide();
-                   $("#tbBestandsLoc").show();
-                   $("#tbBestandGrootte").show();
-                   $("#tbTitel").hide();
-                   $("#tbInhoud").hide();
-                }
 
-            if (this.value == '3') {
-                $("#tbNaamCategorie").hide();
-                $("#tbBestandsLoc").hide();
-                $("#tbBestandGrootte").hide();
-                $("#tbTitel").show();
-                $("#tbInhoud").show();
-                }
-        });
-    });
+
     $(function () {
         $('.panel-google-plus > .panel-footer > .input-placeholder, .panel-google-plus > .panel-google-plus-comment > .panel-google-plus-textarea > button[type="reset"]').on('click', function (event) {
             var $panel = $(this).closest('.panel-google-plus');
@@ -59,17 +39,18 @@
                 $comment.find('button[type="submit"]').removeClass('disabled');
             }
         });
-    });
+       });
 </script>
+@* <script src="~/Scripts/jquery-1.10.2.js"></script>*@
 
 
 @foreach (var item in Model.Bedrijges)
 {
 
- if (item is Categorie)
- {
+    if (item is Categorie)
+    {
 
-     Categorie b = (Categorie)item;
+        Categorie b = (Categorie)item;
 
         <div class="col-md-8 col-md-offset-4">
             <div class="panel panel-default panel-google-plus">
@@ -78,7 +59,14 @@
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        @if ((int?)Session["UserID"] == b.Account1.Id)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -91,32 +79,53 @@
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
-                    <p>@item.Account1.Gebruikersnaam</p>
+                    <p>@b.Naam</p>
                 </div>
+
                 <div class="panel-footer">
-                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                  
-                      <button type="button" class="[ btn btn-default ]">
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
+                    <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
+                    <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
                     <div class="input-placeholder">Add a comment...</div>
-                </div>
+                    </div>
+
                 <div class="panel-google-plus-comment">
-                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="@Convert.ToString(Session["UserName"])" />
                     <div class="panel-google-plus-textarea">
-                        <textarea rows="4"></textarea>
-                        <button type="submit" class="btn btn-success disabled">Post comment</button>
+                        @using (Html.BeginForm("AddReactie", "Bijdrage"))
+                        {
+                            <input class="form-control"
+                                   id="postid"
+                                   name="postid"
+                                   style="display: none;"
+                                   type="text"
+                                   value=@b.Id />
+                                @*<textarea cols="1" name="postid" id="@b.Id" style="display: none;">@b.Id</textarea>*@
+                                <textarea rows="4" name="Tekst"></textarea>
+                                <button type="submit" class="btn btn-success ">Post comment</button>
+                        }
                         <button type="reset" class="btn btn-default">Cancel</button>
+
                     </div>
                     <div class="clearfix"></div>
                 </div>
+
                 <div class="panel-footer">
-                    <button type="button" class="[btn btn-default loadcomments]">
+                    <button class="btn btn-default ShowCommentsById" data-item="@item.Id">
                         <span class="[ glyphicon glyphicon glyphicon-comment ]"></span>
                         Load Comments
                     </button>
+                    <div style="display: none;" id="loadingcomments-@item.Id">
+                    </div>
+                    <div class="showComments-@item.Id" data-comment="@item.Id">
+                        <div class="showComments-@item.Id"></div>
+                    </div>
                 </div>
             </div>
         </div>
+
 
 
     }
@@ -131,7 +140,14 @@
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        @if ((int?)Session["UserID"] == b.Account1.Id)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -150,22 +166,60 @@
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
                 <div class="panel-body">
-                    <p>@b.Bestandlocatie</p>
+                    @if (b.Bestandlocatie.Contains("youtube"))
+                    {
+                    var ytbestand = b.Bestandlocatie.Replace("watch?v=", "embed/");
+                    <iframe width="400" height="400" src="@ytbestand">
+                    </iframe>
+                    }
+                    else if (b.Bestandlocatie.Contains("http"))
+                    {
+                        <img src="@Url.Content(b.Bestandlocatie)" height="400px" width="400px"/>
+                    }
+                    else
+                    {
+                        <p>@b.Bestandlocatie</p>
+                    }
                 </div>
                 <div class="panel-footer">
-                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                    <button type="button" class="btn btn-default">
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                  
+                    <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
+                    <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-share-alt"></span>
                     </button>
                     <div class="input-placeholder">Add a comment...</div>
-                </div>
+                    </div>
+
                 <div class="panel-google-plus-comment">
                     <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
                     <div class="panel-google-plus-textarea">
-                        <textarea rows="4"></textarea>
-                        <button type="submit" class="btn btn-success disabled">Post comment</button>
+                        @using (Html.BeginForm("AddReactie", "Bijdrage"))
+                        {
+                            <input class="form-control"
+                                   id="postid"
+                                   name="postid"
+                                   style="display: none;"
+                                   type="text"
+                                   value=@b.Id />
+                                @*<textarea cols="1" name="postid" id="@b.Id" style="display: none;">@b.Id</textarea>*@
+                                <textarea rows="4" name="Tekst"></textarea>
+                                <button type="submit" class="btn btn-success ">Post comment</button>
+                        }
                         <button type="reset" class="btn btn-default">Cancel</button>
                     </div>
                     <div class="clearfix"></div>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn btn-default ShowCommentsById" data-item="@item.Id">
+                        <span class="[ glyphicon glyphicon glyphicon-comment ]"></span>
+                        Load Comments
+                    </button>
+                    <div style="display: none;" id="loadingcomments-@item.Id">
+                    </div>
+                    <div class="showComments-@item.Id" data-comment="@item.Id">
+                        <div class="showComments-@item.Id"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -181,7 +235,14 @@
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </span>
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        @if((int?)Session["UserID"] == b.Account1.Id)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                         <li role="presentation" class="divider"></li>
@@ -201,33 +262,56 @@
                 </div>
                 <div class="panel-body">
                     <p>@b.Inhoud</p>
-                        </div>
-                        <div class="panel-footer">
-                         <!--    <button type="button" class="btn btn-default"></button>-->
-                           <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
-                            <button type="button" class="btn btn-default">
-                                <span class="[ glyphicon glyphicon-share-alt ]"></span>
-                            </button>
-                            <div class="input-placeholder">Add a comment...</div>
-                        </div>
-                        <div class="panel-google-plus-comment">
-                            <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
-                            <div class="panel-google-plus-textarea">
-                                <textarea rows="4"></textarea>
-                                <button type="submit" class="btn btn-success disabled">Post comment</button>
-                                <button type="reset" class="btn btn-default">Cancel</button>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                </div>
+                <div class="panel-footer">
+                    <!--    <button type="button" class="btn btn-default"></button>-->
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
+                    <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
+                    <button type="button" class="btn btn-default">
+                        <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                    </button>
+                    <div class="input-placeholder">Add a comment...</div>
+                    
+                </div>
+
+                <div class="panel-google-plus-comment">
+                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                    <div class="panel-google-plus-textarea">
+                        @using (Html.BeginForm("AddReactie", "Bijdrage"))
+                        {
+                            <input class="form-control"
+                                   id="postid"
+                                   name="postid"
+                                   style="display: none;"
+                                   type="text"
+                                   value=@b.Id />
+                                @*<textarea cols="1" name="postid" id="@b.Id" style="display: none;">@b.Id</textarea>*@
+                                <textarea rows="4" name="Tekst"></textarea>
+                                <button type="submit" class="btn btn-success ">Post comment</button>
+                        }
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn btn-default ShowCommentsById" data-item="@item.Id">
+                        <span class="[ glyphicon glyphicon glyphicon-comment ]"></span>
+                        Load Comments
+                    </button>
+                    <div style="display: none;" id="loadingcomments-@item.Id">
+                    </div>
+                    <div class="showComments-@item.Id" data-comment="@item.Id">
+                        <div class="showComments-@item.Id"></div>
                     </div>
                 </div>
-     }
- }
+            </div>
+        </div>
+    }
+}
 
-@using (Html.BeginForm("AddBijdrage", "Bijdrage", FormMethod.Post,
-    new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("AddBijdrage", "Bijdrage", FormMethod.Post))
 {
-
     <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -245,20 +329,21 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="categorie">
                         <form>
-                            <hr/>
-                            
+                            <hr />
+
                             <div class="form-group">
-                                <input type="text" name="CategorieNaamNieuw" id="CategorieNaam" placeholder="Categorie" />
+                                <input type="text" name="catNaam" id="catNaam" placeholder="Categorie" />
                             </div>
                             <label>Subgenre:</label>
                             <select>
                                 <option>Geen</option>
                                 @foreach (var item1 in Model.Categories)
                                 {
-                                    <option name="CategorieNaam">@item1.Naam</option>
+                                    <option name="categorieid" value="@item1.CategorieId">@item1.Naam</option>
                                 }
                             </select>
-                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Submit"/>
+                            <input type="submit" name="soort" class="btn btn-lg btn-default btn-block" value="categorie" />
+                            @Html.ActionLink("AddBijdrage", "AddBijdrage", "Bijdrage")
                         </form>
                     </div>
 
@@ -268,44 +353,51 @@
                             <select>
                                 @foreach (var item1 in Model.Categories)
                                 {
-                                    <option name="CategorieNaam" >@item1.Naam</option>
+                                    <option name="categorieid" value="@item1.CategorieId">@item1.Naam</option>
                                 }
-                                </select>
+                            </select>
+                            <label>Plaats BestandLink (bv. Youtube-Link, GoogleImage-Link)</label>
                             <div class="form-group">
-                                <label>Upload Bestand</label>
-                                <input type="file" name="Bestand" id="Bestand"/>
+
+                                <input type="text" name="bestandslocatie" id="bestandslocatie" />
+                                @*<input type="file" name="Bestand" id="Bestand"/>*@
                             </div>
-                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Submit"/>
+                            <input type="submit" name="soort" class="btn btn-lg btn-default btn-block" value="bestand" />
+                            @Html.ActionLink("AddBijdrage", "AddBijdrage", "Bijdrage")
                         </form>
                     </div>
-                     
+
                     <div class="tab-pane" id="bericht">
                         <form>
                             <hr />
                             <div class="form-group">
-                                <input type="text" name="Titel" id="Titel" placeholder="Titel"/>
+                                <input type="text" name="Titel" id="Titel" placeholder="Titel" />
                             </div>
                             <div class="form-group">
-                                <textarea cols="80" rows="5" type="text" id="Inhoud" name ="Inhoud" placeholder="Inhoud"></textarea>
+                                <textarea cols="80" rows="5" type="text" id="Inhoud" name="Inhoud" placeholder="Inhoud"></textarea>
                             </div>
-                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Submit"/>
+                            <input type="submit" name="soort" class="btn btn-lg btn-default btn-block postLink" value="bericht" />
+                            @Html.ActionLink("AddBijdrage", "AddBijdrage", "Bijdrage")
                         </form>
-                    </div> 
-                </div>
-                
-
-            
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Close</button>
                     </div>
+                </div>
 
+
+
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" role="button">Close</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-            </div>
     </div>
+
+
+
 }
 
 

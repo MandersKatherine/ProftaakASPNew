@@ -136,7 +136,7 @@ namespace ASP_PROFTAAK
                     }
                     catch (SqlException e)
                     {
-                        throw; 
+                        throw;
                     }
                     return locatie;
 
@@ -186,7 +186,7 @@ namespace ASP_PROFTAAK
                     }
                     catch (SqlException e)
                     {
-                        throw; 
+                        throw;
                     }
 
                 }
@@ -383,7 +383,7 @@ namespace ASP_PROFTAAK
         //            "Geen Nummer",
         //            "Geen Postcode",
         //            "Geen Plaats");
-                
+
         //}
 
     }

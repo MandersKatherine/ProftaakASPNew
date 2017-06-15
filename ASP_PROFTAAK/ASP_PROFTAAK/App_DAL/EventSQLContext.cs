@@ -7,7 +7,7 @@ using ASP_PROFTAAK.Models;
 
 namespace ASP_PROFTAAK.App_DAL
 {
-    public class EventSQLContext:IEventContext
+    public class EventSQLContext : IEventContext
     {
         public List<Event> GetAllEvents()
         {
@@ -170,9 +170,9 @@ namespace ASP_PROFTAAK.App_DAL
                  Convert.ToDateTime(reader["datumstart"]),
                  Convert.ToDateTime(reader["datumEinde"]),
                  Convert.ToInt32(reader["maxBezoekers"]));
-          
 
-            
-    }
+
+
+        }
     }
 }

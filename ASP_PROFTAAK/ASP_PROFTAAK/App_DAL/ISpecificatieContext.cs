@@ -15,5 +15,6 @@ namespace ASP_PROFTAAK.App_DAL
         bool DeleteSpecificatie(int id);
 
         bool UpdateSpecificatie(Specificatie specificatie);
+        List<Specificatie> GetAllSpecificatieByPlekId(int id);
     }
 }

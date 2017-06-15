@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ASP_PROFTAAK.Models.Aanwezig>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bezoekers van het evenement</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Aanwezig
+        </th>
+        <th>
+            Barcode polsbandje
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voornaam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tussenvoegsel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Achternaam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefoonNummer)
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @if ((int)item.AanwezigopEvent == 1)
+                {
+                    <input type="checkbox" disabled="disabled" checked>
+                }
+                else
+                {
+                    <input type="checkbox" disabled="disabled">
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Barcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Voornaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tussenvoegsel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Achternaam)
+            </td>
+            <td>
+                0 @Html.DisplayFor(modelItem => item.TelefoonNummer)
+            </td>
+            <td>
+
+                @using (Html.BeginForm("ChangeAanwezigheid", "Toegang", new {eventid = item.EventId, barcode = item.Barcode}))
+                {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" name="ChangeAanwezigheid" value="Verrander aanwezigheid" class="btn btn-default"/>
+                        </div>
+                    </div>
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("BrengPolsbandjeTerug", "Toegang", new {eventid = item.EventId, barcode = item.Barcode}))
+                {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" name="BrengPolsbandjeTerug" value="Polsbandje retourneren" class="btn btn-default"/>
+                        </div>
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@Html.ActionLink("Terug naar evenementen", "index", "Event")
+

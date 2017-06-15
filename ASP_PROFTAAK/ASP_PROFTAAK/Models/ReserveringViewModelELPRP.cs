@@ -12,6 +12,6 @@ namespace ASP_PROFTAAK.Models
         public List<Plek> plekken { get; set; }
         public Reservering reservering { get; set; }
         public Persoon persoon { get; set; }
-        public List<Groepslid> groepsleden { get; set; }
+        public List<Account> groepsleden { get; set; }
     }
 }

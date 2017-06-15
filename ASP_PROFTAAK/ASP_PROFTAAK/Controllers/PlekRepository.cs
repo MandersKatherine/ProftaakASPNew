@@ -26,7 +26,7 @@ namespace ASP_PROFTAAK.Controllers
             return context.DeletePlek(id);
         }
 
-        
+
 
         public bool UpdatePlek(Plek plek)
         {
@@ -63,5 +63,5 @@ namespace ASP_PROFTAAK.Controllers
 
 
 
-}
+    }
 }

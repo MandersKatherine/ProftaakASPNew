@@ -15,7 +15,7 @@ namespace ASP_PROFTAAK.Models
 
         public Plek()
         {
-            
+
         }
 
         public Plek(int iD, int locatieid, string nummer, int capaciteit)
@@ -26,14 +26,14 @@ namespace ASP_PROFTAAK.Models
             this.Capaciteit = capaciteit;
         }
 
-        public Plek(int locatieid, string nummer, int capaciteit) :this(-1, locatieid,nummer,capaciteit)
+        public Plek(int locatieid, string nummer, int capaciteit) : this(-1, locatieid, nummer, capaciteit)
         {
-            
+
         }
 
         public void AddSpecificatie()
         {
-            
+
         }
     }
 }

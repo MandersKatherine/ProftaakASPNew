@@ -86,5 +86,10 @@ namespace ASP_PROFTAAK.App_DAL.Tests
             specificaties[1] = specificatie;
             return true;
         }
+
+        public List<Specificatie> GetAllSpecificatieByPlekId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

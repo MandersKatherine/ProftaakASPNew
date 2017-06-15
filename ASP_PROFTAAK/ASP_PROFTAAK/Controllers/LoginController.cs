@@ -33,7 +33,7 @@ namespace ASP_PROFTAAK.Controllers
             {
                 Session["Email"] = loggedInUser.Email;
                 Session["UserId"] = ID;
-
+                Session["UserName"] = accountrepo.GetAccountById(ID).Gebruikersnaam;
                 return RedirectToAction("Index", "Home");
 
             }
