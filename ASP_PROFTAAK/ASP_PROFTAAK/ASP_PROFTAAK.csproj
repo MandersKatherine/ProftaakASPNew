@@ -243,6 +243,7 @@
     <Compile Include="Models\Mening.cs" />
     <Compile Include="Models\Persoon.cs" />
     <Compile Include="Models\Plek.cs" />
+    <Compile Include="Models\PlekSpecificatieViewModel.cs" />
     <Compile Include="Models\Polsbandje.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategorie.cs" />
