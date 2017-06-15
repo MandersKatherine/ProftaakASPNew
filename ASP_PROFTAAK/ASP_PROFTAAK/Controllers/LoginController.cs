@@ -54,7 +54,7 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Event");
         }
 
 

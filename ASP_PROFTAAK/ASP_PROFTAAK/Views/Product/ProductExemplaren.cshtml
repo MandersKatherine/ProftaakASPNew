@@ -34,7 +34,7 @@ using (Html.BeginForm("HuurProducten", "Product", FormMethod.Post))
     if (Convert.ToInt32(Session["UserId"]) >= 1)
     {
         <p>
-            @Html.ActionLink("Create New ProductExamplaar", "CreateProductExemplaar")
+            @Html.ActionLink("Create New ProductExamplaar", "Create", "ProductExemplaar")
         </p>
     }
 
