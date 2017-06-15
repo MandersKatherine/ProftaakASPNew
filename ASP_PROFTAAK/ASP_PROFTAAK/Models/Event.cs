@@ -33,7 +33,7 @@ namespace ASP_PROFTAAK.Models
 
         public Event()
         {
-            
+
         }
 
         public Event(int id, int locatie_id, string naam, DateTime datumStart, DateTime datumEinde, int maxBezoekers)
@@ -46,9 +46,9 @@ namespace ASP_PROFTAAK.Models
             this.maxBezoekers = maxBezoekers;
         }
         public Event(int locatie_id, string naam, DateTime datumStart, DateTime datumEinde, int maxBezoekers)
-            :this(-1,locatie_id,naam,datumStart,datumEinde,maxBezoekers)
+            : this(-1, locatie_id, naam, datumStart, datumEinde, maxBezoekers)
         {
-            
+
         }
         public override string ToString()
         {

@@ -166,6 +166,7 @@
     <Compile Include="App_DAL\IProductExemplaarContext.cs" />
     <Compile Include="App_DAL\IReserveringContext.cs" />
     <Compile Include="App_DAL\ISpecificatieContext.cs" />
+    <Compile Include="App_DAL\IToegangsControleContext.cs" />
     <Compile Include="App_DAL\IVerhuurContext.cs" />
     <Compile Include="App_DAL\LocatieSQLContext.cs" />
     <Compile Include="App_DAL\PersoonSQLContext.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="App_DAL\ProductSQLContext.cs" />
     <Compile Include="App_DAL\ReserveringSQLContext.cs" />
     <Compile Include="App_DAL\SpecificatieSQLContext.cs" />
+    <Compile Include="App_DAL\ToegansSqlContext.cs" />
     <Compile Include="App_DAL\VerhuurSqlContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -208,6 +210,8 @@
     <Compile Include="Controllers\ProductRepository.cs" />
     <Compile Include="Controllers\ReserveringController.cs" />
     <Compile Include="Controllers\ReserveringRepository.cs" />
+    <Compile Include="Controllers\ToegangController.cs" />
+    <Compile Include="Controllers\ToeganRepository.cs" />
     <Compile Include="Controllers\VerhuurController.cs" />
     <Compile Include="Controllers\VerhuurRepository.cs" />
     <Compile Include="Controllers\ViewModelEventPlek.cs" />
@@ -220,6 +224,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aanwezig.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBijdrage.cs" />
     <Compile Include="Models\Bericht.cs" />
@@ -260,13 +265,20 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\comment.css" />
+    <Content Include="Content\Image\EventImage.jpg" />
+    <Content Include="Content\Image\GamingGear.jpg" />
+    <Content Include="Content\Image\HomepageImage1.jpg" />
+    <Content Include="Content\Image\HomepageImage2.jpg" />
+    <Content Include="Content\Image\SocialMedia.jpg" />
     <Content Include="Email\emailtemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\ajax-loader.gif" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -341,6 +353,14 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\ProductExemplaar\Create.cshtml" />
     <Content Include="Views\Product\Return.cshtml" />
+    <Content Include="Views\Bijdrage\NoComments.cshtml" />
+    <Content Include="Views\Bijdrage\Comments.cshtml" />
+    <Content Include="Views\Bijdrage\MisluktRea.cshtml" />
+    <Content Include="Views\Bijdrage\AddCategorie.cshtml" />
+    <Content Include="Views\Bijdrage\AddBericht.cshtml" />
+    <Content Include="Views\Bijdrage\AddBestand.cshtml" />
+    <Content Include="Views\Toegang\Index.cshtml" />
+    <Content Include="Views\Bijdrage\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />
@@ -383,7 +403,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3258</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

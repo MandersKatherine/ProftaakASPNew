@@ -1,0 +1,36 @@
+﻿@model ASP_PROFTAAK.Models.BijdragePosterViewModel
+
+@{
+    ViewBag.Title = "AddBijdrage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("AddBijdrage", "Bijdrage", FormMethod.Post))
+{
+    <h2>Bijdrage Plaatsen</h2>
+
+    <form>
+                <hr/>
+
+                <div class="form-group">
+                    <input type="text" name="catNaam" id="catNaam" placeholder="Categorie"/>
+                </div>
+                <label>Subgenre:</label>
+        <select>
+            <option name="categorieid" value="0">Geen</option>
+            @foreach (var item1 in Model.Categories)
+            {
+                <option name="categorieid" value="@item1.CategorieId">@item1.Naam</option>
+            }
+        </select>
+        <textarea type="text" id="Titel" name="Titel" style="display: none"></textarea>
+        <textarea type="text" id="bestandslocatie" name="bestandslocatie" style="display: none"></textarea>
+        <textarea type="text" id="Inhoud" name="Inhoud" style="display: none"></textarea>
+        <input type="submit" name="soort" class="btn btn-lg btn-default btn-block" value="categorie" />
+                @*<button class="btn btn-lg btn-default btn-block" type="submit" value="categorie">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>*@
+            </form>
+        
+
+        
+}

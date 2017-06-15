@@ -28,12 +28,16 @@ namespace ASP_PROFTAAK.Controllers
 
         public void InsertSpecificatie(Specificatie specificatie)
         {
-             context.InsertSpecificatie(specificatie);
+            context.InsertSpecificatie(specificatie);
         }
 
         public bool UpdatePlek(Specificatie specificatie)
         {
             return context.UpdateSpecificatie(specificatie);
+        }
+        public List<Specificatie> GetAllSpecificatieByPlekId(int id)
+        {
+            return context.GetAllSpecificatieByPlekId(id);
         }
     }
 }

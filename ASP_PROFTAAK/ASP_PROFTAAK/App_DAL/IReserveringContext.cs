@@ -15,7 +15,7 @@ namespace ASP_PROFTAAK.App_DAL
 
         void UpdateReservering(Reservering reserveringen);
 
-        
+
         Reservering GetReserveringById(decimal id);
 
         List<Reservering> GetReserveringByAccountId(decimal accountid);
@@ -26,5 +26,6 @@ namespace ASP_PROFTAAK.App_DAL
             string woonplaats, string banknummer);
 
         void DeleteReservering(int id);
+        void betaalReservering(int id);
     }
 }

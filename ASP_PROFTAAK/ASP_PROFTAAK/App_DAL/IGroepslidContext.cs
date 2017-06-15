@@ -15,7 +15,7 @@ namespace ASP_PROFTAAK.App_DAL
 
         Groepslid GetGroepslidByAccountIDandResID(int accountId, int reserveringId);
 
-
+        void GeefPolsbandjeAf(int accountId, int reserveringId);
 
     }
 }

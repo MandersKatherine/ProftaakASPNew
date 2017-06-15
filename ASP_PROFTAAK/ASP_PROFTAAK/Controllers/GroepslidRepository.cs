@@ -36,6 +36,9 @@ namespace ASP_PROFTAAK.Controllers
             return context.GetGroepslidByAccountIDandResID(accountId, reserveringId);
         }
 
-
+        public void GeefPolsbandjeAf(int accountId, int reserveringId)
+        {
+            context.GeefPolsbandjeAf(accountId, reserveringId);
+        }
     }
 }

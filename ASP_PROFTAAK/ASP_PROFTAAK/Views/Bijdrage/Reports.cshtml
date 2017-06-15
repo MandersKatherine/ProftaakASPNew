@@ -1,0 +1,137 @@
+﻿@using ASP_PROFTAAK.Models
+@model IEnumerable<ASP_PROFTAAK.Models.Bijdrage>
+
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reports</h2>
+
+@foreach (var item in Model)
+{
+
+    if (item is Categorie)
+    {
+
+        Categorie b = (Categorie)item;
+
+        <div class="col-md-8 col-md-offset-4">
+            <div class="panel panel-default panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>Harry1234</h3>
+                    <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>@b.Naam</p>
+                </div>
+
+                </div>
+                </div>
+        
+
+
+
+    }
+
+    if (item is Bestand)
+    {
+        Bestand b = (Bestand)item;
+        <div class="col-md-8 col-md-offset-4">
+            <div class="panel panel-default panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>@item.Account1.Gebruikersnaam</h3>
+                    <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
+                </div>
+                <div class="panel-body">
+                    @if (b.Bestandlocatie.Contains("youtube"))
+                    {
+                        var ytbestand = b.Bestandlocatie.Replace("watch?v=", "embed/");
+                        <iframe width="400" height="400" src="@ytbestand">
+                        </iframe>
+                    }
+                    else if (b.Bestandlocatie.Contains("http"))
+                    {
+                        <img src="@Url.Content(b.Bestandlocatie)" height="400px" width="400px"/>
+                    }
+                    else
+                    {
+                        <p>@b.Bestandlocatie</p>
+                    }
+                </div>
+                
+            </div>
+        </div>
+    }
+
+    if (item is Bericht)
+    {
+        Bericht b = (Bericht)item;
+        <div class="col-md-8 col-md-offset-4">
+            <div class="panel panel-default panel-google-plus">
+                <div class="dropdown">
+                    <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </span>
+                    <ul class="dropdown-menu" role="menu">
+                        @if ((int?)Session["UserID"] == 1)
+                        {
+                            <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
+                        }
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div class="panel-google-plus-tags">
+                    <ul>
+                        <li>#Millennials</li>
+                        <li>#Generation</li>
+                    </ul>
+                </div>
+                <div class="panel-heading">
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <h3>@item.Account1.Gebruikersnaam</h3>
+                    <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
+                </div>
+                <div class="panel-body">
+                    <p>@b.Inhoud</p>
+                </div>
+                
+            </div>
+        </div>
+    }
+}

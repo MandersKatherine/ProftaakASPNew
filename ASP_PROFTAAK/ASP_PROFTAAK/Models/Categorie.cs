@@ -34,7 +34,7 @@ namespace ASP_PROFTAAK.Models
             this.naam = naam;
         }
 
-        public Categorie(int categorieId, string naam) : base(null,DateTime.Now, null,null)
+        public Categorie(int id, int categorieId, string naam) : base(id,null,DateTime.Now, null,null)
         {
             this.categorieId = categorieId;
             this.naam = naam;
