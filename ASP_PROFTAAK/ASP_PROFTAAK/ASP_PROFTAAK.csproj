@@ -238,6 +238,7 @@
     <Compile Include="Models\EventLocationViewModel.cs" />
     <Compile Include="Models\Groepslid.cs" />
     <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Models\Like1.cs" />
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\LocatiePlekViewModel.cs" />
     <Compile Include="Models\Mening.cs" />

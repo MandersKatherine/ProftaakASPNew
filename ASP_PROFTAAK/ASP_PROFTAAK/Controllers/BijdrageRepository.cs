@@ -78,5 +78,9 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.GetAllReports();
         }
+        public List<Like1> GetAllLikes()
+        {
+            return context.GetAllLikes();
+        }
     }
 }
