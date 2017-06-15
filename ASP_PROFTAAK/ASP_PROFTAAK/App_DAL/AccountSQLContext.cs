@@ -257,7 +257,7 @@ namespace ASP_PROFTAAK.App_DAL
                     command.Parameters.AddWithValue("@voornaam", account.Voornaam);
                     command.Parameters.AddWithValue("@tussenvoegsel", account.Tussenvoegsel);
                     command.Parameters.AddWithValue("@achternaam", account.Achternaam);
-                    command.Parameters.AddWithValue("@telefoonnr", account.Telefoonnr);
+                    command.Parameters.AddWithValue("@telefoonnummer", account.Telefoonnr);
                     command.Parameters.AddWithValue("@id", id);
                     command.ExecuteNonQuery();
                     try

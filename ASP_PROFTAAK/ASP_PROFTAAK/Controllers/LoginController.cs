@@ -23,38 +23,50 @@ namespace ASP_PROFTAAK.Controllers
         {
             return View(); 
         }
+
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
-            Account loggedInUser = new Account(email, password);
-            int ID = accountrepo.GetaccountId(loggedInUser.Email);
 
-            if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == true)
+            if (Request.Form["login"] != null)
             {
-                Session["Email"] = loggedInUser.Email;
-                Session["UserId"] = ID;
-                Session["UserName"] = accountrepo.GetAccountById(ID).Gebruikersnaam;
-                return RedirectToAction("Index", "Home");
+                Account loggedInUser = new Account(email, password);
+                int ID = accountrepo.GetaccountId(loggedInUser.Email);
+
+                if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == true)
+                {
+                    Session["Email"] = loggedInUser.Email;
+                    Session["UserId"] = ID;
+                    Session["UserName"] = accountrepo.GetAccountById(ID).Gebruikersnaam;
+                    return RedirectToAction("Index", "Home");
+
+                }
+                else if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == false)
+                {
+                    TempData["NotActivated"] = "NotActivated";
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    TempData["Login"] = "Wrong login";
+                    return RedirectToAction("Index", "Login");
+                }
 
             }
-            else if (loginrepo.Login(email, password) == true && accountrepo.CheckActivationStatus(ID) == false)
+            if (Request.Form["activate"] != null)
             {
-                TempData["NotActivated"] = "NotActivated";
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                TempData["Login"] = "Wrong login";
-                return RedirectToAction("Index", "Login");
-            }
 
+                return RedirectToAction("Activate", "Account");
+
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Login
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Index", "Event");
+            return RedirectToAction("Index", "Home");
         }
 
 

@@ -19,10 +19,11 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Locatie_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Locatie toevoegen</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Locatie_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Locatie_id, "", new { @class = "text-danger" })
+                @Html.DropDownList("locatie", null, "select locatie", new { @class = "dropdown" })
+                @Html.ActionLink("Add een nieuwe locatie", "AddLocation")
+
             </div>
         </div>
 

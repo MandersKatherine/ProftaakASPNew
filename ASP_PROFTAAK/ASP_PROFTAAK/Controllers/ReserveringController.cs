@@ -110,7 +110,7 @@ namespace ASP_PROFTAAK.Controllers
             // TODO: Add insert logic here
 
             reserveringrepo.CreateReservering(Convert.ToDateTime(collection["events.DatumStart"]), Convert.ToDateTime(collection["events.DatumEinde"]), 0, Convert.ToInt32(Session["UserId"]), 0, Convert.ToString(collection["plekId"]), collection["voornaam"], collection["tussenvoegsel"], collection["achternaam"], collection["straat"], collection["huisnummer"], collection["woonplaats"], collection["banknummer"]);
-            return RedirectToAction("Index");
+            return RedirectToAction("Reservering");
 
 
 

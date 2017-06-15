@@ -39,7 +39,7 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            Account account = new Account(collection["Voornaam"], collection["Tussenvoegsel"], collection["Achternaam"], Convert.ToInt32(collection["Telefoonnummer"]), collection["Gebruikersnaam"], collection["Wachtwoord"], collection["Email"], MD5.CreateMD5(collection["Email"]), 0);
+            Account account = new Account(collection["Voornaam"], collection["Tussenvoegsel"], collection["Achternaam"], Convert.ToInt32(collection["Telefoonnr"]), collection["Gebruikersnaam"], collection["Wachtwoord"], collection["Email"], MD5.CreateMD5(collection["Email"]), 0);
             try
             {
                 // TODO: Add insert logic here
@@ -69,17 +69,13 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult EditPersonalDetails(FormCollection collection)
         {
-            Account account = new Account(collection["Voornaam"], collection["Tussenvoegsel"], collection["Achternaam"], Convert.ToInt32(collection["Telefoonnummer"]), collection["Gebruikersnaam"], collection["Wachtwoord"], collection["Email"]);
-            try
-            {
+            Account account = new Account(collection["Voornaam"], collection["Tussenvoegsel"], collection["Achternaam"], Convert.ToInt32(collection["Telefoonnr"]), collection["Gebruikersnaam"], collection["Wachtwoord"], collection["Email"]);
+            
                 // TODO: Add update logic here
                 accountrepo.UpdateAccount(Convert.ToInt32(Session["UserId"]), account);
-                return RedirectToAction("Details", "Account");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("EditPersonalDetails");
+            
+            
         }
 
 

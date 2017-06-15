@@ -103,10 +103,15 @@ namespace ASP_PROFTAAK.Controllers
             ViewData["locatie"] = new SelectList(locrepo.GetAllLocations(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
 
             string locatie = Request.Form["locatie"].ToString();
+            DateTime DateTimeStart = Convert.ToDateTime(collection["DatumStart"]);
+            string DateStart = DateTimeStart.Date.ToString();
+            DateTime DateTimeEinde = Convert.ToDateTime(collection["DatumStart"]);
+            string DateEinde = DateTimeEinde.Date.ToString();
 
             if (string.IsNullOrEmpty(locatie))
             {
-                Event events = new Event(0, collection["Naam"], Convert.ToDateTime(collection["DatumStart"]), Convert.ToDateTime(collection["DatumEinde"]), Convert.ToInt32(collection["MaxBezoekers"]));
+                
+                Event events = new Event(0, collection["Naam"], Convert.ToDateTime(DateStart), Convert.ToDateTime(DateEinde), Convert.ToInt32(collection["MaxBezoekers"]));
                 if (ModelState.IsValid)
                 {
                     eventrepo.InsertEvent(events);
@@ -117,7 +122,7 @@ namespace ASP_PROFTAAK.Controllers
             else
             {
                 int locatieId = Convert.ToInt32(locatie);
-                Event events = new Event(locatieId, collection["Naam"], Convert.ToDateTime(collection["DatumStart"]), Convert.ToDateTime(collection["DatumEinde"]), Convert.ToInt32(collection["MaxBezoekers"]));
+                Event events = new Event(locatieId, collection["Naam"], Convert.ToDateTime(DateStart), Convert.ToDateTime(DateEinde), Convert.ToInt32(collection["MaxBezoekers"]));
                 if (ModelState.IsValid)
                 {
                     eventrepo.InsertEvent(events);
@@ -141,6 +146,17 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
+            List<Locatie> locaties = locrepo.GetAllLocations();
+            List<SelectListItem> locatieItems = new List<SelectListItem>();
+
+            foreach (Locatie locatie in locaties)
+            {
+                locatieItems.Add(new SelectListItem { Text = locatie.Naam, Value = Convert.ToString(locatie.Id) });
+            }
+
+
+            ViewBag.category = locatieItems;
+            ViewData["locatie"] = new SelectList(locrepo.GetAllLocations(), "Id", "Naam");
             Event events = eventrepo.GetByID(id);
             if (events != null)
             {
@@ -156,6 +172,9 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            ViewData["locatie"] = new SelectList(locrepo.GetAllLocations(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
+            string locatie = Request.Form["locatie"].ToString();
+
             Event events = new Event(Convert.ToInt32(collection["locatie_id"]), collection["Naam"], Convert.ToDateTime(collection["datumStart"]), Convert.ToDateTime(collection["datumEinde"]), Convert.ToInt32(collection["maxBezoekers"]));
             try
             {
