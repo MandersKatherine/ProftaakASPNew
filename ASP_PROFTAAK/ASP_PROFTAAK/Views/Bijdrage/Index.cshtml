@@ -67,14 +67,11 @@
                         {
                             <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
                         }
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Extra</a></li>
+                       </ul>
                 </div>
                 <div class="panel-heading">
-                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="Mouse0270" />
                     <h3>Harry1234</h3>
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
@@ -83,7 +80,14 @@
                 </div>
 
                 <div class="panel-footer">
-                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like
+                    @try
+                    {
+                        if (Model.Likes.Find(x => x.bijdrage_id == b.Id).bestaat)
+                         {@Model.Likes.Find(x => x.bijdrage_id == b.Id).likes}
+                    }
+                    catch { }
+                    </a>
                     <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
                     <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
@@ -148,11 +152,8 @@
                         {
                             <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
                         }
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Extra</a></li>
+                        </ul>
                 </div>
                 <div class="panel-google-plus-tags">
                     <ul>
@@ -161,7 +162,7 @@
                     </ul>
                 </div>
                 <div class="panel-heading">
-                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="Mouse0270" />
                     <h3>@item.Account1.Gebruikersnaam</h3>
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
@@ -178,11 +179,18 @@
                     }
                     else
                     {
-                        <p>@b.Bestandlocatie</p>
+                        <a href="@b.Bestandlocatie">@b.Bestandlocatie</a>
                     }
                 </div>
                 <div class="panel-footer">
-                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>                  
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like
+                        @try
+                        {
+                            if (Model.Likes.Find(x => x.bijdrage_id == b.Id).bestaat)
+                            {@Model.Likes.Find(x => x.bijdrage_id == b.Id).likes}
+                        }
+                        catch { }
+                    </a>                  
                     <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
                     <button type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-share-alt"></span>
@@ -243,11 +251,8 @@
                         {
                             <li role="presentation"><a href="@Url.Action("VerwijderBijdrage", "Bijdrage" , new {id = b.Id}, null)" role="menuitem" tabindex="-1">Verwijder Bijdrage</a></li>
                         }
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Extra</a></li>
+                        </ul>
                 </div>
                 <div class="panel-google-plus-tags">
                     <ul>
@@ -256,7 +261,7 @@
                     </ul>
                 </div>
                 <div class="panel-heading">
-                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                    <img class="img-circle pull-left" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="Mouse0270" />
                     <h3>@item.Account1.Gebruikersnaam</h3>
                     <h5><span>Shared publicly</span> - <span>@item.Datum</span> </h5>
                 </div>
@@ -265,7 +270,14 @@
                 </div>
                 <div class="panel-footer">
                     <!--    <button type="button" class="btn btn-default"></button>-->
-                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like</a>
+                    <a href="@Url.Action("Like", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Like
+                        @try
+                        {
+                            if (Model.Likes.Find(x => x.bijdrage_id == b.Id).bestaat)
+                            {@Model.Likes.Find(x => x.bijdrage_id == b.Id).likes}
+                        }
+                        catch { }
+                    </a>
                     <a href="@Url.Action("Report", "Bijdrage", new { AccountID = Convert.ToInt32(Session["UserId"]), BijdrageID = b.Id }, null)" class="btn btn-default">Report</a>
                     <button type="button" class="btn btn-default">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>

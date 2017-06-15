@@ -25,5 +25,6 @@ namespace ASP_PROFTAAK.App_DAL
         bool Report(int BijdrageID, int AccountID);
         bool AddReactie(string Tekst, int accountId, int postId);
         List<Bijdrage> GetAllReports();
+        List<Like1> GetAllLikes();
     }
 }

@@ -13,5 +13,6 @@ namespace ASP_PROFTAAK.Models
         public List<Categorie> Categories { get; set; }
 
         public List<Reactie> Reacties { get; set; }
+        public List<Like1> Likes { get; set; }
     }
 }

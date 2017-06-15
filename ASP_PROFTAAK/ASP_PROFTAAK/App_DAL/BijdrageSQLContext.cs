@@ -241,7 +241,40 @@ namespace ASP_PROFTAAK.App_DAL
             }
             return bijdrageList;
         }
+        public List<Like1> GetAllLikes()
+        {
+            List<Like1> likeList = new List<Like1>();
 
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query =
+                    "SELECT bijdrage_id, SUM([like]) AS Likes FROM ACCOUNT_BIJDRAGE GROUP BY bijdrage_id";
+                //"";
+
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Like1 like = CreateLikeFromReader(reader);
+                            likeList.Add(like);
+                        }
+                    }
+                }
+            }
+            return likeList;
+        }
+
+        private Like1 CreateLikeFromReader(SqlDataReader reader)
+        {
+            return new Like1(
+                Convert.ToInt32(reader["bijdrage_id"]),
+                Convert.ToInt32(reader["Likes"])
+            );
+        }
         private Reactie CreateReactieromReader(SqlDataReader reader)
         {
             return new Reactie(

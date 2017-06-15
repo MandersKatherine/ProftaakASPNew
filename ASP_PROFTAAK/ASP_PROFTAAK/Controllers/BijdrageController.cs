@@ -28,7 +28,8 @@ namespace ASP_PROFTAAK.Controllers
             var ViewModel = new BijdragePosterViewModel
             {
                 Bedrijges = bijdragerepo.GetAllBijdrages(),
-                Categories = bijdragerepo.GetAllCategories()
+                Categories = bijdragerepo.GetAllCategories(),
+                Likes = bijdragerepo.GetAllLikes()
             };
             return View(ViewModel);
         }
