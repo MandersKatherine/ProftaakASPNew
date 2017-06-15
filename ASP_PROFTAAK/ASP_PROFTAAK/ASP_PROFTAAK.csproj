@@ -361,6 +361,7 @@
     <Content Include="Views\Bijdrage\AddBestand.cshtml" />
     <Content Include="Views\Toegang\Index.cshtml" />
     <Content Include="Views\Bijdrage\Reports.cshtml" />
+    <Content Include="Views\Product\Betaal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />

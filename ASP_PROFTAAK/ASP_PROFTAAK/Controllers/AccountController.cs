@@ -44,11 +44,11 @@ namespace ASP_PROFTAAK.Controllers
             {
                 // TODO: Add insert logic here
                 accountrepo.InsertAccount(account);
-                Models.Email mail = new Models.Email("Activeer uw account", "inhoud", "dhrlaaboudi@gmail.com");
+                Models.Email mail = new Models.Email("Activeer uw account", "inhoud", collection["Email"]);
                 //EmailLogic.SendEmail(mail);
                 EmailLogic.SendEmailNew(mail, account.Activatiehash, account.Voornaam);
 
-                return RedirectToAction("Create", "Account");
+                return RedirectToAction("Activate", "Account");
             }
             catch
             {

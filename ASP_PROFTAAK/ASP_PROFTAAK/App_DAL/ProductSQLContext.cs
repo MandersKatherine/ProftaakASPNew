@@ -68,6 +68,20 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
+        public bool Betaal(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "update VERHUUR set betaald = 1 where ID = @id;";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            }
+        }
+
         public void Update(Product product, ProductCategorie productCategorie)
         {
             using (SqlConnection connection = Database.Connection)

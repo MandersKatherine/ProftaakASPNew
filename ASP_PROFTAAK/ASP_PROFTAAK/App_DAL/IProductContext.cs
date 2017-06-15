@@ -15,6 +15,8 @@ namespace ASP_PROFTAAK.App_DAL
         Product GetProduct(int id);
         void Update(Product product);
         bool ReturnProduct(int id);
+        bool Betaal(int id);
+
 
     }
 }

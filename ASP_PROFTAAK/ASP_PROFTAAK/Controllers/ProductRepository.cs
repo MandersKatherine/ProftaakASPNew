@@ -21,6 +21,11 @@ namespace ASP_PROFTAAK.Controllers
             return context.GetProduct(id); 
         }
 
+        public bool Betaal(int id)
+        {
+            return context.Betaal(id);
+        }
+
         public bool ReturnProduct(int id)
         {
             return context.ReturnProduct(id);

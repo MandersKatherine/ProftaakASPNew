@@ -213,6 +213,26 @@ namespace ASP_PROFTAAK.Controllers
             }
         }
 
+        public ActionResult Betaal(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Betaal(int id, FormCollection collection)
+        {
+            try
+            {
+                PR.Betaal(id);
+                return RedirectToAction("MijnProductExemplaren");
+            }
+            catch (Exception)
+            {
+                return View();
+                throw;
+            }
+        }
+
 
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
