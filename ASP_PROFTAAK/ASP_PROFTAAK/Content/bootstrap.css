@@ -283,10 +283,10 @@ table {
   }
   .btn > .caret,
   .dropup > .btn > .caret {
-    border-top-color: #000 !important;
+    border-top-color: #FFF !important;
   }
   .label {
-    border: 1px solid #000;
+    border: 1px solid #FFF;
   }
   .table {
     border-collapse: collapse !important;

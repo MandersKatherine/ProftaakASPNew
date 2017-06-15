@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Plaats)
             </td>
             <td>
-                @Html.ActionLink("Edit locatie", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Edit locatie", "Editlocatie", new { id = item.Id }) |
                 @Html.ActionLink("Edit plekken", "EditPlekken", new { id = item.Id }) |
-                @Html.ActionLink("Delete locatie", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete locatie", "DeleteLocatie", new { id = item.Id })
             </td>
         </tr>
     }

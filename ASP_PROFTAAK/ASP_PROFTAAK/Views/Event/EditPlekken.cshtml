@@ -1,4 +1,4 @@
-﻿                      @model ASP_PROFTAAK.Models.PlekSpecificatieViewModel
+﻿@model ASP_PROFTAAK.Models.PlekSpecificatieViewModel
 
 @{
     ViewBag.Title = "EditPlekken";
@@ -39,12 +39,8 @@
                 </td>
                 <td>
                     @Html.TextBox("plekken[" + @i + "].LocatieId", Model.plekken[i].LocatieId, new {@readonly = "readonly"})
-
-                    @Html.TextBox("plekken[" + @i + "].ID", Model.plekken[i].ID, new { @readonly = "readonly" })
-                </td>
-                <td>
-                    @Html.TextBox("plekken[" + @i + "].LocatieId", Model.plekken[i].LocatieId, new { @readonly = "readonly" })
-                </td>
+               
+                
                 <td>
                     @Html.TextBox("plekken[" + @i + "].Nummer", Model.plekken[i].Nummer)
                 </td>
@@ -56,7 +52,7 @@
                     {
                         
                             
-                        @Html.TextBoxFor(model => item.Naam) <p>, </p> 
+                        @Html.TextBoxFor(model => item.Naam) 
                         
 
                     }

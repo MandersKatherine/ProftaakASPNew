@@ -17,5 +17,7 @@ namespace ASP_PROFTAAK.App_DAL
         bool UpdateEvent(int id, Event events);
         Event GetEventById(int id);
         bool DeleteEvent(int id);
+        bool DeleteLocatie(int id);
+
     }
 }
