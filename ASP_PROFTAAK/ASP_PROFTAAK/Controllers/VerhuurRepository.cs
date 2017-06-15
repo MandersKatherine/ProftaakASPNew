@@ -21,6 +21,11 @@ namespace ASP_PROFTAAK.Controllers
             return context.GetAllVerhuurdByAccountId(accountId);
         }
 
+        public void Delete(int id)
+        {
+             context.Delete(id); 
+        }
+
 
         public void Insert(Verhuurd verhuurd)
         {

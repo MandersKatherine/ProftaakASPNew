@@ -23,6 +23,10 @@ namespace ASP_PROFTAAK.Models
             this.Prijs = prijs;
         }
 
+        public Product(decimal productId)
+        {
+            this.productId = productId;
+        }
         public Product(decimal categorieId, string merk, string serie, string typenummer, decimal prijs)
         {
             this.CategorieId = categorieId;

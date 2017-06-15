@@ -12,6 +12,9 @@ namespace ASP_PROFTAAK.App_DAL
         void Insert(Product product, ProductCategorie productCategorie);
         void Update(Product product, ProductCategorie productCategorie);
         void Delete(Product product);
+        Product GetProduct(int id);
+        void Update(Product product);
+        bool ReturnProduct(int id);
 
     }
 }

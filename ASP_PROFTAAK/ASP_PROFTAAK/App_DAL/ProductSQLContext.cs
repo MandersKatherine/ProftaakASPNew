@@ -54,6 +54,20 @@ namespace ASP_PROFTAAK.App_DAL
             }
         }
 
+        public bool ReturnProduct(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "Delete from Verhuur where ID = @id;";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            }
+        }
+
         public void Update(Product product, ProductCategorie productCategorie)
         {
             using (SqlConnection connection = Database.Connection)
@@ -73,6 +87,47 @@ namespace ASP_PROFTAAK.App_DAL
                 }
             }
         }
+
+        public void Update(Product product)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "UPDATE Product" +
+                               " SET Merk = @merk, serie = @serie, Typnummer = @typenummer, prijs = @prijs" +
+                               " WHERE id = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", product.ProductId);
+                    command.Parameters.AddWithValue("@merk", product.Merk);
+                    command.Parameters.AddWithValue("@serie", product.Serie);
+                    command.Parameters.AddWithValue("@typenummer", product.Typenummer);
+                    command.Parameters.AddWithValue("@prijs", product.Prijs);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public Product GetProduct(int id)
+        {
+            using (SqlConnection connectie = Database.Connection)
+            {
+                string query = "select * from Product where ID = @id;";
+                SqlCommand cmd = new SqlCommand(query, connectie);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Product product = CreateProductFromReader(reader);
+                        return product;
+                    }
+                }
+            }
+            return null;
+        }
+
 
 
        

@@ -112,6 +112,20 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Product/Create
         public ActionResult Create()
         {
+            ViewData["category"] = new SelectList(pcr.GetAllCategories(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
+
+
+            List<ProductCategorie> categories = pcr.GetAllCategories();
+            List<SelectListItem> categoryItems = new List<SelectListItem>();
+
+            foreach (ProductCategorie category in categories)
+            {
+                categoryItems.Add(new SelectListItem { Text = Convert.ToString(category.Naam), Value = Convert.ToString(category.Id) });
+            }
+
+            ViewBag.category = categoryItems;
+            ViewData["category"] = new SelectList(pcr.GetAllCategories(), "Id", "Naam");
+
             return View();
         }
 
@@ -120,15 +134,15 @@ namespace ASP_PROFTAAK.Controllers
         {
             try
             {
-                //ID nog instellen bij cat
                 Product product = new Product(Convert.ToDecimal(collection["CategorieId"]), collection["Merk"], collection["Serie"], collection["Typenummer"], Convert.ToDecimal(collection["Prijs"]));
-                ProductCategorie categorie = new ProductCategorie(Convert.ToDecimal(collection["CategorieId"]), "test");
+                ProductCategorie categorie = new ProductCategorie(Convert.ToDecimal(Request.Form["category"]));
                 PR.Insert(product, categorie);
 
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["Error"] = "Error";
                 throw;
                 return View();
             }
@@ -157,7 +171,8 @@ namespace ASP_PROFTAAK.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Product product = PR.GetProduct(id);
+            return View(product);
         }
 
         // POST: Product/Edit/5
@@ -166,31 +181,63 @@ namespace ASP_PROFTAAK.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                Product product = new Product(id, Convert.ToDecimal(collection["CategorieId"]), collection["Merk"], collection["Serie"], collection["Typenummer"], Convert.ToDecimal(collection["Prijs"]));
 
+                PR.Update(product);
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["Error"] = "Error";
                 return View();
             }
         }
 
-        // GET: Product/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Return(int id)
         {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Return(int id, FormCollection collection)
+        {
+            try
+            {
+                vr.Delete(id);
+                return RedirectToAction("MijnProductExemplaren");
+            }
+            catch (Exception)
+            {
+                return View();
+                throw;
+            }
+        }
+
+
+        // GET: Product/Delete/5
+        public ActionResult Delete(int id)
+        {
+            Product product = PR.GetProduct(id);
+            return View(product);
+        }
+
         // POST: Product/Delete/5
         [HttpPost]
-        public ActionResult Delete(FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            string[] ids = collection["productId"].Split(',');
-            
+            try
+            {
+                Product product = new Product(id);
+                PR.Delete(product);
+                return RedirectToAction("Index");
 
-            // met een foreach alle geselecteerde producten verwijderen
-            return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                TempData["Error"] = "Error";
+                throw;
+                return View();
+            }
         }
 
     }

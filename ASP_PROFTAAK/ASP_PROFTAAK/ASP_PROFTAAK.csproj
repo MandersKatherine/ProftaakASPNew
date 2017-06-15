@@ -348,6 +348,11 @@
     <Content Include="Views\Polsbandje\Edit.cshtml" />
     <Content Include="Views\Account\Activate.cshtml" />
     <Content Include="Views\Reservering\Delete.cshtml" />
+    <Content Include="Views\ProductCategorie\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\ProductExemplaar\Create.cshtml" />
+    <Content Include="Views\Product\Return.cshtml" />
     <Content Include="Views\Bijdrage\NoComments.cshtml" />
     <Content Include="Views\Bijdrage\Comments.cshtml" />
     <Content Include="Views\Bijdrage\MisluktRea.cshtml" />
