@@ -63,7 +63,7 @@ namespace ASP_PROFTAAK.Controllers
                 plekken = newPlek,
                 reservering = newReservering,
                 persoon = newPersoon,
-                groepsleden = groepsleden
+                groepsleden = groepPersonen
 
 
             };
