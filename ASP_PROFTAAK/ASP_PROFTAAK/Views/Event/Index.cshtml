@@ -53,10 +53,6 @@
                 </td>
                 @if (Convert.ToInt32(Session["userid"]) > 0)
                 {
-
-
-
-
                     <td>
                         @if (Convert.ToInt32(Session["userid"]) == 1)
                         {
@@ -64,11 +60,8 @@
                             @Html.ActionLink("Edit", "Edit", "Event", new {id = item.Id}, null);
                             @Html.ActionLink("Details", "Details", new {id = item.Id}); 
                             @Html.ActionLink("Delete", "Delete", new {id = item.Id});<br />
-                            @Html.ActionLink("Aanwezigheid", "Index", "Toegang", new {eventid = item.Id}, null);
-
+                            @Html.ActionLink("Aanwezigheid", "Index", "Toegang", new {eventid = item.Id}, null)
                         }
-
-
                         @Html.ActionLink("Reservering maken", "Create", "Reservering", new { id = item.Id }, null)
                     </td>
                 }

@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Aanwezigen op evenement</h2>
+<h2>Bezoekers van het evenement</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AanwezigopEvent)
+            Aanwezig
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Barcode)
+            Barcode polsbandje
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Voornaam)
@@ -28,12 +28,20 @@
             @Html.DisplayNameFor(model => model.TelefoonNummer)
         </th>
         <th></th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AanwezigopEvent)
+                @if ((int)item.AanwezigopEvent == 1)
+                {
+                    <input type="checkbox" disabled="disabled" checked>
+                }
+                else
+                {
+                    <input type="checkbox" disabled="disabled">
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Barcode)
@@ -48,7 +56,7 @@
                 @Html.DisplayFor(modelItem => item.Achternaam)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TelefoonNummer)
+                0 @Html.DisplayFor(modelItem => item.TelefoonNummer)
             </td>
             <td>
 
@@ -60,19 +68,22 @@
                         </div>
                     </div>
                 }
-                @using (Html.BeginForm("ChangeAanwezigheid", "Toegang", new {eventid = item.EventId, barcode = item.Barcode}))
+            </td>
+            <td>
+                @using (Html.BeginForm("BrengPolsbandjeTerug", "Toegang", new {eventid = item.EventId, barcode = item.Barcode}))
                 {
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" name="ChangeAanwezigheid" value="Verrander aanwezigheid" class="btn btn-default"/>
+                            <input type="submit" name="BrengPolsbandjeTerug" value="Polsbandje retourneren" class="btn btn-default"/>
                         </div>
                     </div>
                 }
-                
-
             </td>
         </tr>
     }
 
 </table>
+
+
+@Html.ActionLink("Terug naar evenementen", "index", "Event")
 
