@@ -14,6 +14,8 @@ namespace ASP_PROFTAAK.Controllers
         LocatieRepository locrepo = new LocatieRepository(new LocatieSQLContext());
         PlekRepository plekrepo = new PlekRepository(new PlekSQLContext());
         SpecificatieRepository specrepo = new SpecificatieRepository(new SpecificatieSQLContext());
+        List<List<Specificatie>> specifications = new List<List<Specificatie>>();
+        List<Specificatie> specification = new List<Specificatie>();
         // GET: Event
         public ActionResult Index()
         {
@@ -53,11 +55,11 @@ namespace ASP_PROFTAAK.Controllers
         public ActionResult Details(int id)
         {
             Event events = eventrepo.GetByID(id);
-            //Locatie locatie1 = locrepo.GetByEvent(events);
+            Locatie locatie1 = locrepo.GetByEvent(events);
             var Viewmodel = new EventViewModel()
             {
                 event1 = events,
-                //locatie = locatie1
+                locatie = locatie1
             };
             if (events != null)
             {
@@ -175,28 +177,43 @@ namespace ASP_PROFTAAK.Controllers
             ViewData["locatie"] = new SelectList(locrepo.GetAllLocations(), "Id", "Naam");// nog een keer lijst aanroepen anders vind de view de viewdata niet
             string locatie = Request.Form["locatie"].ToString();
 
-            Event events = new Event(Convert.ToInt32(collection["locatie_id"]), collection["Naam"], Convert.ToDateTime(collection["datumStart"]), Convert.ToDateTime(collection["datumEinde"]), Convert.ToInt32(collection["maxBezoekers"]));
-            try
-            {
+            Event events = new Event(Convert.ToInt32(locatie), collection["Naam"], Convert.ToDateTime(collection["datumStart"]), Convert.ToDateTime(collection["datumEinde"]), Convert.ToInt32(collection["maxBezoekers"]));
+            
                 // TODO: Add update logic here
 
                 eventrepo.UpdateEvent(id, events);
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+           
+            
+                
+            
         }
 
+        //get
         public ActionResult EditLocatie(int id)
         {
             Locatie locaties = locrepo.GetLocatieById(id);
-            if (locaties != null)
+            return View(locaties);
+        }
+        //post
+        [HttpPost]
+        public ActionResult EditLocatie(int id, FormCollection collection)
+        {
+            Locatie locatie = new Locatie(id, collection["Naam"], collection["Straat"], collection["Nummer"], collection["Postcode"], collection["Plaats"]);
+            try
             {
-                return View(locaties);
+                locrepo.UpdateLocatie(locatie);
+                return RedirectToAction("EditLocatie");
+                
             }
-            else return HttpNotFound();
+            catch
+            {
+                return HttpNotFound();
+            }
+
+
+
+
         }
 
         // GET: Event/Delete/5
@@ -210,17 +227,32 @@ namespace ASP_PROFTAAK.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            
                 eventrepo.DeleteEvent((id));
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                return RedirectToAction("locaties");
+           
         }
+
+
+        // GET: Event/Delete/5
+        public ActionResult DeleteLocatie(int id)
+        {
+            Locatie locatie = locrepo.GetLocatieById(id);
+            return View(locatie);
+        }
+
+        // POST: Event/Delete/5
+        [HttpPost]
+        public ActionResult DeleteLocatie(int id, FormCollection collection)
+        {
+
+            eventrepo.DeleteLocatie(id);
+            return RedirectToAction("Locaties");
+
+        }
+
+
+
 
         //Get locatie
         public ActionResult AddLocation()
@@ -228,6 +260,10 @@ namespace ASP_PROFTAAK.Controllers
 
             return View();
         }
+
+
+
+
 
         [HttpPost]
         //post AddLocatie with plekken
@@ -258,7 +294,18 @@ namespace ASP_PROFTAAK.Controllers
             if (id != 0)
             {
                 List<Plek> plekken = plekrepo.GetPlekByLocatieId(id);
-                return View(plekken);
+                foreach (Plek plek in plekken)
+                {
+                    specification = specrepo.GetAllSpecificatieByPlekId(plek.ID);
+                    specifications.Add(specification);
+                }
+                var viewmodel = new PlekSpecificatieViewModel()
+                {
+                    plekken = plekken,
+                    specificaties = specifications
+
+                };
+                return View(viewmodel);
             }
             else
             {
@@ -266,7 +313,6 @@ namespace ASP_PROFTAAK.Controllers
                 List<Plek> plekken = plekrepo.GetPlekByLocatieId(lastInsertedLocationId);
                 return View(plekken);
             }
-
         }
 
         [HttpPost]

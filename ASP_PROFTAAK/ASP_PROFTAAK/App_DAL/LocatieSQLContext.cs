@@ -171,6 +171,7 @@ namespace ASP_PROFTAAK
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
 
+                    command.Parameters.AddWithValue("@id", locatie.Id);
                     command.Parameters.AddWithValue("@naam", locatie.Naam);
                     command.Parameters.AddWithValue("@straat", locatie.Straat);
                     command.Parameters.AddWithValue("@nummer", locatie.Nummer);

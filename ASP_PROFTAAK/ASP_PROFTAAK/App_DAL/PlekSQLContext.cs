@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
@@ -52,10 +53,11 @@ namespace ASP_PROFTAAK.App_DAL
             List<Decimal> Plekken = new List<Decimal>();
             using (SqlConnection connection = Database.Connection)
             {
-                string query = "SELECT plek_id FROM RESERVERING INNER JOIN PLEK_RESERVERING ON RESERVERING.ID = PLEK_RESERVERING.reservering_id";
+                string query = "SELECT plek_id FROM RESERVERING INNER JOIN PLEK_RESERVERING ON RESERVERING.ID = PLEK_RESERVERING.reservering_id WHERE reservering.ID = @ID";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("ID", id);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())

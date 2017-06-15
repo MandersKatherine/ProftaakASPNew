@@ -44,5 +44,11 @@ namespace ASP_PROFTAAK.Controllers
         {
             return context.DeleteEvent(id);
         }
+
+        public bool DeleteLocatie(int id)
+        {
+            return context.DeleteLocatie(id);
+        }
+
     }
 }

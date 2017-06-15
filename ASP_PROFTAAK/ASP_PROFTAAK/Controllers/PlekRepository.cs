@@ -26,8 +26,6 @@ namespace ASP_PROFTAAK.Controllers
             return context.DeletePlek(id);
         }
 
-
-
         public bool UpdatePlek(Plek plek)
         {
             return context.UpdatePlek(plek);

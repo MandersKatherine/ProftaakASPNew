@@ -111,11 +111,12 @@ namespace ASP_PROFTAAK.App_DAL
             using (SqlConnection connection = Database.Connection)
             {
                 string query = "UPDATE Event" +
-                    " SET Naam=@naam, datumStart=@datumstart, datumEinde=@datumeinde, maxBezoekers=@maxbezoekers" +
+                    " SET Naam=@naam, locatie_id=@locatie, datumStart=@datumstart, datumEinde=@datumeinde, maxBezoekers=@maxbezoekers" +
                     " WHERE ID=@id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("id", id);
+                    command.Parameters.AddWithValue("locatie", events.Locatie_id);
                     command.Parameters.AddWithValue("naam", events.Naam);
                     command.Parameters.AddWithValue("datumstart", events.DatumStart);
                     command.Parameters.AddWithValue("datumeinde", events.DatumEinde);
@@ -146,14 +147,28 @@ namespace ASP_PROFTAAK.App_DAL
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("id", id);
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (SqlException e)
-                    {
 
-                    }
+                    command.ExecuteNonQuery();
+                    
+
+                }
+            }
+
+            return false;
+        }
+
+        public bool DeleteLocatie(int id)
+        {
+            using (SqlConnection connection = Database.Connection)
+            {
+                string query = "DELETE FROM Locatie" +
+                               " WHERE ID=@id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+
+                    command.ExecuteNonQuery();
+
 
                 }
             }

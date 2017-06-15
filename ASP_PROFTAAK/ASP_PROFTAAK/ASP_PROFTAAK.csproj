@@ -363,6 +363,7 @@
     <Content Include="Views\Toegang\Index.cshtml" />
     <Content Include="Views\Bijdrage\Reports.cshtml" />
     <Content Include="Views\Product\Betaal.cshtml" />
+    <Content Include="Views\Event\DeleteLocatie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservering\Details.cshtml" />
